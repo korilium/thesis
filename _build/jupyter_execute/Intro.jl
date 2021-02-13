@@ -8,6 +8,5 @@ This is the jupyter notebook for the thesis in optimal consumption, invetsment a
 :titlesonly:
 
 
-Full thesis <Full_thesis>
-referencess
+Full_thesis
 ```

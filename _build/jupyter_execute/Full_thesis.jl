@@ -39,7 +39,7 @@ Mental accounts can be described as structures with which consumers separate the
 
 In this section, I will set the model dynamics in place. The dynamics follow primarily from the paper of ... 
 
-Let the state of the economy be represented by a standard Brownian motion $w(t)$, the state of the consumer's wealth be characterized by a finite state multi-dimensional continuous-time Markov chain $X(t)$ and let the time of death be defined by a non-negative random variable $\tau_d$. All are defined on a given probability space ($\Omega, \mathcal{F}, P$) and $W(t)$ is independent of $\tau_d$. Let $T< \infty$ be a fixed planning horizon. This can be seen as the end of the working life for the consumer. $\mathbb{F} = \{\mathcal{F}_t, t \in [0,T]\}$, be the P-augmentation of the filtration $\sigma${$W(s), s<t \}, \forall t \in [0,T]$ , so $\mathcal{F}_t$ represents the information at time t. The economy consist of a financial market and an insurance market. In the following section I will construct these markets separetly. 
+Let the state of the economy be represented by a standard Brownian motion $w(t)$, the state of the consumer's wealth be characterized by a finite state multi-dimensional continuous-time Markov chain $X(t)$ and let the time of death be defined by a non-negative random variable $\tau$. All are defined on a given probability space ($\Omega, \mathcal{F}, P$) and $W(t)$ is independent of $\tau$. Let $T< \infty$ be a fixed planning horizon. This can be seen as the end of the working life for the consumer. $\mathbb{F} = \{\mathcal{F}_t, t \in [0,T]\}$, be the P-augmentation of the filtration $\sigma${$W(s), s<t \}, \forall t \in [0,T]$ , so $\mathcal{F}_t$ represents the information at time t. The economy consist of a financial market and an insurance market. In the following section I will construct these markets separetly. 
 
 
 
@@ -64,8 +64,6 @@ $$ \bar{F}(t)\triangleq P(\tau \ge t) = 1 -F(t) $$
 
 The hazard function is the  instantaneous death rate for the consumer at time t and is defined by 
 
-
-
 $$ \lambda(t) = \lim_{\Delta t\to 0} = \frac{P(t\le\tau < t+\Delta t| \tau \ge t)}{\Delta t} $$
 
 where $\lambda(t): [0,\infty[ \to R^+$ is a continuous, deterministic function with $\int_0^\infty \lambda(t) dt = \infty$.
@@ -82,7 +80,7 @@ $$ f(s,t) \triangleq \frac{f(s)}{\bar{F}(t)}=\lambda(s) e^{-\int_t^s\lambda(u)dy
 $$ \bar{F}(s,t) = {}_sp_t \triangleq \frac{\bar{F}(s)}{\bar{F}(t)} = e^{-\int_t^s \lambda(u)du} $$
 
     
-Now that $\tau_d$ has been modeled, the life insurance market can be constructed. Let's assume that the life insurance is continuously offered and that it provides coverage for an infinitesimally small period of time. In return, the consumer pays a premium rate p when he enters into a life insurance contract, so that he might insure his future income. In compensation he will receive  a total benefit of $\frac{p}{\eta(t)}$ when he dies at time t. Where $\eta : [0,T] \to R^+ $ is a continuous, deterministic function.
+Now that $\tau$ has been modeled, the life insurance market can be constructed. Let's assume that the life insurance is continuously offered and that it provides coverage for an infinitesimally small period of time. In return, the consumer pays a premium rate p when he enters into a life insurance contract, so that he might insure his future income. In compensation he will receive  a total benefit of $\frac{p}{\eta(t)}$ when he dies at time t. Where $\eta : [0,T] \to R^+ $ is a continuous, deterministic function.
 
 Both markets are now described and the wealth process $X(t)$ of the consumer can now be constructed. Given an initial wealth $x_0$, the consumer receives a certain amount of income $i(t)$ $\forall t \in [0,\tau \wedge T]$ and satisfying $\int_0^{\tau \wedge T} i(u)du < \infty$. He needs to choose at time t a certain premium rate $p(t)$, a certain consumption rate $c(t)$ and a certain amount of his wealth $\theta (t)$ that he invest into the risky asset $S(t)$. So given the processes $\theta$, c, p and i, there is a wealth process $X(t)$  $\forall t \in [0, \tau \wedge T] $ determined by 
 
@@ -100,12 +98,46 @@ such that his expected utility from consumption, from legacy when $\tau > T$ and
 
 $$ V(x) \triangleq \sup_{(c,p,\theta) \in \mathcal{A}(x)} E\left[\int_0^{T \wedge \tau} U(c(s),s)ds + B(Z(\tau),\tau)1_{\{\tau \ge T\}} + L(X(T))1_{\{\tau>T\}}\right] $$ 
 
-Where $U(c,t)$ is the utility function of consumption, $B(Z,t)$ is the utility function of legacy and $L(X)$ is the utility function for the terminal wealth.
+Where $U(c,t)$ is the utility function of consumption, $B(Z,t)$ is the utility function of legacy and $L(X)$ is the utility function for the terminal wealth. $V(x)$ is called the value function and the consumers wants to maximize his value function by choosing the optimal set $\mathcal{A} = (c,p,\theta)$. The optimal set $\mathcal{A}$ is found by using the dynamic programming technique described in the following section. 
 
 ## dynamic programming principle 
 
-```{bibliography}
-```
+To solve the consumer's problem the value function needs to be restated in a dynamic programming form. 
+
+$$J(t, x; c, p, \theta) \triangleq E \left[\int_0^{T \wedge \tau} U(c(s),s)ds + B(Z(\tau),\tau)1_{\{\tau \ge T\}} + L(X(T))1_{\{\tau>T\}}| \tau> t, \mathcal{F}_t \right] $$
+
+The value function becomes
+
+$$ V(t,x) \triangleq \sup_{\{c,p,\theta\} \in \mathcal{A}(t,x)} J(t, x; c, p, \theta)  $$
+
+Because $\tau$ is independent of the filtration, the value function can be rewritten as 
+
+$$ E \left[\int_0^T  \bar{F}(s,t)U(c(s),s) + f(s,t)B(Z(\tau),\tau) ds  + \bar{F}(T,t)L(X(T))| \mathcal{F}_t \right]$$ 
+
+The optimization problem is now converted from a random  closing time point to a fixed closing time point. The mortality rate can also be seen as a discounting function for the consumer as he would value the utility on the probability of survival. 
+
+Following the dynamic programming principle we can rewrite this equation as the value function at time s plus the value created from time step t to time step s. This enables us to view the optimization problem into a time step setting, giving us the incremental value gained at each point in time.   
+
+$$ V(t,x) = \sup_{\{c,p,\theta\} \in \mathcal{A}(t,x)} E\left[e^{-\int_t^s\lambda(v)dv}V(s,X(s)) + \int_t^s f(s,t)B(Z(s),s) + \bar{F}(s,t)U(c(s),s)ds|\mathcal{F}_t\right] $$ 
+
+The Hamiltonian-Jacobi-bellman (HJB) equation can be derived from the dynamic programming principle and is as follows
+
+\begin{cases} V_T(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,x) = L(x)  \end{cases}
+
+where 
+
+$$ \Psi(t,x; c,p,\theta) \triangleq r(t)x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x) + \\ \frac{1}{2}\sigma^2(t)\theta^2V_{xx}(t,x) + \lambda(t)B(x+ p/\eta(t),t) + U(c,t) $$
+
+Proofs for deriving the HJB equation, dynammic programming principle and converting from a random closing time point to a fixed closing time point can be found in ... 
+
+
+
+
+## Algorithm NeuralNetDiffEq
+
+
+
+## references 
 
 ```{bibliography}
 ```
