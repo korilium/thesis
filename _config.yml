@@ -1,11 +1,21 @@
 title: "optimal control for consumers"
-logo: testpanda.jpg
+author: Ignace Decocq  # The author of the book
+logo: pipe.jpg
 execute:
   execute_notebooks: "off"
 
 
+bibtex_bibfiles:
+   - referencess.bib
 
 
 
-bibtex_bibfiles: 
-  - referencess.bib
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath
+    - colon_fence
+    - dollarmath
+    - linkify
+    - substitution
