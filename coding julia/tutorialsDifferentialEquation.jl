@@ -1,14 +1,10 @@
 cd(@__DIR__)
 using Pkg; Pkg.activate("DiffEq"); Pkg.instantiate()
 
-using DifferentialEquations,
-DifferentialEquations.EnsembleAnalysis,
-ParameterizedFunctions,
-BenchmarkTools,
-Catalyst, 
-StaticArrays, 
-ParameterizedFunctions, 
-Latexify
+using DifferentialEquations,DifferentialEquations.EnsembleAnalysis,
+ParameterizedFunctions,BenchmarkTools,Catalyst, 
+StaticArrays, ParameterizedFunctions,Latexify, 
+DiffEqBayes
 
 
 
@@ -82,8 +78,6 @@ plot(sol)
 
 #### second tutorial: Choosing an ODE Algorithm ####
 
-
-
 van! = @ode_def VanDerPol begin 
     dy = μ*((1-x^2)*y - x)
     dx = 1*y 
@@ -111,6 +105,8 @@ prob = ODEProblem(lorenz!,u0,tspan,p)
 
 @btime solve(prob)
 @btime solve(prob, alg_hints = [:stiff])
+
+#### third tutorial optimizing DiffEq Code ####
 
 function lorenz(u, p, t)
     dx = 10.0*(u[2]-u[1])
@@ -142,7 +138,70 @@ A = @SVector [2.0, 3.0,5.0]
 
 #using Static Arrays to optimize 
 
-#### third tutorial callbacks and events
+function lorenz_static(u,p,t)
+    dx = 10.0*(u[2]-u[1])
+    dy = u[1]*(28.0-u[3]) - u[2]
+    dz = u[1]*u[2] - (8/3)*u[3]
+    @SVector [dx,dy,dz]
+   end
+
+   u0 = @SVector [1.0,0.0,0.0]
+   tspan = (0.0,100.0)
+   prob = ODEProblem(lorenz_static,u0,tspan)
+   @benchmark solve(prob,Tsit5())
+
+
+#Optimize Large Systems 
+
+A= rand(1000, 1000); B = rand(1000, 1000); C = rand(1000, 1000)
+test(A,B,C) = A + B +C
+@benchmark test(A, B, C)
+
+
+# add the + operation at the same time 
+
+#map
+test2(A,B,C) = map((a,b,c)->a+b+c,A,B,C)
+@benchmark test2(A,B,C)
+
+#function creation 
+function test3(A,B,C)
+    D = similar(A)
+    @inbounds for i in eachindex(A)
+        D[i] = A[i] + B[i] + C[i]
+    end
+    D
+end
+@benchmark test3(A,B,C)
+
+#broadcasting 
+test4(A,B,C) = A .+ B .+ C
+@benchmark test4(A,B,C)
+
+test5(A,B,C) = @. A + B + C #only one array allocated
+@benchmark test5(A,B,C)
+
+
+#mutate to get rid of last allocation 
+
+#first preallocate output 
+D = zeros(1000, 1000)
+#reuse 
+test6!(D,A,B,C) = D .= A .+ B .+ C #only one array allocated
+@benchmark test6!(D,A,B,C)
+
+#optimal allocation of array: only one
+test7!(D,A,B,C) = @. D = A + B + C #only one array allocated
+@benchmark test7!(D,A,B,C)
+
+test8!(D,A,B,C) = map!((a,b,c)->a+b+c,D,A,B,C)
+@benchmark test8!(D,A,B,C)
+
+
+
+
+
+#### fourth tutorial callbacks and events
 
 
 ball! = @ode_def BallBounce begin
@@ -150,10 +209,10 @@ ball! = @ode_def BallBounce begin
   dv = -g
 end g
 
-# create a condition 
+# create a condition when ball hits the earth
 
 function condition(u,t,integrator)
-    u[1]
+    u[1] 
   end
 
 #making the baouncing affect of the ball 
@@ -226,19 +285,12 @@ terminate_cb = ContinuousCallback(terminate_condition, terminate_affect!)
 sol = solve(prob, callback= terminate_cb)
 plot(sol)
 
+sol.t[end]
 
 terminate_upcrossing_cb = ContinuousCallback(terminate_condition,terminate_affect!, nothing)
 sol= solve(prob, callback = terminate_upcrossing_cb)
 
 plot(sol)
-
-#manifold Project 
-
-tspan = (0.0, 10000.0)
-prob = ODEProblem(harmonic!, u0, tspan)
-sol = solve(prob)
-gr(fmt=:png)
-plot(sol, vars=(0,1), denseplot=false)
 
 
 
@@ -280,7 +332,62 @@ plot(summ, labels="Middle 95%")
 summ= EnsembleSummary(sol, 0:0.01:1, quantiles=[0.25,0.75])
 plot!(summ, labels="Middle 50%", legend=true)
 
-#### Discrete Stochastic Equations 
+#### Discrete Stochastic Equations  #####
+
+α=1 
+β=1 
+u₀=1/2 
+f(u,p, t) = α*u
+g(u,p, t) = β*u 
+dt = 1/2^4
+tspan = (0.0, 1.0)
+prob = SDEProblem(f,g,u₀, (0.0,1.0))
+
+sol = solve(prob,EM(),dt=dt)
+using Plots; plotly() # Using the Plotly backend
+plot(sol)
+
+f_analytic(u₀,p,t,W) = u₀*exp((α-(β^2)/2)*t+β*W)
+ff = SDEFunction(f,g,analytic=f_analytic)
+prob = SDEProblem(ff,g,u₀,(0.0,1.0))
+
+sol = solve(prob,EM(),dt=dt)
+plot(sol,plot_analytic=true)
+
+sol = solve(prob,SRIW1(),dt=dt,adaptive=false)
+plot(sol,plot_analytic=true)
+
+#ensemble simulations 
+
+ensembleprob = EnsembleProblem(prob)
+
+sol = solve(ensembleprob, EnsembleThreads(), trajectories = 1000)
+
+summ = EnsembleSummary(sol,0:0.01:1)
+plot(summ,labels="Middle 95%")
+summ = EnsembleSummary(sol,0:0.01:1;quantiles=[0.25,0.75])
+plot!(summ,labels="Middle 50%",legend=true)
+
+
+#diagnal Noise 
+
+function lorenz(du,u,p,t)
+    du[1] = 10.0(u[2]-u[1])
+    du[2] = u[1]*(28.0-u[3]) - u[2]
+    du[3] = u[1]*u[2] - (8/3)*u[3]
+  end
+  
+  function σ_lorenz(du,u,p,t)
+    du[1] = 3.0
+    du[2] = 3.0
+    du[3] = 3.0
+  end
+  
+  prob_sde_lorenz = SDEProblem(lorenz,σ_lorenz,[1.0,0.0,0.0],(0.0,10.0))
+  sol = solve(prob_sde_lorenz)
+  plot(sol,vars=(1,2,3))
+
+
 
 
 
@@ -342,10 +449,5 @@ sol = solve(ensembleprob, EnsembleThreads(), trajectories=1000)
 summ = EnsembleSummary(sol, 0:0.01:1)
 plot(summ, labels = "Middle 95%")
 
-### third part : Gillespie jump models of discrete stochasticity
+#### Bayesian Parameter Estimation 
 
-A+Y -> X+P
-X+Y -> 2P
-A+X -> 2X + 2Z
-2X  -> A + P (note: this has rate kX^2!)
-B + Z -> Y

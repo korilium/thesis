@@ -1,13 +1,8 @@
 
-cd(@__DIR__)
-using Pkg; Pkg.activate("Exercise"); Pkg.instantiate()
 using Flux, Plots
 
-
-W = [randn(32,10), randn(32,32), randn(5,32)]
-b = [zeros(32), zeros(32), zeros(5)]
-
-NN(x) = W[3]*tanh.(W[2]*tanh.(W[1]*x + b[1]) + B[2])+ b[3]
+######## basics ####### 
+#ref: https://fluxml.ai/Flux.jl/stable/models/basics/ 
 
 ### in package documentation of Flux
 
@@ -34,48 +29,33 @@ gs[x]
 
 gs[y]
 
-
-f(x, y) = sum(x.^2 .+2 .* x .* y .+ y.^2) # need to have sum do not know why 
-
-x = [2.0];
- y = [3]
-
-gt = gradient(params(x, y)) do 
-    f(x, y)
-end
-
-gt[x]
-
-#simple Models 
-
+#simple models 
 W = rand(2, 5)
 b = rand(2)
 
-predict(x) = W*x .+ b
-
+predict(x)= W*x .+ b
 
 function loss(x, y)
-    ŷ = predict(x)
-    sum((y .- ŷ).^2)
+    ŷ=predict(x)
+    sum(( y .-ŷ).^2)
 end 
 
 x, y = rand(5), rand(2)
 
 loss(x, y)
 
-#improve loss use gradient decent 
+#use gradient decent 
 
 gs = gradient(() -> loss(x, y), params(W,b))
 
-#train model 
+W⁻ = gs[W]
 
-Ŵ = gs[W]
+W.-= 0.1 .* W⁻ 
 
-W .-= 0.1 .* Ŵ
+loss(x, y) 
 
-loss(x, y) ## loss increases at a certain time point why?? 
 
-#complex model 
+#building Layers 
 
 W1 = rand(3, 5)
 b1 = rand(3)
@@ -144,41 +124,50 @@ struct affine
 
   #### recurrent Models ####
 
-Wxh = randn(5, 10)
-Whh = randn(5, 5)
+#handwritten 
+Wxh = randn(5,2)
+Whh = randn(5,5)
 b = randn(5)
 
 function rnn(h, x)
     h = tanh.(Wxh * x .+ Whh * h .+ b)
     return h, h
 end 
-x = rand(10)
+
+x = rand(2)
 h = rand(5)
+
 h, y = rnn(h, x)
 
+#with flux 
 
-# package function 
+rnn = Flux.RNNCell(2,5)
+x = rand(Float32, 2)
+h =rand(Float32, 5)
+h, y = rnn(h, x)
 
-rnn2 = Flux.RNNCell(10, 5)
+#stateful Models Recur wrapper 
 
-x= rand(10)
-h = rand(5)
-
-h, y = rnn2(h, x)
-
-#stateful models (don't manage hidden states)
-
-x = rand(10)
-h = rand(5)
+x = rand(Float32, 2)
+h = rand(Float32, 5)
 
 m = Flux.Recur(rnn, h)
 
-y= m(x)
+y = m(x)
 
-RNN(10,5)
-# Sequences 
 
-seq = [rand(10) for i = 1:10 ]
+RNN(2,5) # RNN is just a wrapper around Recur 
 
-m.(seq)
+#creating a sequence so memory becomes usefull 
+m = Chain(RNN(2, 5), Dense(5, 1), x -> reshape(x, :))
+
+x= rand(Float32, 2)
+m(x)
+
+#muliple steps in one 
+x=[rand(Float32, 2) for i = 1:3]
+m.(x)
+
+
+
 
