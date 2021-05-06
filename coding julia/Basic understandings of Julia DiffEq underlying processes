@@ -1,5 +1,5 @@
 
-Flux documentation : https://fluxml.ai/Flux.jl/stable/models/layers/  
+Flux documentation : https://fluxml.ai/Flux.jl/stable/
     - long short term memory networks (LSTM) : https://colah.github.io/posts/2015-08-Understanding-LSTMs/
     - perceptron : https://hackernoon.com/perceptron-deep-learning-basics-3a938c5f84b6
     - Sigmoid Neuron : https://towardsdatascience.com/sigmoid-neuron-deep-neural-networks-a4cd35b629d7 
@@ -7,12 +7,34 @@ Flux documentation : https://fluxml.ai/Flux.jl/stable/models/layers/
     - Convolution neural network : https://www.ibm.com/cloud/learn/convolutional-neural-networks
                                     http://courses.csail.mit.edu/18.337/2015/projects/Victor_Jakubiuk/fully_conv_networks_writeup.pdf 
     - one hot coding : https://www.educative.io/blog/one-hot-encoding 
+    - basic layers of Flux : https://fluxml.ai/Flux.jl/stable/models/layers/ 
+
 
 DifferentialEquation documentation: https://diffeq.sciml.ai/latest/
     - first tutorial introduction :  https://tutorials.sciml.ai/html/introduction/01-ode_introduction.html
     - second tutorial stiffness and best ODE algorithm: https://tutorials.sciml.ai/html/introduction/02-choosing_algs.html
     - 3th tutorial optimize DiffEq Code : https://tutorials.sciml.ai/html/introduction/03-optimizing_diffeq_code.html
-    - 4th tutorial callbacks and evenets : https://tutorials.sciml.ai/html/introduction/04-callbacks_and_events.html
+        + integrator interface : https://diffeq.sciml.ai/dev/basics/integrator/
+    - 4th tutorial callbacks and events : https://tutorials.sciml.ai/html/introduction/04-callbacks_and_events.html
     - exercises DifferentialEquation : https://tutorials.sciml.ai/html/exercises/01-workshop_exercises.html 
     - tutorial stochastic Differential Equations : https://diffeq.sciml.ai/dev/tutorials/sde_example/ 
     - tutorial Discrete Stochastic Equations : https://diffeq.sciml.ai/dev/tutorials/discrete_stochastic_example/
+    - tutorial Bayesian Parameter Estimation : https://diffeqbayes.sciml.ai/dev/
+
+DifferentialEquationFlux documentation: https://diffeqflux.sciml.ai/dev/examples/optimization_ode/ 
+    - tutorials ordinary Differential Equation : https://diffeqflux.sciml.ai/dev/examples/optimization_ode/ 
+    - Local Sensitivity Analysis : https://diffeq.sciml.ai/latest/analysis/sensitivity/ 
+        + Mathematics of Sensitivity Analysis : https://diffeq.sciml.ai/latest/extras/sensitivity_math/#sensitivity_math 
+
+automatic differentiation : https://mitmath.github.io/18337/lecture8/automatic_differentiation 
+    - introduction to AD : https://www.youtube.com/watch?v=FtnkqIsfNQc for dummies like me 
+    - https://mitmath.github.io/18337/lecture10/estimation_identification 
+    - jupyter notebook for AD: https://github.com/MikeInnes/diff-zoo 
+    - https://mitmath.github.io/18337/lecture9/stiff_odes 
+    - https://mitmath.github.io/18337/lecture8/automatic_differentiation 
+
+
+extras: 
+    - difference between Heap and Stack : http://net-informations.com/faq/net/stack-heap.htm
+    - broadcasting - syntactic loop fusion - : https://julialang.org/blog/2017/01/moredots/
+    - zygote :  https://fluxml.ai/Zygote.jl/latest/profiling/#Memory-Profiling-1 
