@@ -8,6 +8,8 @@ Flux documentation : https://fluxml.ai/Flux.jl/stable/
                                     http://courses.csail.mit.edu/18.337/2015/projects/Victor_Jakubiuk/fully_conv_networks_writeup.pdf 
     - one hot coding : https://www.educative.io/blog/one-hot-encoding 
     - basic layers of Flux : https://fluxml.ai/Flux.jl/stable/models/layers/ 
+    - recurrent neural networks : http://learningjulia.com/2019/10/11/a-basic-rnn.html 
+
 
 
 DifferentialEquation documentation: https://diffeq.sciml.ai/latest/
@@ -30,8 +32,8 @@ automatic differentiation : https://mitmath.github.io/18337/lecture8/automatic_d
     - introduction to AD : https://www.youtube.com/watch?v=FtnkqIsfNQc for dummies like me 
     - https://mitmath.github.io/18337/lecture10/estimation_identification 
     - jupyter notebook for AD: https://github.com/MikeInnes/diff-zoo 
-    - https://mitmath.github.io/18337/lecture9/stiff_odes 
-    - https://mitmath.github.io/18337/lecture8/automatic_differentiation 
+    - Solving Stiff Ordinary Differential Equations : https://mitmath.github.io/18337/lecture9/stiff_odes 
+    - forward mode AD via High Dimensional Algebras: https://mitmath.github.io/18337/lecture8/automatic_differentiation 
 
 
 extras: 
