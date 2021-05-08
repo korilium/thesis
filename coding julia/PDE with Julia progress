@@ -1,3 +1,4 @@
+basic understanding for neural networks
 
 Flux documentation : https://fluxml.ai/Flux.jl/stable/
     - long short term memory networks (LSTM) : https://colah.github.io/posts/2015-08-Understanding-LSTMs/
@@ -9,8 +10,10 @@ Flux documentation : https://fluxml.ai/Flux.jl/stable/
     - one hot coding : https://www.educative.io/blog/one-hot-encoding 
     - basic layers of Flux : https://fluxml.ai/Flux.jl/stable/models/layers/ 
     - recurrent neural networks : http://learningjulia.com/2019/10/11/a-basic-rnn.html 
+    - tutorial Introduction to Julia for Scientific Machine Learning : https://mitmath.github.io/18S096SciML/lecture2/ml
 
 
+basic understanding for differential equations in julia
 
 DifferentialEquation documentation: https://diffeq.sciml.ai/latest/
     - first tutorial introduction :  https://tutorials.sciml.ai/html/introduction/01-ode_introduction.html
@@ -22,18 +25,21 @@ DifferentialEquation documentation: https://diffeq.sciml.ai/latest/
     - tutorial stochastic Differential Equations : https://diffeq.sciml.ai/dev/tutorials/sde_example/ 
     - tutorial Discrete Stochastic Equations : https://diffeq.sciml.ai/dev/tutorials/discrete_stochastic_example/
     - tutorial Bayesian Parameter Estimation : https://diffeqbayes.sciml.ai/dev/
+    - automatic differentiation : https://mitmath.github.io/18337/lecture8/automatic_differentiation 
+        + introduction to AD : https://www.youtube.com/watch?v=FtnkqIsfNQc for dummies like me 
+        + https://mitmath.github.io/18337/lecture10/estimation_identification 
+        + jupyter notebook for AD: https://github.com/MikeInnes/diff-zoo 
+        + Solving Stiff Ordinary Differential Equations : https://mitmath.github.io/18337/lecture9/stiff_odes 
+        + forward mode AD via High Dimensional Algebras: https://mitmath.github.io/18337/lecture8/automatic_differentiation 
+
+
+basic understanding of combining flux with diffEq 
 
 DifferentialEquationFlux documentation: https://diffeqflux.sciml.ai/dev/examples/optimization_ode/ 
     - tutorials ordinary Differential Equation : https://diffeqflux.sciml.ai/dev/examples/optimization_ode/ 
     - Local Sensitivity Analysis : https://diffeq.sciml.ai/latest/analysis/sensitivity/ 
         + Mathematics of Sensitivity Analysis : https://diffeq.sciml.ai/latest/extras/sensitivity_math/#sensitivity_math 
 
-automatic differentiation : https://mitmath.github.io/18337/lecture8/automatic_differentiation 
-    - introduction to AD : https://www.youtube.com/watch?v=FtnkqIsfNQc for dummies like me 
-    - https://mitmath.github.io/18337/lecture10/estimation_identification 
-    - jupyter notebook for AD: https://github.com/MikeInnes/diff-zoo 
-    - Solving Stiff Ordinary Differential Equations : https://mitmath.github.io/18337/lecture9/stiff_odes 
-    - forward mode AD via High Dimensional Algebras: https://mitmath.github.io/18337/lecture8/automatic_differentiation 
 
 
 extras: 

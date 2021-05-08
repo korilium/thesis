@@ -1,116 +1,161 @@
-# notebook Differentiation for hackers
-# ref: https://github.com/MikeInnes/diff-zoo 
-using MacroTools, Mjolnir, Flux, Zygote, DifferentialEquations
-using SymbolicUtils, InteractiveUtils, SpecialFunctions
+# Forward-Mode Automatic Differentiation (AD) via High Dimensional Algebras
+# ref: https://mitmath.github.io/18337/lecture8/automatic_differentiation
+using InteractiveUtils, Base, StaticArrays, ForwardDiff
+import Base
+eps(Float64)
 
+@show eps(1.0)
+@show eps(0.01)
 
-x= 2
-y = x^2 +1 
+ϵ = 1e-10rand()
+@show ϵ
+@show (1+ϵ)
+ϵ2 = (1+ϵ) - 1
+(ϵ - ϵ2)
 
-y = :(x^2 +1)
+#creating dual number 
 
-typeof(y)
-
-#tree structured 
-
-y.head
-
-y.args 
-
-eval(y)
-
-#obvious derivation 
-
-function derive(ex, x)
-    ex == x ? 1 :
-    ex isa Union{Number, Symbol} ? 0 : 
-    error("$ex is not differentiable")
+struct Dual{T}
+  val::T
+  der::T
 end 
 
-y = :(x)
-derive(y, :x)
+#import the operation Base 
+import Base: + 
+f::Dual + g::Dual = Dual(f.val - g.val, f.der -g.der)
+#same as 
+Base.:+(f::Dual, g::Dual) = Dual(f.val + g.val, f.der +g.der)
+Base.:+(f::Dual, α::Number) = Dual(f.val + α, f.der)
+Base.:+(α::Number, f::Dual) = f + α
 
-y = :(1)
-derive(y, :x)
+#product rule 
+Base.:*(f::Dual, g::Dual) = Dual(f.val*g.val, f.der*g.val + f.val*g.der)
+Base.:*(α::Number, f::Dual) = Dual(f.val * α, f.der * α)
+Base.:*(f::Dual, α::Number) = α * f
 
-#checking which operation we can use with our derive function 
-y = :(x +1)
+#quatient rule 
+Base.:/(f::Dual, g::Dual) = Dual(f.val/g.val, (f.der*g.val -f.val*g.der)/(g.val^2))
+Base.:/(f::Dual, α::Number) = Dual(f.val/α, f.der*(1/α))
+Base.:/(α::Number,f::Dual ) = Dual(α/f.val, -α*f.der/f.val^2)
 
-@capture(y, a_ * b_)
+#higher orders 
+Base.:^(f::Dual, n::Integer) = Base.power_by_squaring(f, n) 
 
-@capture(y, a_ + b_)
+#test our new dual number 
 
-a, b 
+f = Dual(3, 4)
+g = Dual(5, 6)
+f+g
+f*g
 
-# add rule of additicity for derivatives 
-function derive(ex, x)
-    ex == x ? 1 : 
-    ex isa Union{Number, Symbol} ? 0 : 
-    @capture(ex, a_ + b_) ? :($(derive(a, x)) + $(derive(b, x))) : 
-    erro("$ex is not differentiable")
+f*(g+g)
+
+#skipping performance 
+#defining Higher Order Primitives
+
+import Base: exp 
+exp(f::Dual) = Dual(exp(f.val), exp(f.val)*f.der)
+f
+
+exp(f)
+
+#differentiating arbitrary functions 
+h(x) = x^2 +2 
+a = 3 
+
+xx =Dual(a, 1)
+
+h(xx)
+derivative(f, x) = f(Dual(x, one(x))).der
+
+derivative(x -> 3*x^5 +2, 2)
+
+
+#higher dimensions 
+ff(x, y) =  x^2 +x*y
+a, b = 3.0, 4.0 
+
+ff_1(x) = ff(x, b) #single variable function 
+
+#defferentiate single variable function 
+
+derivative(ff_1, a)
+
+#under the hood 
+
+ff(Dual(a, one(a)), b)
+
+#defferentiaite with respect to y 
+
+ff_2(y) = ff(a, y)
+
+derivative(ff_2, b)
+
+
+ff(a, Dual(b, one(b)))
+#need to do two separate calculations for all the partial derivatives
+
+
+###### implementation of higher-dimensional forward-mode AD 
+
+#creating dual numbers in vector space 
+struct MultiDual{N, T}
+  val::T
+  derivs::SVector{N,T}
 end 
 
-y = :(x +(1 + (x +1)))
-derive(y, :x)
-
-function derive(ex, x)
-    ex == x ? 1 :
-    ex isa Union{Number,Symbol} ? 0 :
-    @capture(ex, a_ + b_) ? :($(derive(a, x)) + $(derive(b, x))) :
-    @capture(ex, a_ * b_) ? :($a * $(derive(b, x)) + $b * $(derive(a, x))) :
-    @capture(ex, a_^n_Number) ? :($(derive(a, x)) * ($n * $a^$(n-1))) :
-    @capture(ex, a_ / b_) ? :($b * $(derive(a, x)) - $a * $(derive(b, x)) / $b^2) :
-    error("$ex is not differentiable")
-  end
-
-  
-
-y = :(3x^2 + (2x + 1))
-dy = derive(y, :x)
-#cleaning up 
-
-addm(a, b) = a == 0 ? b : b == 0 ? a : :($a + $b)
-mulm(a, b) = 0 in (a, b) ? 0 : a == 1 ? b : b == 1 ? a : :($a * $b)
-mulm(a, b, c...) = mulm(mulm(a, b), c...)
-
-function derive(ex, x)
-    ex == x ? 1 :
-    ex isa Union{Number,Symbol} ? 0 :
-    @capture(ex, a_ + b_) ? addm(derive(a, x), derive(b, x)) :
-    @capture(ex, a_ * b_) ? addm(mulm(a, derive(b, x)), mulm(b, derive(a, x))) :
-    @capture(ex, a_^n_Number) ? mulm(derive(a, x),n,:($a^$(n-1))) :
-    @capture(ex, a_ / b_) ? :($(mulm(b, derive(a, x))) - $(mulm(a, derive(b, x))) / $b^2) :
-    error("$ex is not differentiable")
-  end
-
-  
-
-derive(:(x / (1 + x^2)), :x)
+import Base: +, *
 
 
-
-#do not need to understand structure of printstruct
-
-printstructure(x, _, _) = x
-
-function printstructure(ex::Expr, cache = IdDict(), n = Ref(0))
-  haskey(cache, ex) && return cache[ex]
-  args = map(x -> printstructure(x, cache, n), ex.args)
-  cache[ex] = sym = Symbol(:y, n[] += 1)
-  println(:($sym = $(Expr(ex.head, args...))))
-  return sym
+function +(f::MultiDual{N,T}, g::MultiDual{N,T}) where {N, T}
+  return MultiDual{N,T}(f.val + g.val, f.derivs + g.derivs)
 end
 
+function *(f::MultiDual{N,T}, g::MultiDual{N,T}) where {N, T}
+  return MultiDual{N,T}(f.val *g.val, f.val .* g.derivs +g.val .* f.derivs)
+end 
 
-:(1*2 + 1*2) |> printstructure;
-:(x / (1 + x^2)) |> printstructure;
+gg(x, y) = x*x*y + x +y 
+
+(a, b) = (1.0, 2.0)
+
+xx = MultiDual(a, SVector(1.0, 0.0))
+yy = MultiDual(b, SVector(0.0,1.0))
+
+gg(xx, yy)
+
+#Jacobian 
+
+ff(x, y) = SVector(x*x + y*y, x+y)
+
+ff(xx, yy)
+
+# matrix implementation of  Forward mode AD in Forwarddiff package 
+
+ForwardDiff.gradient(xx -> ((x, y) = xx; x^2 * y + x*y), [1,2])
+
+#application solving nonlinear equations 
 
 
-derive(:(x / (1 + x^2) * x), :x) |> printstructure;
 
+function Newton_step(f, x0)
+  J= ForwardDiff.jacobian(f,x0)
+  δ = J\ f(x0)   #julia uses backslash \ to solve linear systems 
+  return x0 -δ
+end 
 
+function newton(f, x0)
+  x = x0 
 
-include("utils.jl");
-y = :(3x^2 + (2x + 1))
+  for i in 1:10 
+    x = Newton_step(f, x)
+    @show x
+  end 
 
-wy = wengert(y)
+  return x 
+end 
+
+ff(xx) = (( x, y) = xx; SVector(x^2 + y^2 -1, x-y))
+
+x0 = SVector(3.0, 5.0)
+x = newton(ff, x0)

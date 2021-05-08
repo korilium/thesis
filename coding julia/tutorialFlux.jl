@@ -1,4 +1,12 @@
 
+
+####### Introduction to Julia for Scientific Machine Learning #######
+#ref: https://mitmath.github.io/18S096SciML/lecture2/ml 
+
+
+
+
+
 using Flux, Plots
 
 ######## basics ####### 
@@ -167,6 +175,7 @@ m(x)
 #muliple steps in one 
 x=[rand(Float32, 2) for i = 1:3]
 m.(x)
+
 
 
 
