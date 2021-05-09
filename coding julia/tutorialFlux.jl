@@ -1,15 +1,7 @@
 
-
-####### Introduction to Julia for Scientific Machine Learning #######
-#ref: https://mitmath.github.io/18S096SciML/lecture2/ml 
-
-
-
-
-
-using Flux, Plots
-
-######## basics ####### 
+cd(@__DIR__)
+using Pkg; Pkg.activate("."); Pkg.instantiate
+######## basics of Flux ####### 
 #ref: https://fluxml.ai/Flux.jl/stable/models/basics/ 
 
 ### in package documentation of Flux

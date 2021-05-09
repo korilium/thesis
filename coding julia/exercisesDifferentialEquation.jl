@@ -1,3 +1,6 @@
+cd(@__DIR__)
+using Pkg; Pkg.activate("."); Pkg.instantiate
+
 using DifferentialEquations, DifferentialEquations.EnsembleAnalysis
 using Distributions, DynamicHMC
 

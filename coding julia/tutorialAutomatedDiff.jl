@@ -1,3 +1,7 @@
+
+cd(@__DIR__)
+using Pkg; Pkg.activate("."); Pkg.instantiate
+
 # Forward-Mode Automatic Differentiation (AD) via High Dimensional Algebras
 # ref: https://mitmath.github.io/18337/lecture8/automatic_differentiation
 using InteractiveUtils, Base, StaticArrays, ForwardDiff
