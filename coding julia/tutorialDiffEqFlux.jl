@@ -10,7 +10,7 @@
 cd(@__DIR__)
 using Pkg; Pkg.activate("."); Pkg.instantiate
 using Flux, DifferentialEquations, DiffEqFlux, Statistics,
- Optim, DiffEqSensitivity, Plots
+ Optim, DiffEqSensitivity, Plots, StochasticDiffEq, DiffEqBase.EnsembleAnalysis
 
 
 ###julia Linear Algebra Through Neural Networks 
@@ -294,8 +294,121 @@ plot!(sol[4])
 plot!(sol[10])
 
 
-uà = randn(n) .+ 2.0
+u₀ = randn(n) .+ 2.0
+function heat_1d_d3(du, u, p, t)
+  dx2 = (1/(length(u)+1))^2
+  for i in 2:(length(u)-1)
+    du[i]= (u[i-1]-2u[i] + u[i+1])/dx2
+  end 
+  du[1] = (3.0 + -2u[1] + u[2])/dx2
+  du[end] = (u[end-1] - 2u[end])/dx2
+end 
+
+prob = ODEProblem(heat_1d_d3, u₀, (0.0,0.5))
+sol = solve(prob, Tsit5(), saveat=0.05)
+
+plot(sol[1])
+plot!(sol[2])
+plot!(sol[3])
+plot!(sol[11])
+
+#two dimensional heat equation 
+
+
+
+n = 9
+u0 = randn(n,n) .+ 2.0
+
+function heat_2d(du,u,p,t)
+  dx2 = (1/(size(u,1)+1))^2
+  for i in 2:(size(u,1)-1), j in 2:(size(u,2)-1)
+    du[i,j] = (u[i-1,j] + u[i,j-1] - 4u[i,j] + u[i+1,j] + u[i,j+1])/dx2
+  end
+  for i in 2:(size(u,1)-1)
+    du[1,i] = (u[1,i-1] -4u[1,i] + u[2,i] + u[1,i+1])/dx2
+    du[i,1] = (u[i-1,1] -4u[i,1] + u[i,2] + u[i+1,1])/dx2
+    du[end,i] = (u[end-1,i] - 4u[end,i] + u[end,i+1] + u[end,i-1])/dx2
+    du[i,end] = (u[i,end-1] - 4u[i,end] + u[i+1,end] + u[i-1,end])/dx2
+  end
+
+  du[1,1] = (u[2,1] + u[1,2] - 4u[1,1])/dx2
+  du[1,end] = (u[2,end] + u[1,end-1] - 4u[1,end])/dx2
+  du[end,1] = (u[end,2] + u[end-1,1] - 4u[end,1])/dx2
+  du[end,end] = (u[end-1,1] + u[end,end-1] - 4u[end,end])/dx2
+end
+
+prob = ODEProblem(heat_2d, u0, (0.0,0.01))
+sol = solve(prob,Tsit5(),saveat=0.001)
+
+surface(sol[1])
+surface(sol[3])
+surface(sol[6])
+surface(sol[9])
+surface(sol[11])
+##################### Stochastic Differential Equations, Deep Learning, and High-Dimensional PDEs###############
+
+p = (μ = 1.0, σ = 1.0 )
+f(u,p,t) = p.μ*u
+g(u,p,t) = p.σ*u
+prob = SDEProblem(f,g,1.0,(0.0,1.0), p)
+sol = solve(prob, SRIW1())
+plot(sol)
+
+enprob = EnsembleProblem(prob)
+# Note: Automatically parallel! Try on the GPU with EnsembleGPUArray() from DiffEqGPU.jl!
+ensol = solve(enprob,SRIW1(),trajectories=10000)
+summ = EnsembleSummary(ensol)
+plot(summ)
 
 
 
 
+### SDEs as Regularized ODEs and Neural Stochastic Differential Equations
+
+#create true SDE
+u0 = Float32[2.;0.]
+datasize = 50 
+tspan = (0.0f0, 1.0f0)
+
+function trueSDEfunc(du,u, p, t)
+  true_A = [-0.1 2.0; -2.0 -0.1]
+  du .= ((u.^3)'true_A)'
+end
+t=range(tspan[1], tspan[2], length=datasize)
+mp = Float32[0.2,0.2]
+function true_noise_func(du,u,p,t)
+  du .= mp.*u
+end 
+
+prob = SDEProblem(trueSDEfunc, true_noise_func, u0, tspan)
+
+ensemble_prob = EnsembleProblem(prob)
+ensemble_sol = solve(ensemble_prob, SOSRI(), trajectories = 10000)
+ensemble_sum = EnsembleSummary(ensemble_sol)
+sde_data, sde_data_vars = Array.(timeseries_point_meanvar(ensemble_sol,t))
+
+
+#neural SDE 
+
+drift_dudt = Chain(x -> x.^3, 
+              Dense(2,50, tanh), 
+              Dense(50,2))
+diffusion_dudt = Chain(Dense(2,2))
+n_sde = NeuralDSDE(drift_dudt, diffusion_dudt, 
+                  tspan, SOSRI(), saveat =t , reltol =1e-1, abstol = 1e-1)
+ps = Flux.params(n_sde)
+
+pred = n_sde(u0) # Get the prediction using the correct initial condition
+p1,re1 = Flux.destructure(drift_dudt)
+p2,re2 = Flux.destructure(diffusion_dudt)
+drift_(u,p,t) = re1(n_sde.p[1:n_sde.len])(u)
+diffusion_(u,p,t) = re2(n_sde.p[(n_sde.len+1):end])(u)
+nprob = SDEProblem(drift_,diffusion_,u0,(0.0f0,1.2f0),nothing)
+
+ensemble_nprob = EnsembleProblem(nprob)
+ensemble_nsol = solve(ensemble_nprob,SOSRI(),trajectories = 100, saveat = t)
+ensemble_nsum = EnsembleSummary(ensemble_nsol)
+p1 = plot(ensemble_nsum, title = "Neural SDE: Before Training")
+scatter!(p1,t,sde_data',lw=3)
+scatter(t,sde_data[1,:],label="data")
+scatter!(t,pred[1,:],label="prediction")

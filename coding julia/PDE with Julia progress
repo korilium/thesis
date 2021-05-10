@@ -42,7 +42,7 @@ DifferentialEquationFlux documentation: https://diffeqflux.sciml.ai/dev/examples
     - A Julia Library for Neural Differential Equations: https://julialang.org/blog/2019/01/fluxdiffeq/
     - tutorial Mixing Differential Equations and Machine Learning : https://mitmath.github.io/18S096SciML/lecture3/diffeq_ml 
     - Numerically Solving Partial Differential Equations : https://mitmath.github.io/18S096SciML/lecture4/pde_stiff 
-    - 
+    - solving PDE using different methodes introdution : https://www.juliabloggers.com/solving-partial-differential-equations-with-julia/ 
 
 
 
