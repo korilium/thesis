@@ -1,0 +1,90 @@
+cd(@__DIR__)
+using Pkg; Pkg.activate("."); Pkg.instantiate()
+using Flux, DifferentialEquations, Plots, Statistics
+
+W = [randn(32,10),randn(32,32),randn(5,32)]
+b = [zeros(32),zeros(32),zeros(5)]
+
+NN(x) = W[3] * tanh.(W[2] * tanh.(W[1] * x + b[1]) + b[2]) + b[3]
+NN(rand(10))
+
+NN2 = Chain(Dense(10,32,tanh), 
+            Dense(32,32,tanh), 
+            Dense(32, 5,tanh))
+
+NN2(rand(10))
+
+NN3 = Chain(Dense(10,32,x -> x^2), 
+            Dense(32,32,x -> max(0,x)), 
+            Dense(32,5))
+
+NN3(rand(10))
+
+function lotka!(du, u, p, t)
+    x,y = u 
+    α,β,γ,δ = p 
+    du[1] = α * x - β * x * y
+    du[2] = -δ * y + γ * x * y
+end 
+
+#intial conditions 
+u₀ = [1.0, 1.0]
+p = [1.5, 1.0, 3.0,1.0]
+tspan = (0.0, 10.0)
+
+
+prob = ODEProblem(lotka!, u₀, tspan, p)
+sol = solve(prob)
+
+plot(sol)
+
+plot(sol, vars=(1,2))
+
+#optimizing parameters 
+
+sol = solve(prob, saveat = 0.1)
+data = Array(sol) 
+
+p= [1.6, 1.4, 2.0, 0.8]
+_prob = remake(prob, p=p)
+sol = solve(_prob, saveat=0.1)
+plot(sol)
+scatter!(sol.t, data')
+
+function lotka_cost(p)
+    _prob = remake(prob,u0=convert.(eltype(p),u₀),p=p)
+    sol = solve(_prob,saveat=0.1,abstol=1e-10,reltol=1e-10,verbose=false)
+    sol.retcode !== :Success && return Inf
+    sqrt(sum(abs2,data - Array(sol)))
+end
+lotka_cost(p)
+
+NNODE = Chain( x-> [x], 
+            Dense(1,32, tanh), 
+            Dense(32, 1), first)
+
+NNODE(1.0)
+
+g(t) = t * NNODE(t) + 1f0 
+
+ϵ = sqrt(eps(Float32))
+loss() = mean(abs2(((g(t+ϵ)-g(t))/ϵ) - cos(2π*t)) for t in 0:1f-2:1f0)
+
+opt = Flux.Descent(0.01)
+data = Iterators.repeated((), 5000)
+iter = 0
+cb = function () #callback function to observe training
+  global iter += 1
+  if iter % 500 == 0
+    display(loss())
+  end
+end
+display(loss())
+
+
+Flux.train!(loss, Flux.params(NNODE), data, opt; cb=cb)
+
+
+t = 0:0.001:1.0
+plot(t,g.(t),label="NN")
+plot!(t,1.0 .+ sin.(2π.*t)/2π, label = "True")
