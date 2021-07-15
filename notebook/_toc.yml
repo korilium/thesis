@@ -1,2 +1,4 @@
-- file: Intro
+format: jb-article
+root: Intro
+sections:
 - file: Full_thesis
