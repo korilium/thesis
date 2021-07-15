@@ -1,29 +1,148 @@
+using Base: Float32
+using Flux: Iterators
 cd(@__DIR__)
 using Pkg; Pkg.activate("."); Pkg.instantiate()
 
 using OrdinaryDiffEq, Plots, Flux, DiffEqFlux 
 
- 
-function lotka_volterra(du, u, p, t)
-    x, y = u 
-    α, β, γ, δ = p 
-    du[1]= α * x - β * x * y 
-    du[2] = -δ*y + γ * x * y 
-end 
-
-u₀ = [1.0, 1.0]
-tspan = (0.0, 10.0)
-p = [1.5, 1.0, 3.0, 1.0]
-prob = ODEProblem(lotka_volterra, u₀, tspan, p)
-sol = solve(prob, Tsit5())
-test_data = Array(solve(prob, Tsit5(), saveat =0.1))
+function lotka_volterra(du,u,p,t)
+    x, y = u
+    α, β, δ, γ = p
+    du[1] = dx = α*x - β*x*y
+    du[2] = dy = -δ*y + γ*x*y
+end
+u0 = [1.0,1.0]
+tspan = (0.0,10.0)
+p = [1.5,1.0,3.0,1.0]
+prob = ODEProblem(lotka_volterra,u0,tspan,p)
+sol = solve(prob,Tsit5())
+test_data = Array(solve(prob,Tsit5(),saveat=0.1))
+using Plots
 plot(sol)
 
 
-p = [2.2, 1.0 ,2.0, 0.4]
+p = [2.2, 1.0, 2.0, 0.4] # Initial Parameter Vector
 
-function predict_adjoint()
-    Array(concrete_solve(prob, Tsit5(), u₀, p, saveat = 0.1, abstol = 1e-6, reltol = 1e-5))
+function predict_adjoint() # Our 1-layer neural network
+  Array(concrete_solve(prob,Tsit5(),u0,p,saveat=0.1,abstol=1e-6,reltol=1e-5))
+end
+
+loss_adjoint() = sum(abs2,predict_adjoint() - test_data)
+
+iter = 0
+cb = function () #callback function to observe training
+  global iter += 1
+  if iter % 50 == 0
+    display(loss_adjoint())
+    # using `remake` to re-create our `prob` with current parameters `p`
+    pl = plot(solve(remake(prob,p=p),Tsit5(),saveat=0.0:0.1:10.0),lw=5,ylim=(0,8))
+    display(scatter!(pl,0.0:0.1:10.0,test_data',markersize=2))
+  end
+end
+
+# Display the ODE with the initial parameter values.
+cb()
+
+p = [2.2, 1.0, 2.0, 0.4]
+
+data = Iterators.repeated((), 300)
+opt = ADAM(0.1)
+Flux.train!(loss_adjoint, Flux.params(p), data, opt, cb = cb)
+
+opt = Descent(0.00001)
+Flux.train!(loss_adjoint, Flux.params(p), data, opt, cb = cb)
+
+
+u0 = Float32[2.;0.]
+datasize = 30 
+tspan = (0.0, 1.5)
+
+function trueODEfunc(du, u, p, t)
+    true_A = [-0.1 2.0 ; -2.0 -0.1 ]
+    du .= ((u.^3)'true_A)'
 end 
 
+t= range(tspan[1], tspan[2], length=datasize)
+prob = ODEProblem(trueODEfunc, u0, tspan)
 
+ode_data = Array(solve(prob, Tsit5(), saveat = t))
+
+dudut = Chain(x -> x.^3, 
+        Dense(2,50, tanh), 
+        Dense(50,2))
+
+p, re = Flux.destructure(dudut)
+
+dudut2_(u,p, t) = re(p)(u)
+prob = ODEProblem(dudut2_, u0, tspan, p)
+
+function predict_n_ode()
+    Array(concrete_solve(prob, Tsit5(), u0, p, saveat=t))
+end
+loss_n_ode()= sum(abs2, ode_data .- predict_n_ode())
+
+data = Iterators.repeated((), 300)
+opt = ADAM(0.1) 
+iter =0 
+
+cb = function () #callback function to observe training
+    global iter += 1
+    if iter % 50 == 0
+      display(loss_n_ode())
+      # plot current prediction against data
+      cur_pred = predict_n_ode()
+      pl = scatter(t,ode_data[1,:],label="data")
+      scatter!(pl,t,cur_pred[1,:],label="prediction")
+      display(plot(pl))
+    end
+  end
+  
+  # Display the ODE with the initial parameter values.
+  cb()
+  
+  ps = Flux.params(p)
+  # or train the initial condition and neural network
+  # ps = Flux.params(u0,dudt)
+  Flux.train!(loss_n_ode, ps, data, opt, cb = cb)
+
+  u0 = Float32[0.8; 0.8]
+  tspan = (0.0f0,25.0f0)
+  
+  ann = Chain(Dense(2,10,tanh), 
+                Dense(10,1))
+
+p1, re = Flux.destructure(ann)
+p2 = Float32[-2.0,1.1]
+p3 = [p1;p2]
+ps = Flux.params(p3)
+
+function dudt_(du, u, p, t)
+    x, y = u
+    du[1] = re(p[1:41])(u)[1]
+    du[2] = p[end-1]*y + p[end]*x 
+end 
+
+prob = ODEProblem(dudt_, u0, tspan, p3)
+concrete_solve(prob, Tsit5(), u0, p3, abstol=1e-8, reltol=1e-6)
+
+function predict_adjoint()
+    Array(concrete_solve(prob,Tsit5(),u0,p3,saveat=0.0:0.1:25.0))
+  end
+  loss_adjoint() = sum(abs2,x-1 for x in predict_adjoint())
+  loss_adjoint()
+  
+  data = Iterators.repeated((), 300)
+  opt = ADAM(0.01)
+  iter = 0
+  cb = function ()
+    global iter += 1
+    if iter % 50 == 0
+      display(loss_adjoint())
+      display(plot(solve(remake(prob,p=p3,u0=u0),Tsit5(),saveat=0.1),ylim=(0,6)))
+    end
+  end
+  
+  # Display the ODE with the current parameter values.
+  cb()
+  
+  Flux.train!(loss_adjoint, ps, data, opt, cb = cb)

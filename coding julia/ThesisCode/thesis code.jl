@@ -8,10 +8,10 @@ using NeuralPDE, Flux, DifferentialEquations, LinearAlgebra, Plots,
 
 T= 40 
 y(t) = 50000*exp(0.03*t)
-r=0.04f0
-μ=0.09f0
+r(t)=exp(0.04f0*t)
+μ(t)=0.09f0*t
 σ=0.18f0
-ρ=0.03f0
+ρ(t)=0.03f0*t
 λ(t) = 1/200 + 9/8000*t
 η(t) = 1/200 + 9/8000*t
 γ = -3 
@@ -79,16 +79,18 @@ L(x) = exp(-ρ*T)/γ*x^γ
 
 # max expected utility 
 
+
+
+
 d = 1 # number of dimensions
-X0 = repeat([0.0f0],d )
+X0 = fill(0.0f0,d )
 tspan = (0.0f0,1.0f0)
 
-g(X) = (exp(-ρ*T)/γ)*x^γ
-f(X, u, σᵀ∇u, p, t) = (1-γ)/γ*exp(-ρ*t/(1-γ))*
-                    (λ(t)^(1/(1-γ))/(η(t)^(γ/(1-γ))+1)*σᵀ∇u^(-γ/(1-γ)))
-μ_f(X,p,t) = Zero(x)
-σ_f(X,p,t) = Diagonal(sigma*X)
-prob = TerminalPDEProblem(g,f, μ_f, σ_f, X0, tspan)
+g(x) = (exp(-ρ*T)/γ)*x^γ
+f(x, u, σᵀ∇u, p, t) = 0
+μ_f(x,p,t) = (r + η)*x + i 
+σ_f(x,p,t) = 0
+prob = TerminalPDEProblem(g,f, μ_f, σ_f, X0, tspan, p = nothing)
 
 
 
