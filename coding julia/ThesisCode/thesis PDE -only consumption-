@@ -25,10 +25,10 @@ m = 20f0
 g(X) = (exp(-ρ*T)/(γ))*sum(X.^γ)
 #f(X, u, σᵀ∇u, p, t) = λ * (exp(-ρ*t)/γ*sum(X)^γ - u) + (sum(σᵀ∇u)^γ * exp(ρ*t))^(-1/(1 -γ))*(1 - exp(γ))
 f(X, u, σᵀ∇u, p, t) = λ .*(exp(-ρ*t)/γ*sum(X)^γ .- u) .+ (sum(σᵀ∇u)^γ * exp(ρ*t))^(-1/(1-γ)) * (exp(-ρ*t + γ)/γ - 1)
-f(X, u, σᵀ∇u, p, t) = λ*exp(-ρ)/γ * sum(X.^γ) .- u.*λ .+ (sum(σᵀ∇u.^(γ/(1-γ))) * exp(-ρ/(1-γ))) *  (exp(-ρ*t + γ)/γ - 1)
+f(X, u, σᵀ∇u, p, t) = λ*exp(-ρ)/γ * sum(X^γ) .- u.*λ .+ (sum(σᵀ∇u.^(γ/(1-γ))) * exp(-ρ/(1-γ))) *  (exp(-ρ*t + γ)/γ - 1)
 f(X, u, σᵀ∇u, p, t) =  sum(σᵀ∇u)
 μ_f(X,p,t) = r* sum(X) + i
-σ_f(X,p,t) = 0
+σ_f(X,p,t) = 0 
 prob = TerminalPDEProblem(g, f, μ_f, σ_f, X0, tspan)
 
 hls = 12 + d #hidden layer size

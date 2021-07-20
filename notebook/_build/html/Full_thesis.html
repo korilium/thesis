@@ -53,7 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Intro" href="Intro.html" />
+    <link rel="prev" title="Introduction Notebook of optimal control for consumers" href="Intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -86,7 +86,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Intro.html">
-   Intro
+   Introduction Notebook of optimal control for consumers
   </a>
  </li>
 </ul>
@@ -194,9 +194,9 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#p-style-text-align-center-feburary-14-2021-p">
+    <a class="reference internal nav-link" href="#p-style-text-align-center-august-16-2021-p">
      <p style="text-align: center;">
-      Feburary 14, 2021
+      August 16, 2021
      </p>
     </a>
    </li>
@@ -205,6 +205,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reinforcement-learing">
+   Reinforcement Learing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -254,14 +259,17 @@
 <h1><center>  Future Financial Planning Tools for Consumers<a class="headerlink" href="#center-future-financial-planning-tools-for-consumers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="center-ignace-decocq">
 <h2><center> Ignace Decocq<a class="headerlink" href="#center-ignace-decocq" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="p-style-text-align-center-feburary-14-2021-p">
-<h3><p style="text-align: center;"> Feburary 14, 2021 </p><a class="headerlink" href="#p-style-text-align-center-feburary-14-2021-p" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="p-style-text-align-center-august-16-2021-p">
+<h3><p style="text-align: center;"> August 16, 2021 </p><a class="headerlink" href="#p-style-text-align-center-august-16-2021-p" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The financial decisions that consumers need to make in their present lifetime, become increasingly more complex. A good example of this phenomenon is the shift from defined benefits to defined contributions in which consumers take on greater individual responsibility and risks. The evolution in the abstruseness of financial products has become challenging for consumers who possess low financial knowledge and limiting numeracy skills <span id="id1">[<a class="reference internal" href="#id36">BFH17</a>]</span>. Combined with uncertainty about the future, the consumer is necessitated to be more aware of his financial well-being than ever before. Looking back into the past, Porteba et al, <span id="id2">[<a class="reference internal" href="#id38">PVW11</a>]</span> conducted an examination of preparedness in retirement for Children of Depression, War Baby, and the Early Baby Boomer in the Health and Retirement Study and Asset and Health Dynamics Among the Oldest Old cohorts. They found that 46.1 percent die with less than 10 000 dollars. With this amount of assets, they would not have the capacity to pay for unexpected events and one might wonder if it is adequate asset levels for retirement. Furthermore, saving behavior has not kept pace with increasing life expectation and the expected prolonged lifespan of the coming generations are unprecedented <span id="id3">[<a class="reference internal" href="#id39">Her11</a>]</span>. All these elements give a painstakingly clear picture that having a vital understanding of one’s financial situation has become one of the greatest challenges in life.</p>
-<p>To combat these difficulties, consumers require additional undertakings in planning for their future prosperity. One of the approaches to tackle this issue, is by using financial planning tools. These tools give the consumer the capability to estimate complex intertemporal calculations <span id="id4">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. They also enhance financial behavior, increase household wealth accumulation and they are a complement to other planning aid like a financial advisor <span id="id5">[<a class="reference internal" href="#id36">BFH17</a>]</span>. Although financial planning tools can greatly benefit consumers, it can also be a double-edged sword. More specifically, when consumers are misinformed about the capabilities of the tool, or when the design of the tool is inadequate, the consumer can be given sub-optimal advice or even misleading advice <span id="id6">[<a class="reference internal" href="#id37">DMBE18</a>]</span>. Insufficiencies in design can arise when not all essential input variables are included, not all risks are considered, and when accuracy is sacrificed for the ease of use <span id="id7">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. On top of that, there are wide variations in results because of the various methodology and assumptions used in the models <span id="id8">[<a class="reference internal" href="#id37">DMBE18</a>]</span>. For example, assumptions based on inflation and the use of different financial products have a large impact on the results. On the side of the consumer, the possibility of misunderstanding the implications of the results due to a lack of financial knowledge, is a matter of great concern in the eyes of financial educators <span id="id9">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. Clarifying the results is therefore an essential part of making models operational. To improve upon these deficiencies, Dorman et al., <span id="id10">[<a class="reference internal" href="#id37">DMBE18</a>]</span> found that when the models handle additional theoretical variables, the accuracy will improve. Besides, they found that the consumer requires unique solutions that better capture their financial situation. Meaning planning tools need to be more flexible. They should be able to operate in different financial settings and have the ability to look at the impact of changes in input variables. To address the variability in results and the adaptability of models to different settings, this paper will look at intertemporal modeling in the consumer, investment, and insurance framework while exploring the behavioral aspects of  intertemporal modeling.</p>
+<p>To combat these difficulties, consumers require additional undertakings in planning for their future prosperity. One of the approaches to tackle this issue, is by using financial planning tools. These tools give the consumer the capability to estimate complex intertemporal calculations <span id="id4">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. They also enhance financial behavior, increase household wealth accumulation and they are a complement to other planning aid like a financial advisor <span id="id5">[<a class="reference internal" href="#id36">BFH17</a>]</span>. Although financial planning tools can greatly benefit consumers, it can also be a double-edged sword. More specifically, when consumers are misinformed about the capabilities of the tool, or when the design of the tool is inadequate, the consumer can be given sub-optimal advice or even misleading advice <span id="id6">[<a class="reference internal" href="#id37">DMBE18</a>]</span>. Insufficiencies in design can arise when not all essential input variables are included, not all risks are considered, and when accuracy is sacrificed for the ease of use <span id="id7">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. On top of that, there are wide variations in results because of the various methodology and assumptions used in the models <span id="id8">[<a class="reference internal" href="#id37">DMBE18</a>]</span>. For example, assumptions based on inflation and the use of different financial products have a large impact on the results. On the side of the consumer, the possibility of misunderstanding the implications of the results due to a lack of financial knowledge, is a matter of great concern in the eyes of financial educators <span id="id9">[<a class="reference internal" href="#id35">BDTS20</a>]</span>. Clarifying the results is therefore an essential part of making models operational. To improve upon these deficiencies, Dorman et al., <span id="id10">[<a class="reference internal" href="#id37">DMBE18</a>]</span> found that when the models handle additional theoretical variables, the accuracy will improve. Besides, they found that the consumer requires unique solutions that better capture their financial situation. Meaning planning tools need to be more flexible. They should be able to operate in different financial settings and have the ability to look at the impact of changes in input variables. To address the variability in results and the adaptability of models to different settings, this paper will look at reinforcement learning techniques in an intertemporal model setting. More specifically, the general theory of reinforcement learning will first be discussed. Then, we will go more into depth on dynammic programming which is one of the pillar stones of reinforcement learning. Next, a deep Backward Stochastic Differential Equation method is discussed which will in turn solve the Terminal Partial Differential Equation of the dynammic system in higher dimensions. Lastly, an example which will implement this method is presented.</p>
+</div>
+<div class="section" id="reinforcement-learing">
+<h2>Reinforcement Learing<a class="headerlink" href="#reinforcement-learing" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model">
 <h2>Optimal consumption, investment and life insurance in an intertemporal model<a class="headerlink" href="#optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model" title="Permalink to this headline">¶</a></h2>
@@ -473,7 +481,7 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Intro.html" title="previous page">Intro</a>
+    <a class='left-prev' id="prev-link" href="Intro.html" title="previous page">Introduction Notebook of optimal control for consumers</a>
 
         </div>
         
