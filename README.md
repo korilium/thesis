@@ -3,4 +3,4 @@ Thesis repository is specifically made to investigate possible new solution for 
 Most tools of today lack sufficient theoritical background or are used for commercial purposes. 
 This repository will try to find better and more comprehensive fields in which financial tools can be better tailored to the consumer.
 
-See the github-page for full work  
+See the github-page https://korilium.github.io/thesis/abstract.html for full work  
