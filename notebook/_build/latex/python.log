@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  27 JUL 2021 18:11
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  27 JUL 2021 18:26
 entering extended mode
 **./python.tex
 (python.tex
@@ -1696,8 +1696,9 @@ File: standard_model.png Graphic file (type bmp)
 <standard_model.png>
 
 ! Undefined control sequence.
-l.170 ... function \(R: S \times A \times S \to \R
-                                                  \) can be deducted {[}{]}.
+l.156 ... function \(R: S \times A \times S \to \R
+                                                  \) can be deducted {[}\hyp...
+
 ? 
 [6]
 File: backup_diagram.png Graphic file (type bmp)
@@ -1705,16 +1706,20 @@ File: backup_diagram.png Graphic file (type bmp)
  [7]
 File: GPI.png Graphic file (type bmp)
 <GPI.png>
+ [8]
 File: state_space.png Graphic file (type bmp)
 <state_space.png>
- [8]
 File: breadth_and_dept.png Graphic file (type bmp)
 <breadth_and_dept.png>
  [9] [10]
 Chapter 3.
 [11
 
-] [12] [13] [14] (python.ind)
+] [12] [13] [14] [15] [16
+
+] [17
+
+] (python.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -1749,7 +1754,7 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [15] (python.aux
+ [18] (python.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
@@ -1763,16 +1768,16 @@ Package rerunfilecheck Warning: File `python.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `python.out':
-(rerunfilecheck)             Before: FF7BAF2CB745A9FEDB4F676CE173E0E5;1063
-(rerunfilecheck)             After:  3125EBF2A3D0A2671509C0861C2020D7;796.
+(rerunfilecheck)             Before: 3125EBF2A3D0A2671509C0861C2020D7;796
+(rerunfilecheck)             After:  61255659772BF64568BCEF15610703F9;845.
  ) 
 Here is how much of TeX's memory you used:
  41677 strings out of 411278
- 934352 string characters out of 2829017
+ 934387 string characters out of 2829017
  1579417 words of memory out of 3000000
  61434 multiletter control sequences out of 15000+600000
  408866 words of font info for 101 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 99i,17n,114p,2587b,2041s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,17n,114p,3011b,2116s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on python.pdf (19 pages).
+Output written on python.pdf (22 pages).

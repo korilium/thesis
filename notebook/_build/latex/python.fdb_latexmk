@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex python.idx"] 1627402274 "python.idx" "python.ind" "python" 1627402274
-  "python.idx" 1627401866 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex python.idx"] 1627402274 "python.idx" "python.ind" "python" 1627403212
+  "python.idx" 1627402280 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
-  "python.ilg"
   "python.ind"
-["pdflatex"] 1627402274 "python.tex" "python.pdf" "python" 1627402274
+  "python.ilg"
+["pdflatex"] 1627403213 "python.tex" "python.pdf" "python" 1627403212
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1627401375 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1627401466 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1627401465 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
@@ -241,23 +241,23 @@
   "breadth_and_dept.png" 1627375876 63451 fb0b1371ad3b3d5d0a2a57b4f1bb28d8 ""
   "footnotehyper-sphinx.sty" 1626379943 13076 494d8d655f805dc10b53008469c289a2 ""
   "jupyterBook.cls" 1626379952 1222 69a0f15145f4060ebcfbf0527d3a613a ""
-  "python.aux" 1627401871 6042 a8e46f1f94ceafa7629f26762204bcbd "pdflatex"
+  "python.aux" 1627402284 4757 0bb7d1d98560b8cd6f7052d2d7bf887c "pdflatex"
   "python.ind" 1627402274 0 d41d8cd98f00b204e9800998ecf8427e "makeindex python.idx"
-  "python.out" 1627401871 1063 ff7baf2cb745a9fedb4f676ce173e0e5 "pdflatex"
-  "python.tex" 1627402260 36830 a3c720cabf6c1f6e69f431269a9e982f ""
-  "python.toc" 0 -1 0 "pdflatex"
+  "python.out" 1627402285 796 3125ebf2a3d0a2671509c0861c2020d7 "pdflatex"
+  "python.tex" 1627403200 44760 6c06944fca438cee4845f8418c4ea6a2 ""
+  "python.toc" 1627402285 1244 e80b2a2ddac1b03cb9eaa4e0034f63da "pdflatex"
   "sphinx.sty" 1626379943 91458 532cd893425be1ee8212ce283449999c ""
-  "sphinxhighlight.sty" 1627402260 6720 02ef3c01e6bb67d3cc0658d354509680 ""
+  "sphinxhighlight.sty" 1627403200 6720 02ef3c01e6bb67d3cc0658d354509680 ""
   "sphinxmanual.cls" 1626379943 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1627402260 765 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1627403200 765 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxmulticell.sty" 1626379943 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   "standard_model.png" 1626782771 17648 2012c976c9524b48cf8a79878da286ef ""
   "state_space.png" 1627375895 49040 16bfdcead037b31c961e9577a21641d2 ""
   "tree.png" 1626779940 63307 b29b272ea7c3ce2d42ca5e8a840688ec ""
   (generated)
-  "python.idx"
   "python.log"
+  "python.out"
   "python.pdf"
+  "python.idx"
   "python.toc"
   "python.aux"
-  "python.out"
