@@ -1,15 +1,23 @@
-title: "optimal control for consumers"
+title: "Future Financial Planning Tools for Consumers"
 author: Ignace Decocq  # The author of the book
 logo: pipe.jpg
 execute:
   execute_notebooks: "off"
+  exclude_patterns: [Intro.jpynb]
 
 
 bibtex_bibfiles:
    - referencess.bib
 
+html: 
+  use_miltitoc_numbering: false
 
 
+sphinx: 
+  extra_extensions: 
+  - sphinx_jupyterbook_latex
+
+  
 parse:
   myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,

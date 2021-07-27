@@ -1,0 +1,82 @@
+using Flux: glorot_uniform, huber_loss
+cd(@__DIR__)
+using Pkg; Pkg.activate("."); Pkg.instantiate
+
+using ReinforcementLearning, Plots, StatsPlots, Flux, Statistics, BSON, Flux.Losses: huber_loss
+
+
+Base.@kwdef mutable struct TimeCostPerEpisode <: AbstractHook
+    t::UInt64 = time_ns()
+    time_costs::Vector{UInt64} = []
+end
+
+(h::TimeCostPerEpisode)(::PreEpisodeStage, policy, env) = h.T = time_ns()
+(h::TimeCostPerEpisode)(::PreEpisodeStage, policy, env) = push!(h.time_costs, time_ns()-h.t)
+
+h = TimeCostPerEpisode()
+
+run(RandomPolicy(), CartPoleEnv(), StopAfterEpisode(10), h)
+
+h.time_costs
+
+policy = RandomPolicy()
+
+run(
+    policy, 
+    CartPoleEnv(), 
+    StopAfterEpisode(100), 
+    DoEveryNEpisode(;n=10) do t, policy, env
+    hook =  TotalRewardPerEpisode(;is_display_on_exit = false)
+    run(policy, CartPoleEnv(), StopAfterEpisode(10), hook)
+    println("avg reward at episode $t is: $(mean(hook.rewards))")
+    end 
+)
+
+
+env = CartPoleEnv(;T = Float32)
+
+ns, na = length(state(env)), length(action_space(env))
+using Flux.Losses
+
+
+policy = Agent(
+    policy = QBasedPolicy(
+        learner = BasicDQNLearner(
+            approximator = NeuralNetworkApproximator(
+                model = Chain(
+                    Dense(ns, 128, relu; init = glorot_uniform), 
+                    Dense(128, 128, relu; init = glorot_uniform), 
+                    Dense(128, na, init = glorot_uniform), 
+                ) |> cpu, 
+                optimizer = ADAM(),
+            ), 
+            batch_size = 32, 
+            min_replay_history = 100, 
+            loss_func = huber_loss,
+        ), 
+        explorer = EpsilonGreedyExplorer(
+            kind = :exp, 
+            ϵ_stable = 0.01, 
+            decay_steps = 500
+        ), 
+    ), 
+    trajectory = CircularArraySARTTrajectory(
+        capacity = 1000, 
+        state = Vector{Float32} => (ns,), 
+    ), 
+)
+
+parameters_dir =mktempdir()
+
+run(
+    policy, 
+    env, 
+    StopAfterStep(10000), 
+    DoEveryNStep(n=1000) do t, p, e
+        ps = params(p)
+        f = joinpath(parameters_dir, "parameters_at_step_$t.bson")
+        BSON.@save f ps 
+        println("parameters at step $t saved to $f")
+    end 
+)
+

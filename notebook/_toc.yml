@@ -1,4 +1,8 @@
-format: jb-article
-root: Intro
-sections:
-- file: Full_thesis
+format: jb-book
+root: abstract
+options: 
+  numbered: true
+chapters:
+- file: Introduction
+- file: Reinforcement_learning
+- file: Financial_application  

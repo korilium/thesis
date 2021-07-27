@@ -3,75 +3,71 @@ using Pkg; Pkg.activate("."); Pkg.instantiate
 
 using ReinforcementLearning, Plots, StatsPlots, Flux, Statistics
 
-env = MultiArmBanditsEnv()
 
-violin(
-    [
-        [
-            begin 
-                reset!(env)
-                env(a)
-                reward(env)
-            end
-            for _ in 1:100
-        ]
-        for a in action_space(env)
-    ], 
-    leg = false
-)
+env = RandomWalk1D()
 
-begin
-	Base.@kwdef struct CollectBestActions <: AbstractHook
-		best_action::Int
-		isbest::Vector{Bool} = []
-	end
+S = state_space(env)
 
-	function (h::CollectBestActions)(::PreActStage, agent, env, action)
-		push!(h.isbest, h.best_action==action)
-	end
+s = state(env)
+
+A = action_space(env)
+
+is_terminated(env)
+
+while true
+	env(rand(A))
+	is_terminated(env) && break
 end
 
-function bandit_testbed(
-	;explorer=EpsilonGreedyExplorer(0.1),
-	true_reward=0.0,
-	init=0.0,
-	opt=InvDecay(1.0)
+state(env)
+reward(env)
+
+run(
+           RandomPolicy(),
+           RandomWalk1D(),
+           StopAfterEpisode(10),
+           TotalRewardPerEpisode()
+       )
+        
+
+	   NS, NA = length(S), length(A)
+
+policy = TabularPolicy(;table=Dict(zip(1:NS, fill(2, NS))))
+
+run(
+	policy, 
+	RandomWalk1D(), 
+	StopAfterEpisode(10), 
+	TotalRewardPerEpisode()
 )
-   env = MultiArmBanditsEnv(;true_reward=true_reward)
-   agent = Agent(
-	   policy=QBasedPolicy(
-		   learner = TDLearner(
-			   approximator = TabularQApproximator(
-				   n_state=length(state_space(env)),
-				   n_action=length(action_space(env)),
-				   init=init,
-				   opt = opt
-			   ),
-			   γ = 1.0,
-			   method=:SARSA,
-			   n = 0,
-		   ),
-		   explorer = explorer
-	   ),
-	   trajectory=VectorSARTTrajectory()
+
+
+#introduce QbasedPolicy 
+using Flux: InvDecay
+policy = QBasedPolicy(
+           learner = MonteCarloLearner(;
+                   approximator=TabularQApproximator(
+                       ;n_state = NS,
+                       n_action = NA,
+                       opt = InvDecay(1.0)
+                   )
+               ),
+           explorer = EpsilonGreedyExplorer(0.1)
+       )
+
+	   run(
+		policy,
+		RandomWalk1D(),
+		StopAfterEpisode(10),
+		TotalRewardPerEpisode()
 	)
-	h1 = CollectBestActions(;best_action=findmax(env.true_values)[2])
-	h2 = TotalRewardPerEpisode()
-	run(agent, env, StopAfterStep(1000), ComposedHook(h1, h2))
-    h1.isbest, h2.rewards
-end
+#set from actor mode to learner mode 
 
-begin
-	p = plot(layout=(2, 1))
-	for ϵ in [0.1, 0.01, 0.0]
-    	stats = [
-			bandit_testbed(;explorer=EpsilonGreedyExplorer(ϵ))
-			for _ in 1:2000
-		]
-    	plot!(p, mean(x[2] for x in stats);
-			subplot=1, legend=:bottomright, label="epsilon=$ϵ")
-    	plot!(p, mean(x[1] for x in stats);
-			subplot=2, legend=:bottomright, label="epsilon=$ϵ")
-	end
-	p
-end
+agent = Agent(
+           policy = policy,
+           trajectory = VectorSARTTrajectory()
+       )
+
+
+
+run(agent, env, StopAfterEpisode(10), TotalRewardPerEpisode())
