@@ -13,11 +13,6 @@ html:
   use_miltitoc_numbering: false
 
 
-sphinx: 
-  extra_extensions: 
-  - sphinx_jupyterbook_latex
-
-  
 parse:
   myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,
@@ -27,3 +22,12 @@ parse:
     - dollarmath
     - linkify
     - substitution
+    - algorithm
+    - algpseudocode
+
+sphinx: 
+  extra_extensions: 
+  - sphinx_jupyterbook_latex
+
+
+  

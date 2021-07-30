@@ -1,0 +1,35 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{algorithm} 
+
+\usepackage{algpseudocode} 
+\begin{document} 
+\begin{algorithm}
+	\caption{Policy Iteration} 
+	\begin{algorithmic}[1]
+		\State Initialization:
+			\Require $V(s) \in R$ and $\pi(s) \in A(s) $  for all $ s \in S $ 
+			\State Policy Evaluation:
+			\Loop :  $\Delta \leftarrow 0$
+				\Loop : for each $s \in S$ 
+					\State $v \leftarrow V(s)$
+					\State $V(s) \leftarrow \sum_{s',r} p(s',r|s, \pi(s))[r+\gamma V(s')]$
+					\State $\Delta \leftarrow max(\Delta, |v-V(s)|)$
+				\EndLoop
+				\State untill  $\Delta < \theta$ (with $\theta$ as the convergence criteria) 
+			\EndLoop
+		\State Policy Improvement:
+			\State $stable policy \leftarrow true $ 
+			\For{$s \in S$}
+				\State  $old action \leftarrow \pi(s)$
+				\State $\pi(s) \leftarrow armax _a \sum_{s',r} p(s',r|s,a)[r + \gamma V(s')] $
+				\If{$oldaction \ne \pi(s) $}
+					\State $policystable \leftarrow false$ go to policy evaluation
+				\Else \State
+				\Return $ V \approx v_*$ and $\pi \approx \pi_*$
+				\EndIf
+			\EndFor
+
+	\end{algorithmic} 
+\end{algorithm}
+
+\end{document}

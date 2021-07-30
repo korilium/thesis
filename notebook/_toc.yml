@@ -1,8 +1,9 @@
-format: jb-book
+format: jb-article
 root: abstract
 options: 
   numbered: true
-chapters:
+sections:
 - file: Introduction
 - file: Reinforcement_learning
 - file: Financial_application  
+- file: Appendix
