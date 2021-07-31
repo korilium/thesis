@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Financial Application of Reinforcement Learning &#8212; Future Financial Planning Tools for Consumers</title>
+    <title>Financial Application of Reinforcement Learning &#8212; Future Financial Planning Tools for Consumers</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="2. Reinforcement Learning" href="Reinforcement_learning.html" />
+    <link rel="next" title="discussion" href="Discussion.html" />
+    <link rel="prev" title="Reinforcement Learning" href="Reinforcement_learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -94,17 +95,27 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
-   1. Introduction
+   Introduction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Reinforcement_learning.html">
-   2. Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Financial Application of Reinforcement Learning
+   Financial Application of Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Discussion.html">
+   discussion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix.html">
+   Appendix
   </a>
  </li>
 </ul>
@@ -197,29 +208,29 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model">
-   3.1. Optimal consumption, investment and life insurance in an intertemporal model
+   Optimal consumption, investment and life insurance in an intertemporal model
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-model-specifications">
-     3.1.1. The model specifications
+     The model specifications
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#dynamic-programming-principle">
-     3.1.2. dynamic programming principle
+     dynamic programming principle
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-analytic-result-constant-relative-risk-aversion-utility-function">
-     3.1.3. The analytic result: Constant Relative Risk Aversion utility function
+     The analytic result: Constant Relative Risk Aversion utility function
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algorithm-bfsde">
-   3.2. Algorithm BFSDE
+   Algorithm BFSDE
   </a>
  </li>
 </ul>
@@ -234,14 +245,14 @@
               <div>
                 
   <div class="section" id="financial-application-of-reinforcement-learning">
-<h1><span class="section-number">3. </span>Financial Application of Reinforcement Learning<a class="headerlink" href="#financial-application-of-reinforcement-learning" title="Permalink to this headline">¶</a></h1>
+<h1>Financial Application of Reinforcement Learning<a class="headerlink" href="#financial-application-of-reinforcement-learning" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model">
-<h2><span class="section-number">3.1. </span>Optimal consumption, investment and life insurance in an intertemporal model<a class="headerlink" href="#optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model" title="Permalink to this headline">¶</a></h2>
-<p>The first person to include uncertain lifetime and life insurance decisions in a discrete life-cycle model was Yaari <span id="id1">[<a class="reference internal" href="#id19">Yaa65</a>]</span>. He explored the model using a utility function without bequest (Fisher Utility function) and a utility function with bequest (Marshall Utility function) in a bounded lifetime. In both cases, he looked at the implications of including life insurance. Although Yaari’s model was revolutionary in the sense that now the uncertainty of life could be modeled, Leung <span id="id2">[<a class="reference internal" href="#id23">Leu94</a>]</span> found that the constraints laid upon the Fisher utility function were not adequate and lead to terminal wealth depletion. Richard <span id="id3">[<a class="reference internal" href="#id22">Ric75</a>]</span> applied the methodology of Merton <span id="id4">[<a class="reference internal" href="#id20">Mer69</a>, <a class="reference internal" href="#id21">Mer75</a>]</span> to the problem setting of Yaari in a continuous time frame. Unfortunately, Richard’s model had one deficiency: The bounded lifetime is incompatible with the dynamic programming approach used in Merton’s model. As an individual approaches his maximal possible lifetime T, he will be inclined to buy an infinite amount of life insurance. To circumvent this Richard used an artificial condition on the terminal value. But due to the recursive nature of dynamic programming, modifying the last value would imply modifying the whole result. Ye <span id="id5">[<a class="reference internal" href="#id24">Ye06</a>]</span>  found a solution to the problem by abandoning the bounded random lifetime and replacing it with a random variable taking values in <span class="math notranslate nohighlight">\([0,\infty)\)</span>. The models that replaced the bounded lifetime, are thereafter called intertemporal models as the models did not consider the whole lifetime of an individual but rather looked at the planning horizon of the consumer.  Note that the general setting of Ye <span id="id6">[<a class="reference internal" href="#id24">Ye06</a>]</span> has a wide range of theoretical variables, while still upholding a flexible approach to different financial settings. On this account, it is a good baseline to confront the issues concerning the current models of financial planning. However, one of the downsides of the model is the abstract representation of the consumer. Namely, the rational consumer is studied, instead of the actual consumer. To detach the model from the notion of rational consumer, I will more closely look at behavioral concepts that can be implemented. In the next paragraph various modification will be discussed and a further review is conducted on the behavioral modifications</p>
-<p>After Ye <span id="id7">[<a class="reference internal" href="#id24">Ye06</a>]</span> various models have been proposed which all have given rise to unique solutions to the consumption, investment, and insurance problem. The first unique setting is a model with multiple agents involved. For example,  Bruhn and Steffensen <span id="id8">[<a class="reference internal" href="#id30">BS11</a>]</span> analyzed the optimization problem for couples with correlated lifetimes with their partner nominated as their beneficiary using a copula and common-shock model, while Wei et al.<span id="id9">[<a class="reference internal" href="#id33">WCJW20</a>]</span> studied optimization strategies for a household with economically and probabilistically dependent persons. Another setting is where certain constraints are used to better describe the financial situation of consumers. Namely, Kronborg and Steffensen <span id="id10">[<a class="reference internal" href="#id32">KS15</a>]</span> discussed two constraints. One constraint is a capital constraint on the savings in which savings cannot drop below zero. The other constrain involves a minimum return in savings. A third setting describes models who analyze the financial market and insurance market in a pragmatic environment. A good illustration is the study of Shen and Wei <span id="id11">[<a class="reference internal" href="#id34">SW16</a>]</span>. They incorporate all stochastic processes involved in the investment and insurance market where all randomness is described by a Brownian motion filtration. An interesting body of models is involved in time-inconsistent preferences. In this framework, consumers do not have a time-consistent rate of preference as assumed in the economic literature. There exists rather a divergence between earlier intentions and later choices De-Paz et al. <span id="id12">[<a class="reference internal" href="#id37">DPMSNR14</a>]</span>. This concept is predominantly described in psychology. Specifically, rewards presented closer to the present are discounted proportionally less than rewards further into the future. An application of time-inconsistent preferences in the consumption, investment, and insurance optimization can be found in Chen and Li <span id="id13">[<a class="reference internal" href="#id36">CL20</a>]</span> and De-Paz et al. <span id="id14">[<a class="reference internal" href="#id37">DPMSNR14</a>]</span>. These time-inconsistent preferences are rooted in a much deeper behavioral concept called future self-continuity. Future self-continuity can be described as how someone sees himself in the future. In classical economic theory, we assume that the degree to which you identify with yourself has no impact on the ultimate result. In the next subsection, the relationship of future self-continuity and time-inconsistent preferences are more closely looked at and future self-continuity is further examined in the behavioral life-cycle model.</p>
+<h2>Optimal consumption, investment and life insurance in an intertemporal model<a class="headerlink" href="#optimal-consumption-investment-and-life-insurance-in-an-intertemporal-model" title="Permalink to this headline">¶</a></h2>
+<p>The first person to include uncertain lifetime and life insurance decisions in a discrete life-cycle model was Yaari <span id="id1">[<a class="reference internal" href="#id19">Yaa65</a>]</span>. He explored the model using a utility function without bequest (Fisher Utility function) and a utility function with bequest (Marshall Utility function) in a bounded lifetime. In both cases, he looked at the implications of including life insurance. Although Yaari’s model was revolutionary in the sense that now the uncertainty of life could be modeled, Leung <span id="id2">[<a class="reference internal" href="#id23">Leu94</a>]</span> found that the constraints laid upon the Fisher utility function were not adequate and lead to terminal wealth depletion. Richard <span id="id3">[<a class="reference internal" href="#id22">Ric75</a>]</span> applied the methodology of Merton <span id="id4">[<a class="reference internal" href="#id20">Mer69</a>, <a class="reference internal" href="#id21">Mer75</a>]</span> to the problem setting of Yaari in a continuous time frame. Unfortunately, Richard’s model had one deficiency: The bounded lifetime is incompatible with the dynamic programming approach used in Merton’s model. As an individual approaches his maximal possible lifetime T, he will be inclined to buy an infinite amount of life insurance. To circumvent this Richard used an artificial condition on the terminal value. But due to the recursive nature of dynamic programming, modifying the last value would imply modifying the whole result. Ye <span id="id5">[<a class="reference internal" href="#id25">Ye06</a>]</span>  found a solution to the problem by abandoning the bounded random lifetime and replacing it with a random variable taking values in <span class="math notranslate nohighlight">\([0,\infty)\)</span>. The models that replaced the bounded lifetime, are thereafter called intertemporal models as the models did not consider the whole lifetime of an individual but rather looked at the planning horizon of the consumer.  Note that the general setting of Ye <span id="id6">[<a class="reference internal" href="#id25">Ye06</a>]</span> has a wide range of theoretical variables, while still upholding a flexible approach to different financial settings. On this account, it is a good baseline to confront the issues concerning the current models of financial planning. However, one of the downsides of the model is the abstract representation of the consumer. Namely, the rational consumer is studied, instead of the actual consumer. To detach the model from the notion of rational consumer, I will more closely look at behavioral concepts that can be implemented. In the next paragraph various modification will be discussed and a further review is conducted on the behavioral modifications</p>
+<p>After Ye <span id="id7">[<a class="reference internal" href="#id25">Ye06</a>]</span> various models have been proposed which all have given rise to unique solutions to the consumption, investment, and insurance problem. The first unique setting is a model with multiple agents involved. For example,  Bruhn and Steffensen <span id="id8">[<a class="reference internal" href="#id35">BS11</a>]</span> analyzed the optimization problem for couples with correlated lifetimes with their partner nominated as their beneficiary using a copula and common-shock model, while Wei et al.<span id="id9">[<a class="reference internal" href="#id38">WCJW20</a>]</span> studied optimization strategies for a household with economically and probabilistically dependent persons. Another setting is where certain constraints are used to better describe the financial situation of consumers. Namely, Kronborg and Steffensen <span id="id10">[<a class="reference internal" href="#id37">KS15</a>]</span> discussed two constraints. One constraint is a capital constraint on the savings in which savings cannot drop below zero. The other constrain involves a minimum return in savings. A third setting describes models who analyze the financial market and insurance market in a pragmatic environment. A good illustration is the study of Shen and Wei <span id="id11">[<a class="reference internal" href="#id39">SW16</a>]</span>. They incorporate all stochastic processes involved in the investment and insurance market where all randomness is described by a Brownian motion filtration. An interesting body of models is involved in time-inconsistent preferences. In this framework, consumers do not have a time-consistent rate of preference as assumed in the economic literature. There exists rather a divergence between earlier intentions and later choices De-Paz et al. <span id="id12">[<a class="reference internal" href="#id42">DPMSNR14</a>]</span>. This concept is predominantly described in psychology. Specifically, rewards presented closer to the present are discounted proportionally less than rewards further into the future. An application of time-inconsistent preferences in the consumption, investment, and insurance optimization can be found in Chen and Li <span id="id13">[<a class="reference internal" href="#id41">CL20</a>]</span> and De-Paz et al. <span id="id14">[<a class="reference internal" href="#id42">DPMSNR14</a>]</span>. These time-inconsistent preferences are rooted in a much deeper behavioral concept called future self-continuity. Future self-continuity can be described as how someone sees himself in the future. In classical economic theory, we assume that the degree to which you identify with yourself has no impact on the ultimate result. In the next subsection, the relationship of future self-continuity and time-inconsistent preferences are more closely looked at and future self-continuity is further examined in the behavioral life-cycle model.</p>
 <div class="section" id="the-model-specifications">
-<h3><span class="section-number">3.1.1. </span>The model specifications<a class="headerlink" href="#the-model-specifications" title="Permalink to this headline">¶</a></h3>
-<p>In this section, I will set the dynamics for the baseline model in place. The dynamics follow primarily from the paper of Ye <span id="id15">[<a class="reference internal" href="#id24">Ye06</a>]</span>.</p>
+<h3>The model specifications<a class="headerlink" href="#the-model-specifications" title="Permalink to this headline">¶</a></h3>
+<p>In this section, I will set the dynamics for the baseline model in place. The dynamics follow primarily from the paper of Ye <span id="id15">[<a class="reference internal" href="#id25">Ye06</a>]</span>.</p>
 <p>Let the state of the economy be represented by a standard Brownian motion <span class="math notranslate nohighlight">\(w(t)\)</span>, the state of the consumer’s wealth be characterized by a finite state multi-dimensional continuous-time Markov chain <span class="math notranslate nohighlight">\(X(t)\)</span> and let the time of death be defined by a non-negative random variable <span class="math notranslate nohighlight">\(\tau\)</span>. All are defined on a given probability space (<span class="math notranslate nohighlight">\(\Omega, \mathcal{F}, P\)</span>) and <span class="math notranslate nohighlight">\(W(t)\)</span> is independent of <span class="math notranslate nohighlight">\(\tau\)</span>. Let <span class="math notranslate nohighlight">\(T&lt; \infty\)</span> be a fixed planning horizon. This can be seen as the end of the working life for the consumer. <span class="math notranslate nohighlight">\(\mathbb{F} = \{\mathcal{F}_t, t \in [0,T]\}\)</span>, be the P-augmentation of the filtration <span class="math notranslate nohighlight">\(\sigma\)</span>{<span class="math notranslate nohighlight">\(W(s), s&lt;t \}, \forall t \in [0,T]\)</span> , so <span class="math notranslate nohighlight">\(\mathcal{F}_t\)</span> represents the information at time t. The economy consist of a financial market and an insurance market. In the following section I will construct these markets separetly.</p>
 <p>The financial market consist of a risk-free security <span class="math notranslate nohighlight">\(B(t)\)</span> and a risky security <span class="math notranslate nohighlight">\(S(t)\)</span>, who evolve according to</p>
 <div class="math notranslate nohighlight">
@@ -286,7 +297,7 @@
 <p>Where <span class="math notranslate nohighlight">\(U(c,t)\)</span> is the utility function of consumption, <span class="math notranslate nohighlight">\(B(Z,t)\)</span> is the utility function of legacy and <span class="math notranslate nohighlight">\(L(X)\)</span> is the utility function for the terminal wealth. <span class="math notranslate nohighlight">\(V(x)\)</span> is called the value function and the consumers wants to maximize his value function by choosing the optimal set <span class="math notranslate nohighlight">\(\mathcal{A} = (c,p,\theta)\)</span>. The optimal set <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> is found by using the dynamic programming technique described in the following section.</p>
 </div>
 <div class="section" id="dynamic-programming-principle">
-<h3><span class="section-number">3.1.2. </span>dynamic programming principle<a class="headerlink" href="#dynamic-programming-principle" title="Permalink to this headline">¶</a></h3>
+<h3>dynamic programming principle<a class="headerlink" href="#dynamic-programming-principle" title="Permalink to this headline">¶</a></h3>
 <p>To solve the consumer’s problem the value function needs to be restated in a dynamic programming form.</p>
 <div class="math notranslate nohighlight">
 \[J(t, x; c, p, \theta) \triangleq E \left[\int_0^{T \wedge \tau} U(c(s),s)ds + B(Z(\tau),\tau)1_{\{\tau \ge T\}} + L(X(T))1_{\{\tau&gt;T\}}| \tau&gt; t, \mathcal{F}_t \right] \]</div>
@@ -310,7 +321,7 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \Psi(t,x; c,p,\theta) \triangleq r(t)x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x) + \\ \frac{1}{2}\sigma^2(t)\theta^2V_{xx}(t,x) + \lambda(t)B(x+ p/\eta(t),t) + U(c,t) \end{split}\]</div>
-<p>Proofs for deriving the HJB equation, dynammic programming principle and converting from a random closing time point to a fixed closing time point can be found in Ye <span id="id16">[<a class="reference internal" href="#id24">Ye06</a>]</span></p>
+<p>Proofs for deriving the HJB equation, dynammic programming principle and converting from a random closing time point to a fixed closing time point can be found in Ye <span id="id16">[<a class="reference internal" href="#id25">Ye06</a>]</span></p>
 <p>A strategy is optimal if</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{gather*}
@@ -329,53 +340,56 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 \[ \Psi_{cc}, \Psi_{pp}, \Psi_{\theta \theta} &lt; 0 \]</div>
 </div>
 <div class="section" id="the-analytic-result-constant-relative-risk-aversion-utility-function">
-<h3><span class="section-number">3.1.3. </span>The analytic result: Constant Relative Risk Aversion utility function<a class="headerlink" href="#the-analytic-result-constant-relative-risk-aversion-utility-function" title="Permalink to this headline">¶</a></h3>
-<p>This optimal control problem has been solved analytically by Ye <span id="id17">[<a class="reference internal" href="#id24">Ye06</a>]</span> for the Constant Relative Risk Aversion utility function. In this paper however, I will use the analytical result derived by Ye to compare the performance of the NeuralNetDiffEq algorithm and see whether this convergences to the analytical result derived by Ye. Once this is established, other utility function might be used for solving the optimal control problem using the NeuralNetDiffEq algorithm.</p>
+<h3>The analytic result: Constant Relative Risk Aversion utility function<a class="headerlink" href="#the-analytic-result-constant-relative-risk-aversion-utility-function" title="Permalink to this headline">¶</a></h3>
+<p>This optimal control problem has been solved analytically by Ye <span id="id17">[<a class="reference internal" href="#id25">Ye06</a>]</span> for the Constant Relative Risk Aversion utility function. In this paper however, I will use the analytical result derived by Ye to compare the performance of the NeuralNetDiffEq algorithm and see whether this convergences to the analytical result derived by Ye. Once this is established, other utility function might be used for solving the optimal control problem using the NeuralNetDiffEq algorithm.</p>
 </div>
 </div>
 <div class="section" id="algorithm-bfsde">
-<h2><span class="section-number">3.2. </span>Algorithm BFSDE<a class="headerlink" href="#algorithm-bfsde" title="Permalink to this headline">¶</a></h2>
+<h2>Algorithm BFSDE<a class="headerlink" href="#algorithm-bfsde" title="Permalink to this headline">¶</a></h2>
 <p id="id18"><dl class="citation">
-<dt class="label" id="id51"><span class="brackets">ADBB17</span></dt>
+<dt class="label" id="id63"><span class="brackets">ADBB17</span></dt>
 <dd><p>Kai Arulkumaran, Marc Peter Deisenroth, Miles Brundage, and Anil Anthony Bharath. A brief survey of deep reinforcement learning. <em>arXiv preprint arXiv:1708.05866</em>, 2017.</p>
 </dd>
-<dt class="label" id="id26"><span class="brackets">BFH17</span></dt>
+<dt class="label" id="id31"><span class="brackets">BFH17</span></dt>
 <dd><p>Qianwen Bi, Michael Finke, and Sandra J Huston. Financial software use and retirement savings. <em>Journal of Financial Counseling and Planning</em>, 28(1):107–128, 2017.</p>
 </dd>
-<dt class="label" id="id25"><span class="brackets">BDTS20</span></dt>
+<dt class="label" id="id30"><span class="brackets">BDTS20</span></dt>
 <dd><p>Rachel Qianwen Bi, Lukas R Dean, Jingpeng Tang, and Hyrum L Smith. Limitations of retirement planning software: examining variance between inputs and outputs. <em>Journal of Financial Service Professionals</em>, 2020.</p>
 </dd>
-<dt class="label" id="id30"><span class="brackets"><a class="fn-backref" href="#id8">BS11</a></span></dt>
+<dt class="label" id="id35"><span class="brackets"><a class="fn-backref" href="#id8">BS11</a></span></dt>
 <dd><p>Kenneth Bruhn and Mogens Steffensen. Household consumption, investment and life insurance. <em>Insurance: Mathematics and Economics</em>, 48(3):315–325, 2011.</p>
 </dd>
-<dt class="label" id="id36"><span class="brackets"><a class="fn-backref" href="#id13">CL20</a></span></dt>
+<dt class="label" id="id41"><span class="brackets"><a class="fn-backref" href="#id13">CL20</a></span></dt>
 <dd><p>Shou Chen and Guangbing Li. Time-inconsistent preferences, consumption, investment and life insurance decisions. <em>Applied Economics Letters</em>, 27(5):392–399, 2020.</p>
 </dd>
-<dt class="label" id="id37"><span class="brackets">DPMSNR14</span><span class="fn-backref">(<a href="#id12">1</a>,<a href="#id14">2</a>)</span></dt>
+<dt class="label" id="id42"><span class="brackets">DPMSNR14</span><span class="fn-backref">(<a href="#id12">1</a>,<a href="#id14">2</a>)</span></dt>
 <dd><p>Albert De-Paz, Jesus Marin-Solano, Jorge Navas, and Oriol Roch. Consumption, investment and life insurance strategies with heterogeneous discounting. <em>Insurance: Mathematics and Economics</em>, 54:66–75, 2014.</p>
 </dd>
-<dt class="label" id="id27"><span class="brackets">DMBE18</span></dt>
+<dt class="label" id="id32"><span class="brackets">DMBE18</span></dt>
 <dd><p>Taft Dorman, Barry S Mulholland, Qianwen Bi, and Harold Evensky. The efficacy of publicly-available retirement planning tools. <em>Available at SSRN 2732927</em>, 2018.</p>
 </dd>
-<dt class="label" id="id54"><span class="brackets">EWC21</span></dt>
+<dt class="label" id="id69"><span class="brackets">EWC21</span></dt>
 <dd><p>Maria K Eckstein, Linda Wilbrecht, and Anne GE Collins. What do reinforcement learning models measure? interpreting model parameters in cognition and neuroscience. <em>Current Opinion in Behavioral Sciences</em>, 41:128–137, 2021.</p>
 </dd>
-<dt class="label" id="id56"><span class="brackets">FranccoisLHI+18</span></dt>
+<dt class="label" id="id72"><span class="brackets">FranccoisLHI+18</span></dt>
 <dd><p>Vincent François-Lavet, Peter Henderson, Riashat Islam, Marc G Bellemare, and Joelle Pineau. An introduction to deep reinforcement learning. <em>arXiv preprint arXiv:1811.12560</em>, 2018.</p>
 </dd>
-<dt class="label" id="id50"><span class="brackets">Ham18</span></dt>
+<dt class="label" id="id62"><span class="brackets">Ham18</span></dt>
 <dd><p>Ahmad Hammoudeh. A concise introduction to reinforcement learning. 2018.</p>
 </dd>
-<dt class="label" id="id29"><span class="brackets">Her11</span></dt>
+<dt class="label" id="id34"><span class="brackets">Her11</span></dt>
 <dd><p>Hal E Hershfield. Future self-continuity: how conceptions of the future self transform intertemporal choice. <em>Annals of the New York Academy of Sciences</em>, 1235:30, 2011.</p>
 </dd>
-<dt class="label" id="id32"><span class="brackets"><a class="fn-backref" href="#id10">KS15</a></span></dt>
+<dt class="label" id="id27"><span class="brackets">KSL19</span></dt>
+<dd><p>Sung-Kyun Kim, Oren Salzman, and Maxim Likhachev. Pomhdp: search-based belief space planning using multiple heuristics. In <em>Proceedings of the International Conference on Automated Planning and Scheduling</em>, volume 29, 734–744. 2019.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id10">KS15</a></span></dt>
 <dd><p>Morten Tolver Kronborg and Mogens Steffensen. Optimal consumption, investment and life insurance with surrender option guarantee. <em>Scandinavian Actuarial Journal</em>, 2015(1):59–87, 2015.</p>
 </dd>
 <dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id2">Leu94</a></span></dt>
 <dd><p>Siu Fai Leung. Uncertain lifetime, the theory of the consumer, and the life cycle hypothesis. 1994.</p>
 </dd>
-<dt class="label" id="id49"><span class="brackets">Lev18</span></dt>
+<dt class="label" id="id60"><span class="brackets">Lev18</span></dt>
 <dd><p>Sergey Levine. Reinforcement learning and control as probabilistic inference: tutorial and review. <em>arXiv preprint arXiv:1805.00909</em>, 2018.</p>
 </dd>
 <dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id4">Mer69</a></span></dt>
@@ -384,25 +398,28 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 <dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id4">Mer75</a></span></dt>
 <dd><p>Robert C Merton. Optimum consumption and portfolio rules in a continuous-time model. In <em>Stochastic Optimization Models in Finance</em>, pages 621–661. Elsevier, 1975.</p>
 </dd>
-<dt class="label" id="id28"><span class="brackets">PVW11</span></dt>
+<dt class="label" id="id24"><span class="brackets">MBJ20</span></dt>
+<dd><p>Thomas M Moerland, Joost Broekens, and Catholijn M Jonker. A framework for reinforcement learning and planning. <em>arXiv preprint arXiv:2006.15009</em>, 2020.</p>
+</dd>
+<dt class="label" id="id33"><span class="brackets">PVW11</span></dt>
 <dd><p>James M Poterba, Steven F Venti, and David A Wise. Were they prepared for retirement? financial status at advanced ages in the hrs and ahead cohorts. In <em>Investigations in the Economics of Aging</em>, pages 21–69. University of Chicago Press, 2011.</p>
 </dd>
 <dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id3">Ric75</a></span></dt>
 <dd><p>Scott F Richard. Optimal consumption, portfolio and life insurance rules for an uncertain lived individual in a continuous time model. <em>Journal of Financial Economics</em>, 2(2):187–203, 1975.</p>
 </dd>
-<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id11">SW16</a></span></dt>
+<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id11">SW16</a></span></dt>
 <dd><p>Yang Shen and Jiaqin Wei. Optimal investment-consumption-insurance with random parameters. <em>Scandinavian Actuarial Journal</em>, 2016(1):37–62, 2016.</p>
 </dd>
-<dt class="label" id="id55"><span class="brackets">SB18</span></dt>
+<dt class="label" id="id70"><span class="brackets">SB18</span></dt>
 <dd><p>Richard S Sutton and Andrew G Barto. <em>Reinforcement learning: An introduction</em>. MIT press, 2018.</p>
 </dd>
-<dt class="label" id="id33"><span class="brackets"><a class="fn-backref" href="#id9">WCJW20</a></span></dt>
+<dt class="label" id="id38"><span class="brackets"><a class="fn-backref" href="#id9">WCJW20</a></span></dt>
 <dd><p>Jiaqin Wei, Xiang Cheng, Zhuo Jin, and Hao Wang. Optimal consumption–investment and life-insurance purchase strategy for couples with correlated lifetimes. <em>Insurance: Mathematics and Economics</em>, 91:244–256, 2020.</p>
 </dd>
 <dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id1">Yaa65</a></span></dt>
 <dd><p>Menahem E Yaari. Uncertain lifetime, life insurance, and the theory of the consumer. <em>The Review of Economic Studies</em>, 32(2):137–150, 1965.</p>
 </dd>
-<dt class="label" id="id24"><span class="brackets">Ye06</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>,<a href="#id7">3</a>,<a href="#id15">4</a>,<a href="#id16">5</a>,<a href="#id17">6</a>)</span></dt>
+<dt class="label" id="id25"><span class="brackets">Ye06</span><span class="fn-backref">(<a href="#id5">1</a>,<a href="#id6">2</a>,<a href="#id7">3</a>,<a href="#id15">4</a>,<a href="#id16">5</a>,<a href="#id17">6</a>)</span></dt>
 <dd><p>Jinchun Ye. <em>Optimal life insurance purchase, consumption and portfolio under an uncertain life</em>. University of Illinois at Chicago, 2006.</p>
 </dd>
 </dl>
@@ -419,23 +436,24 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "julia-1.6"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "julia-1.6",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'julia-1.6'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Reinforcement_learning.html" title="previous page"><span class="section-number">2. </span>Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="Reinforcement_learning.html" title="previous page">Reinforcement Learning</a>
+    <a class='right-next' id="next-link" href="Discussion.html" title="next page">discussion</a>
 
         </div>
         

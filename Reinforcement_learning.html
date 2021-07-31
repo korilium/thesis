@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Reinforcement Learning &#8212; Future Financial Planning Tools for Consumers</title>
+    <title>Reinforcement Learning &#8212; Future Financial Planning Tools for Consumers</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,8 +54,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Financial Application of Reinforcement Learning" href="Financial_application.html" />
-    <link rel="prev" title="1. Introduction" href="Introduction.html" />
+    <link rel="next" title="Financial Application of Reinforcement Learning" href="Financial_application.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -95,17 +95,27 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
-   1. Introduction
+   Introduction
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Financial_application.html">
-   3. Financial Application of Reinforcement Learning
+   Financial Application of Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Discussion.html">
+   discussion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix.html">
+   Appendix
   </a>
  </li>
 </ul>
@@ -169,6 +179,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Reinforcement_learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -181,22 +208,29 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#finite-markov-decision-processes">
-   2.1. Finite Markov Decision Processes
+   Finite Markov Decision Processes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#model-based-rl-model-free-rl-and-planning">
-   2.2. model-based RL, model-free RL and planning
+   model-based RL, model-free RL and planning
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dynammic-programming-monte-carlo-methods-and-temporal-difference-learning">
+     Dynammic Programming, Monte Carlo Methods and Temporal-Difference Learning
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenges-in-rl-and-deep-rl">
-   2.3. Challenges in RL and deep RL
+   Challenges in RL and deep RL
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reinforcement-learning-and-financial-planning">
-   2.4. Reinforcement learning and financial planning
+   Reinforcement learning and financial planning
   </a>
  </li>
 </ul>
@@ -211,64 +245,116 @@
               <div>
                 
   <div class="section" id="reinforcement-learning">
-<h1><span class="section-number">2. </span>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
-<p>Supervised and unsupervised learning are the two most widely studied and researched branches of Machine Learning (ML). Besides these two, there is also a third subcategorie in ML called Reinforcement Learning (RL). The three branches have fundamental differences between eachother. Supervised learning for example is designed to learn from a training set of labeled data, where each element of the training set describes a certain situation and is linked to a label/action the supervisor has provided <span id="id1">[<a class="reference internal" href="Financial_application.html#id50">Ham18</a>]</span>. RL on the other hand is a method in which the machine tries to map situation to actions by maximizing a reward signal <span id="id2">[<a class="reference internal" href="Financial_application.html#id51">ADBB17</a>]</span>. The two methods are fundementally different from each other on the fact that in RL there is no supervisor which provides the label/action the machine needs to take, rather there is a reward system set up from which the machine can learn the correct action/label <span id="id3">[<a class="reference internal" href="Financial_application.html#id50">Ham18</a>]</span>. contrarily to supervised learning, unsupervised learning tries to find hidden structures within an unlabeled dataset. This might seem similar to RL as both methods work with unlabeled datasets, but RL tries to maximize a reward signal instead of finding only hidden structures in the data <span id="id4">[<a class="reference internal" href="Financial_application.html#id51">ADBB17</a>]</span>.</p>
-<p>RL finds it roots in multiple research fields. Each of these fields contributes to the RL in its own unique way (see figure) <span id="id5">[<a class="reference internal" href="Financial_application.html#id50">Ham18</a>]</span>. For example,  RL is similar to natural learning processes where the method of learning is by experiencing many failures and successes. Therefore psychologists have used RL to mimic psychological processes when an organism makes choices based on experienced rewards/punishments <span id="id6">[<a class="reference internal" href="Financial_application.html#id54">EWC21</a>]</span>. While psychologists are mimicing psychological processes, Nueroscientists are using RL to focus on a well-defined network or regions of the brain that implement value learning <span id="id7">[<a class="reference internal" href="Financial_application.html#id54">EWC21</a>]</span>.</p>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/tree.png" /></p>
+<h1>Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Permalink to this headline">¶</a></h1>
+<p>Supervised and unsupervised learning are the two most widely studied and researched branches of Machine Learning (ML). Besides these two, there is also a third subcategorie in ML called Reinforcement Learning (RL). The three branches have fundamental differences between eachother. Supervised learning for example is designed to learn from a training set of labeled data, where each element of the training set describes a certain situation and is linked to a label/action the supervisor has provided <span id="id1">[<a class="reference internal" href="Financial_application.html#id62">Ham18</a>]</span>. RL on the other hand is a method in which the machine tries to map situation to actions by maximizing a reward signal <span id="id2">[<a class="reference internal" href="Financial_application.html#id63">ADBB17</a>]</span>. The two methods are fundementally different from each other on the fact that in RL there is no supervisor which provides the label/action the machine needs to take, rather there is a reward system set up from which the machine can learn the correct action/label <span id="id3">[<a class="reference internal" href="Financial_application.html#id62">Ham18</a>]</span>. contrarily to supervised learning, unsupervised learning tries to find hidden structures within an unlabeled dataset. This might seem similar to RL as both methods work with unlabeled datasets, but RL tries to maximize a reward signal instead of finding only hidden structures in the data <span id="id4">[<a class="reference internal" href="Financial_application.html#id63">ADBB17</a>]</span>.</p>
+<p>RL finds it roots in multiple research fields. Each of these fields contributes to the RL in its own unique way (see figure) <span id="id5">[<a class="reference internal" href="Financial_application.html#id62">Ham18</a>]</span>. For example,  RL is similar to natural learning processes where the method of learning is by experiencing many failures and successes. Therefore psychologists have used RL to mimic psychological processes when an organism makes choices based on experienced rewards/punishments <span id="id6">[<a class="reference internal" href="Financial_application.html#id69">EWC21</a>]</span>. While psychologists are mimicing psychological processes, Nueroscientists are using RL to focus on a well-defined network or regions of the brain that implement value learning <span id="id7">[<a class="reference internal" href="Financial_application.html#id69">EWC21</a>]</span>.</p>
+<div class="figure align-default" id="tree-fig">
+<a class="reference internal image-reference" href="_images/tree.png"><img alt="_images/tree.png" src="_images/tree.png" style="width: 600px; height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">research fields involved in reinforcement learning</span><a class="headerlink" href="#tree-fig" title="Permalink to this image">¶</a></p>
+</div>
 <div class="section" id="finite-markov-decision-processes">
-<h2><span class="section-number">2.1. </span>Finite Markov Decision Processes<a class="headerlink" href="#finite-markov-decision-processes" title="Permalink to this headline">¶</a></h2>
-<p>RL can be represented in finite Markov decision processes (MDPs), which are classical formalizations of sequantial decision making. More specifically, MPDs give rise to a structure in which delayed rewards can be balanced with immediate rewards <span id="id8">[<a class="reference internal" href="Financial_application.html#id55">SB18</a>]</span>. It also enables a straightforward framing of learning from interaction to achieve a goal <span id="id9">[<a class="reference internal" href="Financial_application.html#id49">Lev18</a>]</span>. In it’s most simplest form RL works with an Agent-Environment Interface. The agent is exposed to some representation of the environment’s state <span class="math notranslate nohighlight">\(S_t \in \mathrm{S}\)</span>. From this representation the agent needs to chose an action <span class="math notranslate nohighlight">\( A_t \in \mathcal{A}(s)\)</span>, which will result in a numerical reward <span class="math notranslate nohighlight">\(R_{t+1} \in \mathrm{R} \)</span> and a new state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> (see figure 2) <span id="id10">[<a class="reference internal" href="Financial_application.html#id55">SB18</a>]</span>. The goal for the agent is to learn a mapping from states to action called a policy <span class="math notranslate nohighlight">\(\pi\)</span> that maximizes the expected rewards:</p>
+<h2>Finite Markov Decision Processes<a class="headerlink" href="#finite-markov-decision-processes" title="Permalink to this headline">¶</a></h2>
+<p>RL can be represented in finite Markov decision processes (MDPs), which are classical formalizations of sequantial decision making. More specifically, MPDs give rise to a structure in which delayed rewards can be balanced with immediate rewards <span id="id8">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. It also enables a straightforward framing of learning from interaction to achieve a goal <span id="id9">[<a class="reference internal" href="Financial_application.html#id60">Lev18</a>]</span>. In it’s most simplest form RL works with an Agent-Environment Interface. The agent is exposed to some representation of the environment’s state <span class="math notranslate nohighlight">\(S_t \in \mathrm{S}\)</span>. From this representation the agent needs to chose an action <span class="math notranslate nohighlight">\( A_t \in \mathcal{A}(s)\)</span>, which will result in a numerical reward <span class="math notranslate nohighlight">\(R_{t+1} \in 	\mathbb{R} \)</span> and a new state <span class="math notranslate nohighlight">\(S_{t+1}\)</span> (see figure 2) <span id="id10">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. The goal for the agent is to learn a mapping from states to action called a policy <span class="math notranslate nohighlight">\(\pi\)</span> that maximizes the expected rewards:</p>
 <div class="math notranslate nohighlight">
 \[ \pi^* = argmax_{\pi} E[R|\pi] \]</div>
-<p>If the MPDs is finite and discrite, the sets of states, actions and rewards (<span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(A\)</span> , and <span class="math notranslate nohighlight">\(R\)</span>) all have a finite number of elements. The agent-environment interaction can then be subdivided into episode <span id="id11">[<a class="reference internal" href="Financial_application.html#id51">ADBB17</a>]</span>.  The agent’s goal is to maximize the expected discounted cumulative return in the episode <span id="id12">[<a class="reference internal" href="Financial_application.html#id56">FranccoisLHI+18</a>]</span>:</p>
+<p>If the MPDs is finite and discrite, the sets of states, actions and rewards (<span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(A\)</span> , and <span class="math notranslate nohighlight">\(R\)</span>) all have a finite number of elements. The agent-environment interaction can then be subdivided into episode <span id="id11">[<a class="reference internal" href="Financial_application.html#id63">ADBB17</a>]</span>.  The agent’s goal is to maximize the expected discounted cumulative return in the episode <span id="id12">[<a class="reference internal" href="Financial_application.html#id72">FranccoisLHI+18</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[ G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ... + \gamma^{T-t-1}R_T = \sum_{k=0}^T \gamma^k R_{t+k+1}\]</div>
-<p>Where T indicates the terminal state and <span class="math notranslate nohighlight">\(\gamma\)</span> is the discount rate. The terminal state <span class="math notranslate nohighlight">\(S_T\)</span> is mostly followed by a reset to a starting state or sample from a starting distribution of states <span id="id13">[<a class="reference internal" href="Financial_application.html#id56">FranccoisLHI+18</a>]</span>. An episode ends once the reset has occured. The discount rate represents the present value of future rewards. If <span class="math notranslate nohighlight">\(\gamma = 0\)</span>, the agent is myopic and is only concerned in maximizing the immediate rewards. The agent can consequently be considerd greedy <span id="id14">[<a class="reference internal" href="Financial_application.html#id55">SB18</a>]</span>.</p>
+<p>Where T indicates the terminal state and <span class="math notranslate nohighlight">\(\gamma\)</span> is the discount rate. The terminal state <span class="math notranslate nohighlight">\(S_T\)</span> is mostly followed by a reset to a starting state or sample from a starting distribution of states <span id="id13">[<a class="reference internal" href="Financial_application.html#id72">FranccoisLHI+18</a>]</span>. An episode ends once the reset has occured. The discount rate represents the present value of future rewards. If <span class="math notranslate nohighlight">\(\gamma = 0\)</span>, the agent is myopic and is only concerned in maximizing the immediate rewards. The agent can consequently be considerd greedy <span id="id14">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>.</p>
 <p>The returns can be rewritten in a dynammic programming approach:</p>
 <div class="math notranslate nohighlight">
 \[ G_t = R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T) \]</div>
 <div class="math notranslate nohighlight">
 \[ G_t = R_{t+1} + \gamma G_{t+1}\]</div>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/standard_model.png" /></p>
-<p>A key concept of MPDs is the Markov property: Only the current state affects the next state <span id="id15">[<a class="reference internal" href="Financial_application.html#id56">FranccoisLHI+18</a>]</span>. The random varianbles (RV) <span class="math notranslate nohighlight">\(R_t\)</span> and <span class="math notranslate nohighlight">\(S_t\)</span> have then well defined discrete probability distributions dependend only on the preceding state and action:</p>
+<div class="figure align-default" id="standard-model-fig">
+<a class="reference internal image-reference" href="_images/standard_model.png"><img alt="_images/standard_model.png" src="_images/standard_model.png" style="width: 600px; height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">standard model reinforcement learning</span><a class="headerlink" href="#standard-model-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>A key concept of MPDs is the Markov property: Only the current state affects the next state <span id="id15">[<a class="reference internal" href="Financial_application.html#id72">FranccoisLHI+18</a>]</span>. The random varianbles (RV) <span class="math notranslate nohighlight">\(R_t\)</span> and <span class="math notranslate nohighlight">\(S_t\)</span> have then well defined discrete probability distributions dependend only on the preceding state and action:</p>
 <div class="math notranslate nohighlight">
 \[ p(s', t| s, a) = Pr(S_t = s', R_t = r | S_{t-1} = s, A_{t-1}=a) \]</div>
-<p>For all <span class="math notranslate nohighlight">\(s', s \in \mathrm{S} , r \in \mathrm{R}, a \in \mathrm{A}(s) \)</span>. The probability of each element in the sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(R\)</span> completely chararcterizes the environment <span id="id16">[<a class="reference internal" href="Financial_application.html#id55">SB18</a>]</span>. This can be relaxed by some alogrithms as this is an unrealistic assumption to make. The Partial Observable Markov Decision Process (POMDP) algorithm for example maintains a belief over the current state given the previous belief state, the action taken and the current observation <span id="id17">[<a class="reference internal" href="Financial_application.html#id51">ADBB17</a>]</span>.  Once <span class="math notranslate nohighlight">\(p\)</span> is known, the environment is fully discribed and functions like a transition function <span class="math notranslate nohighlight">\(T : D \times A \to p(S)\)</span> and a reward function <span class="math notranslate nohighlight">\(R: S \times A \times S \to \R\)</span> can be deducted <span id="id18">[<a class="reference internal" href="Financial_application.html#id55">SB18</a>]</span>.</p>
+<p>For all <span class="math notranslate nohighlight">\(s', s \in \mathrm{S} , r \in 	\mathbb{R}, a \in \mathrm{A}(s) \)</span>. The probability of each element in the sets <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(R\)</span> completely chararcterizes the environment <span id="id16">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. This can be relaxed by some alogrithms as this is an unrealistic assumption to make. The Partial Observable Markov Decision Process (POMDP) algorithm for example maintains a belief over the current state given the previous belief state, the action taken and the current observation <span id="id17">[<a class="reference internal" href="Financial_application.html#id63">ADBB17</a>]</span>.  Once <span class="math notranslate nohighlight">\(p\)</span> is known, the environment is fully discribed and functions like a transition function <span class="math notranslate nohighlight">\(T : D \times A \to p(S)\)</span> and a reward function <span class="math notranslate nohighlight">\(R: S \times A \times S \to \mathbb{R}\)</span> can be deducted <span id="id18">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>.</p>
 <p>Most algorithms in RL use a value function to estimate the value of a given state for the agent. Value functions are defined by the policy <span class="math notranslate nohighlight">\(\pi\)</span> the agent has decided to take. As mentioned previously, <span class="math notranslate nohighlight">\(\pi\)</span> is the mapping of states to probabilities of selecting an action. The value function <span class="math notranslate nohighlight">\(v_{\pi}(s)\)</span> in a state <span class="math notranslate nohighlight">\(s\)</span> following a policy <span class="math notranslate nohighlight">\(\pi\)</span> is as followes:</p>
 <div class="math notranslate nohighlight">
 \[ v_{\pi}(s) = E_{\pi}[G_t | S_t = s] = E_{\pi}[\sum_{k=0}^T \gamma^kR_{t+k+1} | S_t=s] \]</div>
 <p>This can aso be rewritten in a dynammic programming approach:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{gather*} v_{\pi}(s) = E_{\pi}[G_t | S_t = s] \\ 
- = E_{\pi}[R_{t+1} + \gamma G_{t+1} | S_t = s] \\
- = \sum_a \pi(a|s) \sum_{s'} \sum_r p(s', r|s,a)[r + \gamma E_{pi}[G_{t+1} | S_{t+1} = s'] \\
- = \sum_a \pi(a|s) \sum_{s', r}p(s', r|s,a)[r + \gamma v_{\pi}(s')| S_{t+1} = s'] \end{gather*}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label">
+<span class="eqno">(1)<a class="headerlink" href="#equation-my-label" title="Permalink to this equation">¶</a></span>\[\begin{split}v_{\pi}(s) = E_{\pi}[G_t | S_t = s] \\
+= E_{\pi}[R_{t+1} + \gamma G_{t+1} | S_t = s] \\
+= \sum_a \pi(a|s) \sum_{s'} \sum_r p(s', r|s,a)[r + \gamma E_{pi}[G_{t+1} | S_{t+1} = s'] \\
+= \sum_a \pi(a|s) \sum_{s', r}p(s', r|s,a)[r + \gamma v_{\pi}(s')| S_{t+1} = s'] \end{split}\]</div>
 <p>The formula is called the Bellman equation of <span class="math notranslate nohighlight">\(v_{\pi}\)</span>. It describes the relationschip between the value of a state and the values of its successor states given a certain policy <span class="math notranslate nohighlight">\(\pi\)</span>. The relation can also be represented by a backup diagram (see figure 3). If <span class="math notranslate nohighlight">\(v_{\pi}(s)\)</span> is the value of a given state, then <span class="math notranslate nohighlight">\(q_{\pi}(s,a)\)</span> is the value of a given action of that state:</p>
 <div class="math notranslate nohighlight">
 \[ q_{\pi}(s,a) = E_{\pi}[G_t | S_t = s, A_t = a] = E_{\pi}[\sum_{k=0}^T \gamma^kR_{t+k+1} | S_t=s, A_t = a] \]</div>
 <p>This can be seen in the backup diagram as starting from the black dot and cumputing the subsequential value thereafter. <span class="math notranslate nohighlight">\(q_{\pi}(s,a)\)</span> is also called the action-value function as it describes each value of an action for each state.</p>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/backup_diagram.png" /></p>
-<p>For the agent it is important to find the optimal policy in which it maximizes the expected cumulative rewards. The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is the policy for which <span class="math notranslate nohighlight">\(v_{\pi_*}(s) &gt; v_{\pi}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span>. An optimal policy also has the same action-value function <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span> and <span class="math notranslate nohighlight">\(a \in A\)</span>. The optimal policy does not depend soley on one policy and can encompass multiple policy. It is thus not policy dependend:
-$<span class="math notranslate nohighlight">\( v_*(s) = max_{a \in A(s)} q_{\pi_*}(s,a) \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( = max_{a} E_{\pi_*}[G_t | S_t=s, A_t=a] \)</span><span class="math notranslate nohighlight">\( 
-\)</span><span class="math notranslate nohighlight">\( = max_{a} E_{\pi_*}[R_{t+1} + \gamma G_{t+1} | S_t=s, A_t=a] \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\( = max_{a} E[R_{t+1} + \gamma v_*(S_{t+1}) | S_t=s, A_t=a] \)</span>$</p>
+<div class="figure align-default" id="backup-diagram-fig">
+<a class="reference internal image-reference" href="_images/backup_diagram.png"><img alt="_images/backup_diagram.png" src="_images/backup_diagram.png" style="width: 300px; height: 250px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">General backup diagram</span><a class="headerlink" href="#backup-diagram-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>For the agent it is important to find the optimal policy in which it maximizes the expected cumulative rewards. The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is the policy for which <span class="math notranslate nohighlight">\(v_{\pi_*}(s) &gt; v_{\pi}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span>. An optimal policy also has the same action-value function <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span> and <span class="math notranslate nohighlight">\(a \in A\)</span>. The optimal policy does not depend soley on one policy and can encompass multiple policy. It is thus not policy dependend:</p>
+<div class="math notranslate nohighlight">
+\[ v_*(s) = max_{a \in A(s)} q_{\pi_*}(s,a) \]</div>
+<div class="math notranslate nohighlight">
+\[ = max_{a} E_{\pi_*}[G_t | S_t=s, A_t=a] \]</div>
+<div class="math notranslate nohighlight">
+\[ = max_{a} E_{\pi_*}[R_{t+1} + \gamma G_{t+1} | S_t=s, A_t=a] \]</div>
+<div class="math notranslate nohighlight">
+\[ = max_{a} E[R_{t+1} + \gamma v_*(S_{t+1}) | S_t=s, A_t=a] \]</div>
 <p>Once <span class="math notranslate nohighlight">\(v_*(s)\)</span> is found, you just need to apply a greedy algorithm as the optimal value function already takes into account the long-term consequences of choosing that action. Finding <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> makes things even easier, as the action-value function caches the result of all one-step-ahead searches.</p>
-<p>Solving the Bellman equation of the value function or the action-value function such that we know each all possibilities with their probabilities and rewards is in most practical cases not possible. Typical due to three main factors. The first problem is obtaining full knowledge of the dynamics of the environment. The second factor is the computational resources to complete the calculation. the last factor is that the states need to have the markov property.   To circumvent these obstacles RL tries to approximate the Bellman optimality equation using various methods. In the next chapter, a brief layout of theser method is discussed with a focus on the methods applicable for financial planning.</p>
+<p>Solving the Bellman equation of the value function or the action-value function such that we know each all possibilities with their probabilities and rewards is in most practical cases not possible. Typical due to three main factors <span id="id19">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. The first problem is obtaining full knowledge of the dynamics of the environment. The second factor is the computational resources to complete the calculation. the last factor is that the states need to have the markov property.   To circumvent these obstacles RL tries to approximate the Bellman optimality equation using various methods. In the next chapter, a brief layout of theser method is discussed with a focus on the methods applicable for financial planning.</p>
 </div>
 <div class="section" id="model-based-rl-model-free-rl-and-planning">
-<h2><span class="section-number">2.2. </span>model-based RL, model-free RL and planning<a class="headerlink" href="#model-based-rl-model-free-rl-and-planning" title="Permalink to this headline">¶</a></h2>
-<p>A general theory in finding the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is called Generelized Policy Iteration (GLI). This method is applied to almost all RL algorithms. The main idea behind GLI is that there is a process which evaluates the value function of the current policy <span class="math notranslate nohighlight">\(\pi\)</span> called policy evaluation and a process which improves the current value function called policy improvement. To find the optimal policy these two processes work in tandem with eachother as seen in figure … Counterintuitively, these processes also work in a conflicting manner as policy improvement makes the policy incorrect and it is thus no longer the same policy. While policy evaluations creates a consistent policy and thus the policy no longer improves upon itself. This idea runs in parallel with the balance between exploration and exploitation in RL.  If the focus lies more on exploration, the agent frequently tries to find states which improve the value function. However, putting more emphasis on exploration is a costly setting as the agent will more frequenlty choose suboptimal policies to explore the state space. If exploitation is prioritised, the agent will take a long time to find the optimal policy as the agent is likely not to explore new states to improve the policy.  is a good example of the influential balance between exploration and exploitation.</p>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/GPI.png" /></p>
-<p>Reinforcement Learning can be subdivided between model-based RL and model-free RL. In model-free RL the dynamics of the environment are not known. <span class="math notranslate nohighlight">\(\pi_*\)</span> is found by purily interacting with the environment. Meaning that these algorithms do not use transition probability distribution and reward function related to MDP. Good examples of this are the Q-learning and Policy Optimization algorithms. They tend to be used on a variety of tasks, like playing video games to learning complicated locomotion skills. In purily model-based RL the dynamics of the environment are described by a model. This enables the agent to think in advance and as it were plan for possible actions. A classical example is AlphaGo. The algorithm is the first one to be able to defeated professional players of the board game Go. A hybrid version of the two approaches in which the model is learned through interaction with the environment has also been widely applied. The imagination-augmented agents (12A) for example combines model-based and model-free aspects by employing the predictions as additional context in a deep policy network.</p>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/state_space.png" /></p>
-<p><img alt="Research fields involved in Reinforcement learning" src="_images/breadth_and_dept.png" /></p>
+<h2>model-based RL, model-free RL and planning<a class="headerlink" href="#model-based-rl-model-free-rl-and-planning" title="Permalink to this headline">¶</a></h2>
+<p>A general theory in finding the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is called Generelized Policy Iteration (GLI). This method is applied to almost all RL algorithms. The main idea behind GLI is that there is a process which evaluates the value function of the current policy <span class="math notranslate nohighlight">\(\pi\)</span> called policy evaluation and a process which improves the current value function called policy improvement <span id="id20">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. To find the optimal policy these two processes work in tandem with eachother as seen in figure … Counterintuitively, these processes also work in a conflicting manner as policy improvement makes the policy incorrect and it is thus no longer the same policy <span id="id21">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. While policy evaluations creates a consistent policy and thus the policy no longer improves upon itself. This idea runs in parallel with the balance between exploration and exploitation in RL.  If the focus lies more on exploration, the agent frequently tries to find states which improve the value function. However, putting more emphasis on exploration is a costly setting as the agent will more frequenlty choose suboptimal policies to explore the state space. If exploitation is prioritised, the agent will take a long time to find the optimal policy as the agent is likely not to explore new states to improve the policy.  is a good example of the influential balance between exploration and exploitation.</p>
+<div class="figure align-default" id="gpi-fig">
+<a class="reference internal image-reference" href="_images/GPI.png"><img alt="_images/GPI.png" src="_images/GPI.png" style="width: 500px; height: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Generalized policy iteration</span><a class="headerlink" href="#gpi-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>Reinforcement Learning can be subdivided between model-based RL and model-free RL. In model-free RL the dynamics of the environment are not known. <span class="math notranslate nohighlight">\(\pi_*\)</span> is found by purily interacting with the environment. Meaning that these algorithms do not use transition probability distribution and reward function related to MDP. Moreover, model-free RL have irreversible access to the environment. Meaning the algorithm has to move forward after an action is taken. Model-based RL on the other hand have reversible access to the environment because they are able to revert the model and make another trail from the same state <span id="id22">[<a class="reference internal" href="Financial_application.html#id24">MBJ20</a>]</span>. Good examples of model-free RL techniques are the Q-learning and Policy Optimization algorithms. They tend to be used on a variety of tasks, like playing video games to learning complicated locomotion skills. Model-free RL lay at the fundation of RL and are one of the first algorithms to be applied in RL. On the other hand, model-based RL is developed independently and in parallel with planning methods like optimal control and the search community as they both solve the same problem but differ in the approach. Most algorithms in model-based RL have a model which describes the dynamics of the environment. They sample from that model to then improve a learned value or policy function <span id="id23">[<a class="reference internal" href="Financial_application.html#id24">MBJ20</a>]</span>(see figure). This enables the agent to think in advance and as it were plan for possible actions. Model-based reinforcement learning finds thus large similarities with the Planning literature and as a result a lot of cross breeding between the two is happening. For example an extension of the POMP algorithm called Partially Observable Multi-Heuristic Dynammic Programming (POMHDP) is based on recent progress from the search community <span id="id24">[<a class="reference internal" href="Financial_application.html#id27">KSL19</a>]</span>. A hybrid version of the two approaches in which the model is learned through interaction with the environment, has also been widely applied. The imagination-augmented agents (12A) for example combines model-based and model-free aspects by employing the predictions as additional context in a deep policy network.  In the next subsection three fundamental algorithms in RL are discussed which will enable us to better capture the dimensions and challenges of a RL algorithms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+```{figure} C:/Users/ignac/Documents/GitHub/thesis/notebook/images/model-based_reinforcement_learning.png
+---
+height: 350px
+width: 500px
+name: MB_RL-fig
+---
+model-based reinforcement learning  
+```
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  File &quot;&lt;ipython-input-1-c04f640f9224&gt;&quot;, line 1
+    ```{figure} C:/Users/ignac/Documents/GitHub/thesis/notebook/images/model-based_reinforcement_learning.png
+    ^
+SyntaxError: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dynammic-programming-monte-carlo-methods-and-temporal-difference-learning">
+<h3>Dynammic Programming, Monte Carlo Methods and Temporal-Difference Learning<a class="headerlink" href="#dynammic-programming-monte-carlo-methods-and-temporal-difference-learning" title="Permalink to this headline">¶</a></h3>
+<p>Dynammic Programming (DP) is known for two algorithms in RL: value iteration (VI) and policy iteration (PI). For both methodes the dynamics of the environment need to be completly known and they therefore fall under model-based RL. The two algorithms also use a discrete time, state and action MDP as they are iterative procedures. The PI can be subdivided into three steps: initialize, policy evaluation and policy improvement. The first step is to initialize the value function <span class="math notranslate nohighlight">\(v_{\pi}\)</span> by choosing an arbitrary policy <span class="math notranslate nohighlight">\(\pi\)</span>. The following step is to evaluate the function successively by updating the the Bellman equation eq 2.1 . Updating on the Bellman equation is also called the expected update as the equation is updated using the whole state space instead of a sample of the state space. One update is also called a sweep as the update sweeps through the state space. Now that we have updated the value function <span class="math notranslate nohighlight">\(v_{\pi}\)</span>, we know how good it is to follow the current policy. The next step is to deviate from the policy trajectory and chose a different action a in state s to find a more optimal policy value. We compute the new <span class="math notranslate nohighlight">\(\pi '\)</span> and compare it to the old policy. The new policy is accepted if <span class="math notranslate nohighlight">\(\pi '(s) &gt; \pi(s)\)</span>. This process is repeated untill a convergence criteria is met. The complete algorithm can be found in the appendix. VI combines the policy evaluation with the policy improvement by truncating the sweep with one update of each state. It effectivily combines the policy evaluation and policy evaluation in one sweep (see appendix for algorithm) <span id="id25">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. PI and VI are the foundation of DP and numerous adaptions have been made on these algorithms. For example have… . Adaptive Dynammic programming is</p>
+<p>The Monte Carlo (MC) methods do not assume full knowledge of the dynamics of the environment and are thus considered model-free RL techniques. They only require a sample sequence of states, actions and rewards from interaction of an environment. Techniquely, a model is still required which generates sample transitions, but the complete probability distribtion <span class="math notranslate nohighlight">\(p\)</span> of the dynammic system is not neccesary. The idea behind almost all MC methods is that the agent learns the optimal policy by averaging the sample returns of a policy <span class="math notranslate nohighlight">\(\pi\)</span>. They can therefore not learn on an online basis as after each episode they need to average their returns. Another difference between the two methods is that the MC method does not bootstrap like DP. Meaning, each state has an independed estimate. Note that Monte Carlo methods create a nonstationary problem as each action taken at a state depends on the previous states. MC methods can either estimate  a state value (eq) or  estimate the value of a state-action pairs (eq) (recall that the state-action values are the value of an action given a state). If state values are estimated, a model is required as it needs to be able to look ahead one step and choose the action which leads to the best reward and next state. With action value estimation you already estimated the value of the action and no model needs to be taken into account.  Monte Carlo methods also use a term called visits. A visit is when a state or state-action pair is in the sample path. Multiple visits to a state are possible in an episode. Two general Monte Carlo Methods can be deducted from visits. The every-visit MC methods and the first-visit MC methods. The every-visit MC methods estimates the value of a state as the average of the returns that have followed all visits to it. The first visit method only looks at the first visit of that state to estimate the average returns. The biggest hurdle in MC methods is that most state-action pairs might never be visited in the sample.</p>
+<p>To overcome this problem multiple solutions have been explored. The naïve solution to this problem is called the exploring starts. Here, the idea is to allocate to each action in each state a nonzero probability at the start of the process. Although this is not possible in a practical setting where we truly want to interact with an environment, it enables us to improve to policy by making it greedy with respect to the current value function. If an infinite number of episodes are taken, the policy improvement theory states that the policy <span class="math notranslate nohighlight">\(\pi\)</span> will convergence too the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> given the exploring starts. The other two possibilities are on-policy methods and off-policy methods <span id="id26">[<a class="reference internal" href="Financial_application.html#id70">SB18</a>]</span>. On-policy methods attempt to improve on the current policy. This is also called a soft policy as <span class="math notranslate nohighlight">\(\pi(a|s) &gt; 0\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span> and all <span class="math notranslate nohighlight">\( a \in A(s)\)</span>, but shifts eventual to the deterministic optimal policy. One of these on-policy methods uses a <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy. The <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy uses with probability <span class="math notranslate nohighlight">\(\varepsilon\)</span> a random action instead of the greedy action. A pseudocode of on-policy first visit MC for <span class="math notranslate nohighlight">\(\varepsilon\)</span>-soft policies algorithm can be found in the appendix.</p>
+</div>
 </div>
 <div class="section" id="challenges-in-rl-and-deep-rl">
-<h2><span class="section-number">2.3. </span>Challenges in RL and deep RL<a class="headerlink" href="#challenges-in-rl-and-deep-rl" title="Permalink to this headline">¶</a></h2>
+<h2>Challenges in RL and deep RL<a class="headerlink" href="#challenges-in-rl-and-deep-rl" title="Permalink to this headline">¶</a></h2>
+<p><span id="id27">[<a class="reference internal" href="Financial_application.html#id24">MBJ20</a>]</span> adresses the six most important dimensions of a RL algortihm: computational effort, action value selection, return estimation, policy evaluation, function representation and update method. The first dimension has to do with the computational effort that is required to run the algorithm. This has primarely to do with the state set that is chosen (see figure). The first option is to consider all states <span class="math notranslate nohighlight">\(S\)</span> of the dynamic environment. In practice this often becomes impractical to consider due to the curse of dimensionality. The second and third possibilities are all reachable states and all relevant states. All reachable states are the states which are reachable from any start under any policy, while for the relevant states only those state under the optimal policy are considered. The last option is to use start states. These are all the states with a non-zero probability under <span class="math notranslate nohighlight">\(p(s_0)\)</span></p>
+<p>(need examples and further explanaition curse of dimensionality)</p>
+<div class="figure align-default" id="state-space-fig">
+<a class="reference internal image-reference" href="_images/state_space.png"><img alt="_images/state_space.png" src="_images/state_space.png" style="width: 500px; height: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">state_space dimensions</span><a class="headerlink" href="#state-space-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>The second dimension is the action selection and has primarly to due to with exploration process of the algorithm. The first consideration is the candidate set that is considered for the next action. Then the optimal action needs to be considered while still keeping exploration in mind. For selecting the candidate set two main approaches are considered: step-wise and frontier. Frontier methods only start exploration once they are on the frontier, while step-wise methods have a new candidate set at each step of the trajectory. the second consideration, selecting the acion value,  different methods have been adopted. The first one are random explorations like <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy exploration as explained in the section of Monte Carlo methods. These explorations techniques enable us to escape from a local minimum but can cause a jittering effect in which we undo an exploration step at random. The second approach is value-based exploration which uses the value-based information to better direct the pertubation. The last option is state-based exploration. State-based exploration uses state-dependedent properties to inject noise.</p>
+<p>The calculation of the return estimation</p>
+<p>The fourth dimension to consider</p>
 </div>
 <div class="section" id="reinforcement-learning-and-financial-planning">
-<h2><span class="section-number">2.4. </span>Reinforcement learning and financial planning<a class="headerlink" href="#reinforcement-learning-and-financial-planning" title="Permalink to this headline">¶</a></h2>
+<h2>Reinforcement learning and financial planning<a class="headerlink" href="#reinforcement-learning-and-financial-planning" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -297,8 +383,8 @@ $<span class="math notranslate nohighlight">\( v_*(s) = max_{a \in A(s)} q_{\pi_
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page"><span class="section-number">1. </span>Introduction</a>
-    <a class='right-next' id="next-link" href="Financial_application.html" title="next page"><span class="section-number">3. </span>Financial Application of Reinforcement Learning</a>
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="Financial_application.html" title="next page">Financial Application of Reinforcement Learning</a>
 
         </div>
         
