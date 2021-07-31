@@ -8,10 +8,11 @@
 \contentsline {subsection}{\numberline {0.2.4}Reinforcement learning and financial planning}{7}{subsection.0.2.4}%
 \contentsline {section}{\numberline {0.3}Financial Application of Reinforcement Learning}{7}{section.0.3}%
 \contentsline {subsection}{\numberline {0.3.1}Optimal consumption, investment and life insurance in an intertemporal model}{7}{subsection.0.3.1}%
-\contentsline {subsubsection}{The model specifications}{8}{subsubsection*.4}%
-\contentsline {subsubsection}{dynamic programming principle}{10}{subsubsection*.5}%
-\contentsline {subsubsection}{The analytic result: Constant Relative Risk Aversion utility function}{11}{subsubsection*.6}%
-\contentsline {subsection}{\numberline {0.3.2}Algorithm BFSDE}{11}{subsection.0.3.2}%
-\contentsline {section}{\numberline {0.4}Appendix}{12}{section.0.4}%
-\contentsline {subsection}{\numberline {0.4.1}pseudocode algorithms}{12}{subsection.0.4.1}%
+\contentsline {subsubsection}{The model specifications}{9}{subsubsection*.4}%
+\contentsline {subsubsection}{dynamic programming principle}{11}{subsubsection*.5}%
+\contentsline {subsubsection}{The analytic result: Constant Relative Risk Aversion utility function}{12}{subsubsection*.6}%
+\contentsline {subsection}{\numberline {0.3.2}Algorithm BFSDE}{12}{subsection.0.3.2}%
+\contentsline {section}{\numberline {0.4}discussion}{12}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Appendix}{13}{section.0.5}%
+\contentsline {subsection}{\numberline {0.5.1}pseudocode algorithms}{13}{subsection.0.5.1}%
 \contentsline {chapter}{Bibliography}{15}{chapter*.7}%

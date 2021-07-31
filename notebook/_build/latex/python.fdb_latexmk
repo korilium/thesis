@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex python.idx"] 1627402274 "python.idx" "python.ind" "python" 1627620039
-  "python.idx" 1627577140 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex python.idx"] 1627680778 "python.idx" "python.ind" "python" 1627681079
+  "python.idx" 1627680919 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "python.ind"
   "python.ilg"
-["pdflatex"] 1627620039 "python.tex" "python.pdf" "python" 1627620039
+["pdflatex"] 1627681079 "python.tex" "python.pdf" "python" 1627681079
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1627401375 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1627401466 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/ignac/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1627401465 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
@@ -242,24 +242,24 @@
   "footnotehyper-sphinx.sty" 1626379943 13076 494d8d655f805dc10b53008469c289a2 ""
   "jupyterBook.cls" 1626379952 1222 69a0f15145f4060ebcfbf0527d3a613a ""
   "policy_iteration.png" 1627567521 83167 2f201fe49d4e8ca39a6ff51702eed76d ""
-  "python.aux" 1627577144 6935 4a7fa6190a73968df48ab688a2f15bb7 "pdflatex"
-  "python.ind" 1627402274 0 d41d8cd98f00b204e9800998ecf8427e "makeindex python.idx"
-  "python.out" 1627577144 960 6e1774ef8c5263b0cae76d79d5b8f208 "pdflatex"
-  "python.tex" 1627620023 49768 0fa2eb1ce72d8244a9101f71513f04ca ""
-  "python.toc" 1627577144 1605 4e3c4de7257db6435a411b59bd107696 "pdflatex"
+  "python.aux" 1627680932 8697 2a32f131d49e5953ffc60ca0a4e39d5b "pdflatex"
+  "python.ind" 1627680778 0 d41d8cd98f00b204e9800998ecf8427e "makeindex python.idx"
+  "python.out" 1627680932 409 843580eee4539034dba8f577876ae10d "pdflatex"
+  "python.tex" 1627681078 53146 32b6eec828eeb8b8eb701a36217f0669 ""
+  "python.toc" 1627680932 1776 6aaf34d399491ef2d5474c8fca870db8 "pdflatex"
   "sphinx.sty" 1626379943 91458 532cd893425be1ee8212ce283449999c ""
-  "sphinxhighlight.sty" 1627620022 6720 02ef3c01e6bb67d3cc0658d354509680 ""
+  "sphinxhighlight.sty" 1627681078 6720 02ef3c01e6bb67d3cc0658d354509680 ""
   "sphinxmanual.cls" 1626379943 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1627620023 765 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1627681078 765 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxmulticell.sty" 1626379943 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   "standard_model.png" 1626782771 17648 2012c976c9524b48cf8a79878da286ef ""
   "state_space.png" 1627375895 49040 16bfdcead037b31c961e9577a21641d2 ""
   "tree.png" 1626779940 63307 b29b272ea7c3ce2d42ca5e8a840688ec ""
   "value_iteration.png" 1627568034 50685 f05efe4b98c5f5e7a3b8398529cd7a4d ""
   (generated)
-  "python.toc"
   "python.out"
   "python.log"
+  "python.aux"
+  "python.toc"
   "python.idx"
   "python.pdf"
-  "python.aux"

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  30 JUL 2021 06:40
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  30 JUL 2021 23:37
 entering extended mode
 **./python.tex
 (python.tex
@@ -1666,13 +1666,13 @@ LaTeX Info: Redefining \rmfamily on input line 1.
 LaTeX Info: Redefining \sffamily on input line 1.
 LaTeX Info: Redefining \ttfamily on input line 1.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 4.
+(Font)              scaled to size 7.00075pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 4.
+(Font)              scaled to size 5.00053pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 4.
+(Font)              scaled to size 6.99925pt on input line 2.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 4.
+(Font)              scaled to size 4.99947pt on input line 2.
 )
 \tf@toc=\write7
 \openout7 = `python.toc'.
@@ -1689,7 +1689,7 @@ File: standard_model.png Graphic file (type bmp)
 <standard_model.png>
 
 ! Undefined control sequence.
-l.156 ... function \(R: S \times A \times S \to \R
+l.164 ... function \(R: S \times A \times S \to \R
                                                   \) can be deducted {[}\hyp...
 
 ? 
@@ -1699,20 +1699,19 @@ File: backup_diagram.png Graphic file (type bmp)
  [4]
 File: GPI.png Graphic file (type bmp)
 <GPI.png>
- [5]
+ [5] [6]
 File: state_space.png Graphic file (type bmp)
 <state_space.png>
 File: breadth_and_dept.png Graphic file (type bmp)
 <breadth_and_dept.png>
- [6] [7] [8] [9] [10]
+ [7] [8] [9] [10] [11]
 File: policy_iteration.png Graphic file (type bmp)
 <policy_iteration.png>
- [11]
+ [12]
 File: value_iteration.png Graphic file (type bmp)
 <value_iteration.png>
- [12] [13] [14
+ [13] [14] [15
 
-] [15
 
 ] (python.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -1764,14 +1763,14 @@ Package rerunfilecheck Warning: File `python.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `python.out':
-(rerunfilecheck)             Before: 6E1774EF8C5263B0CAE76D79D5B8F208;960
-(rerunfilecheck)             After:  1CED6AD2E329E0EE597E4287B59E31FA;300.
+(rerunfilecheck)             Before: 843580EEE4539034DBA8F577876AE10D;409
+(rerunfilecheck)             After:  C5AAB09A1330E8C352BD2B5560498FFD;347.
  ) 
 Here is how much of TeX's memory you used:
- 41701 strings out of 411278
- 935014 string characters out of 2829017
- 1578416 words of memory out of 3000000
- 61456 multiletter control sequences out of 15000+600000
+ 41708 strings out of 411278
+ 935300 string characters out of 2829017
+ 1579417 words of memory out of 3000000
+ 61463 multiletter control sequences out of 15000+600000
  408866 words of font info for 101 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  99i,17n,114p,3011b,2115s stack positions out of 5000i,500n,10000p,200000b,80000s
