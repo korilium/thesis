@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  31 JUL 2021 11:59
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  2 AUG 2021 17:45
 entering extended mode
 **./python.tex
 (python.tex
@@ -1693,18 +1693,24 @@ File: backup_diagram.png Graphic file (type bmp)
  [4]
 File: GPI.png Graphic file (type bmp)
 <GPI.png>
- [5] [6]
+ [5]
+File: model_based_RL.png Graphic file (type bmp)
+<model_based_RL.png>
+ [6] [7]
+File: different_methods.png Graphic file (type bmp)
+<different_methods.png>
+ [8]
 File: state_space.png Graphic file (type bmp)
 <state_space.png>
- [7] [8] [9] [10] [11]
+ [9] [10] [11]
+[12] [13] [14] [15]
 File: policy_iteration.png Graphic file (type bmp)
 <policy_iteration.png>
-
-[12]
 File: value_iteration.png Graphic file (type bmp)
 <value_iteration.png>
- [13] [14] [15
+ [16] [17] [18
 
+] [19
 
 ] (python.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -1741,21 +1747,21 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [16] (python.aux
+ [20] (python.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `python.out' has not changed.
-(rerunfilecheck)             Checksum: C5AAB09A1330E8C352BD2B5560498FFD;347.
+(rerunfilecheck)             Checksum: 93F5799F5CD42870800FFA1E4AECD477;347.
  ) 
 Here is how much of TeX's memory you used:
- 41705 strings out of 411278
- 935248 string characters out of 2829017
- 1578417 words of memory out of 3000000
- 61458 multiletter control sequences out of 15000+600000
- 408890 words of font info for 104 fonts, out of 8000000 for 9000
+ 41720 strings out of 411278
+ 935663 string characters out of 2829017
+ 1581417 words of memory out of 3000000
+ 61474 multiletter control sequences out of 15000+600000
+ 408866 words of font info for 101 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  99i,17n,114p,3011b,2115s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on python.pdf (20 pages).
+Output written on python.pdf (24 pages).

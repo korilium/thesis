@@ -1,5 +1,7 @@
 format: jb-article
-root: abstract
+root: abstract 
+options: 
+  numbered: True
 sections:
 - file: Introduction
 - file: Reinforcement_learning

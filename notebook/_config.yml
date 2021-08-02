@@ -8,6 +8,8 @@ execute:
 bibtex_bibfiles:
    - referencess.bib
 
+html:
+  use_multitoc_numbering: false
 
 
 parse:
