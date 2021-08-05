@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  2 AUG 2021 17:45
+This is XeTeX, Version 3.141592653-2.6-0.999993 (MiKTeX 21.7) (preloaded format=xelatex 2021.7.27)  5 AUG 2021 12:37
 entering extended mode
 **./python.tex
 (python.tex
@@ -1666,13 +1666,13 @@ LaTeX Info: Redefining \rmfamily on input line 1.
 LaTeX Info: Redefining \sffamily on input line 1.
 LaTeX Info: Redefining \ttfamily on input line 1.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 2.
+(Font)              scaled to size 7.00075pt on input line 4.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 2.
+(Font)              scaled to size 5.00053pt on input line 4.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 2.
+(Font)              scaled to size 6.99925pt on input line 4.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 2.
+(Font)              scaled to size 4.99947pt on input line 4.
 )
 \tf@toc=\write7
 \openout7 = `python.toc'.
@@ -1681,36 +1681,55 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 
 ] [2
 
-] [1]
+] [1] [2
+
+]
+Chapter 1.
+[3] [4
+
+]
+Chapter 2.
 File: tree.png Graphic file (type bmp)
 <tree.png>
- [2]
+[5]
 File: standard_model.png Graphic file (type bmp)
 <standard_model.png>
- [3]
+ [6]
 File: backup_diagram.png Graphic file (type bmp)
 <backup_diagram.png>
- [4]
+ [7]
 File: GPI.png Graphic file (type bmp)
 <GPI.png>
- [5]
+ [8]
 File: model_based_RL.png Graphic file (type bmp)
 <model_based_RL.png>
- [6] [7]
+ [9] [10] [11]
 File: different_methods.png Graphic file (type bmp)
 <different_methods.png>
- [8]
+ [12]
 File: state_space.png Graphic file (type bmp)
 <state_space.png>
- [9] [10] [11]
-[12] [13] [14] [15]
+ [13] [14] [15] [16
+
+]
+Chapter 3.
+[17] [18] [19] [20] [21]
+File: BSDE_NN.png Graphic file (type bmp)
+<BSDE_NN.png>
+ [22]
+Chapter 4.
+[23
+
+] [24
+
+]
+Chapter 5.
 File: policy_iteration.png Graphic file (type bmp)
 <policy_iteration.png>
 File: value_iteration.png Graphic file (type bmp)
 <value_iteration.png>
- [16] [17] [18
+[25] [26] [27
 
-] [19
 
 ] (python.ind)
 The property list \polyglossia@langsetup contains the pairs (without outer
@@ -1747,21 +1766,21 @@ braces):
 >  {english/babelname}  =>  {american}
 >  {english/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {english/Localnumeral}  =>  {polyglossia@C@localnumeral}.
- [20] (python.aux
+ [28] (python.aux
 LaTeX Info: Redefining \rmfamily on input line 19.
 LaTeX Info: Redefining \sffamily on input line 19.
 LaTeX Info: Redefining \ttfamily on input line 19.
 )
 Package rerunfilecheck Info: File `python.out' has not changed.
-(rerunfilecheck)             Checksum: 93F5799F5CD42870800FFA1E4AECD477;347.
+(rerunfilecheck)             Checksum: F74CD0CB3B1B1E82C191E57DAFB2245D;1157.
  ) 
 Here is how much of TeX's memory you used:
- 41720 strings out of 411278
- 935663 string characters out of 2829017
- 1581417 words of memory out of 3000000
- 61474 multiletter control sequences out of 15000+600000
+ 41748 strings out of 411278
+ 936104 string characters out of 2829017
+ 1590417 words of memory out of 3000000
+ 61501 multiletter control sequences out of 15000+600000
  408866 words of font info for 101 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 99i,17n,114p,3011b,2115s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,21n,114p,3502b,2114s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on python.pdf (24 pages).
+Output written on python.pdf (32 pages).

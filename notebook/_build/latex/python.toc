@@ -1,19 +1,18 @@
 \selectlanguage *{english}
-\contentsline {section}{\numberline {0.1}Introduction}{1}{section.0.1}%
-\contentsline {section}{\numberline {0.2}Reinforcement Learning}{2}{section.0.2}%
-\contentsline {subsection}{\numberline {0.2.1}Finite Markov Decision Processes}{2}{subsection.0.2.1}%
-\contentsline {subsection}{\numberline {0.2.2}model\sphinxhyphen {}based RL, model\sphinxhyphen {}free RL and planning}{5}{subsection.0.2.2}%
-\contentsline {subsubsection}{Dynammic Programming, Monte Carlo Methods and Temporal\sphinxhyphen {}Difference Learning}{6}{subsubsection*.3}%
-\contentsline {subsubsection}{Dimensions of a model\sphinxhyphen {}based reinforcement algorithm}{9}{subsubsection*.4}%
-\contentsline {subsection}{\numberline {0.2.3}Curse of Dimensionality and deep reinforcment learning}{12}{subsection.0.2.3}%
-\contentsline {subsection}{\numberline {0.2.4}Reinforcement learning and financial planning}{12}{subsection.0.2.4}%
-\contentsline {section}{\numberline {0.3}Financial Application of Reinforcement Learning}{12}{section.0.3}%
-\contentsline {subsection}{\numberline {0.3.1}Optimal consumption, investment and life insurance in an intertemporal model}{12}{subsection.0.3.1}%
-\contentsline {subsubsection}{The model specifications}{13}{subsubsection*.5}%
-\contentsline {subsubsection}{dynamic programming principle}{14}{subsubsection*.6}%
-\contentsline {subsubsection}{The analytic result: Constant Relative Risk Aversion utility function}{15}{subsubsection*.7}%
-\contentsline {subsection}{\numberline {0.3.2}Algorithm BFSDE}{15}{subsection.0.3.2}%
-\contentsline {section}{\numberline {0.4}discussion}{16}{section.0.4}%
-\contentsline {section}{\numberline {0.5}Appendix}{16}{section.0.5}%
-\contentsline {subsection}{\numberline {0.5.1}pseudocode algorithms}{16}{subsection.0.5.1}%
-\contentsline {chapter}{Bibliography}{19}{chapter*.8}%
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Reinforcement Learning}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Finite Markov Decision Processes}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Generelized Policy Iteration, Model\sphinxhyphen {}based RL and Model\sphinxhyphen {}free RL}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Dynamic Programming, Monte Carlo Methods and Temporal\sphinxhyphen {}Difference Learning}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Dimensions of a model\sphinxhyphen {}based reinforcement algorithm}{13}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Curse of Dimensionality and Model\sphinxhyphen {}based Deep Reinforcment Learning}{15}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Reinforcement Learning and Financial Planning}{15}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Financial Application of Reinforcement Learning}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Optimal consumption, investment and life insurance in an intertemporal model}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}The model specifications}{18}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}dynamic programming principle}{19}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Numerical method: The Deep Backward Stochastic Differential Equation method}{21}{section.3.2}%
+\contentsline {chapter}{\numberline {4}discussion}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Appendix}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}pseudocode algorithms}{25}{section.5.1}%
+\contentsline {chapter}{Bibliography}{27}{chapter*.3}%
