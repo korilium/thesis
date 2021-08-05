@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Introduction &#8212; Future Financial Planning Tools for Consumers</title>
+    <title>Index &#8212; Future Financial Planning Tools for Consumers</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Reinforcement Learning" href="Reinforcement_learning.html" />
-    <link rel="prev" title="Abstract" href="abstract.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -90,9 +88,9 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
    1. Introduction
   </a>
  </li>
@@ -157,7 +155,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Introduction.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/Index.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -177,23 +175,6 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Introduction.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
@@ -207,11 +188,8 @@
         
               <div>
                 
-  <div class="section" id="introduction">
-<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The financial decisions that consumers need to make in their present lifetime, become increasingly more complex. A good example of this phenomenon is the shift from defined benefits to defined contributions in which consumers take on greater individual responsibility and risks. The evolution in the abstruseness of financial products has become challenging for consumers who possess low financial knowledge and limiting numeracy skills <span id="id1">[<a class="reference internal" href="Discussion.html#id14">BFH17</a>]</span>. Combined with uncertainty about the future, the consumer is necessitated to be more aware of his financial well-being than ever before. Looking back into the past, Porteba et al, <span id="id2">[<a class="reference internal" href="Discussion.html#id16">PVW11</a>]</span> conducted an examination of preparedness in retirement for Children of Depression, War Baby, and the Early Baby Boomer in the Health and Retirement Study and Asset and Health Dynamics Among the Oldest Old cohorts. They found that 46.1 percent die with less than 10 000 dollars. With this amount of assets, they would not have the capacity to pay for unexpected events and one might wonder if it is adequate asset levels for retirement. Furthermore, saving behavior has not kept pace with increasing life expectation and the expected prolonged lifespan of the coming generations are unprecedented <span id="id3">[<a class="reference internal" href="Discussion.html#id17">Her11</a>]</span>. All these elements give a painstakingly clear picture that having a vital understanding of one’s financial situation has become one of the greatest challenges in life.</p>
-<p>To combat these difficulties, consumers require additional undertakings in planning for their future prosperity. One of the approaches to tackle this issue, is by using financial planning tools. These tools give the consumer the capability to estimate complex intertemporal calculations <span id="id4">[<a class="reference internal" href="Discussion.html#id13">BDTS20</a>]</span>. They also enhance financial behavior, increase household wealth accumulation and they are a complement to other planning aid like a financial advisor <span id="id5">[<a class="reference internal" href="Discussion.html#id14">BFH17</a>]</span>. Although financial planning tools can greatly benefit consumers, it can also be a double-edged sword. More specifically, when consumers are misinformed about the capabilities of the tool, or when the design of the tool is inadequate, the consumer can be given sub-optimal advice or even misleading advice <span id="id6">[<a class="reference internal" href="Discussion.html#id15">DMBE18</a>]</span>. Insufficiencies in design can arise when not all essential input variables are included, not all risks are considered, and when accuracy is sacrificed for the ease of use <span id="id7">[<a class="reference internal" href="Discussion.html#id13">BDTS20</a>]</span>. On top of that, there are wide variations in results because of the various methodology and assumptions used in the models <span id="id8">[<a class="reference internal" href="Discussion.html#id15">DMBE18</a>]</span>. For example, assumptions based on inflation and the use of different financial products have a large impact on the results. On the side of the consumer, the possibility of misunderstanding the implications of the results due to a lack of financial knowledge, is a matter of great concern in the eyes of financial educators <span id="id9">[<a class="reference internal" href="Discussion.html#id13">BDTS20</a>]</span>. Clarifying the results is therefore an essential part of making models operational. To improve upon these deficiencies, Dorman et al., <span id="id10">[<a class="reference internal" href="Discussion.html#id15">DMBE18</a>]</span> found that when the models handle additional theoretical variables, the accuracy will improve. Besides, they found that the consumer requires unique solutions that better capture their financial situation. Meaning planning tools need to be more flexible. They should be able to operate in different financial settings and have the ability to look at the impact of changes in input variables. To address the variability in results and the adaptability of models to different settings, this paper will look at reinforcement learning techniques in an intertemporal setting. Reinforcement Learning enables an increase in the flexibility of the model while keeping fundamental theoritical aspects like Optimal Control Theory at its core.</p>
-<p>For the remainder of the paper, the general theory of Reinforcement Learning (RL) will first be introduced. Then, some challenges are discussed together with Deep Reinforcement Learning. Next, The possible implications of RL for financial planning are considered. Finally, two financial applications are reviewed.</p>
+  <div class="section" id="index">
+<h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -239,8 +217,6 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="abstract.html" title="previous page">Abstract</a>
-    <a class='right-next' id="next-link" href="Reinforcement_learning.html" title="next page"><span class="section-number">2. </span>Reinforcement Learning</a>
 
         </div>
         
