@@ -142,76 +142,28 @@
 # $$ \Psi_{cc}, \Psi_{pp}, \Psi_{\theta \theta} < 0 $$ 
 # 
 
-# This optimal control problem has been solved analytically by Ye {cite}`ye2006optimal` for the Constant Relative Risk Aversion utility function. In the next subsection the numerical method to solve the problem in higher dimensions is introduced. To solve {eq}`BELL` a new technique called the Deep Backward Stochastic Differential Equation (BSDE) method can be used. The Deep BSDE method was the first deep learning-based numerical algorithm to solve general nonlinear parabolic PDEs in high dimensions. in the next subsection we will describe the general approach of the Deep BSDE and link it to the RL theory. Although this method is orginaly designed to only solve the equation at timestep $t=0$, future research might be able to solve the PDE at each time point $t$. 
+# This optimal control problem has been solved analytically by Ye {cite}`ye2006optimal` for the Constant Relative Risk Aversion utility function. To solve {eq}`BELL` the  BSDE method can be used. The Deep BSDE method was the first deep learning-based numerical algorithm to solve general nonlinear parabolic PDEs in high dimensions. 
 
-# ## Numerical method: The Deep Backward Stochastic Differential Equation method
-
-#  The general PDEs that this method can solve can be written as: 
+# remember the general form of PDEs which the Deep BSDE method solves: 
 
 # ```{math}
 # :label: gen_form
 # \frac{\partial u}{\partial t} + \frac{1}{2} Tr(\sigma \sigma^T (Hess_xu) + \Delta u(t,x)  \mu(t,x) + f(t,x,u, \sigma^T(\Delta_x u)) = 0 
 # ``` 
-# with some temrinal condition $u(T,x) = g(x)$. {eq}`BELL` can thus be reformulated in the general form: 
+# with some terminal condition $u(T,x) = g(x)$. {eq}`BELL` can thus be reformulated in the general form: 
 # 
 # $$\underbrace{V_t(t,x)}_{\frac{\partial u}{\partial t}} + \underbrace{\frac{1}{2}\sigma(t)^2\theta^2V_{xx}(t,x)}_{\frac{1}{2}Tr(\sigma \sigma^T(Hess_xu(t,x)))} + \underbrace{(r(t) x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x)}_{\Delta u(t,x)\mu (t,x)} \\ + \underbrace{\lambda(t)B(x+\frac{p}{\eta(t)},t) + U(t,x) - \lambda(t)V(t,x)}_{f(t,x,u(t,x), \sigma^T(t,x)\Delta u(t,x))}$$
 # 
-# With $u(T,x) = L(x)$. The key idea is to  reformulate the PDE as an appropriate stochastic problem {cite}`weinan2020algorithms` and {cite}`weinan2017deep`. Here the probability space ($\Omega,\mathcal{F}, \mathbb{P}$) is adapted to the high dimensional problem. So $W: [0, T] \times \Omega \rightarrow \mathbb{R}^d$ becomes a d-dimensional standard Brownian motion on ($\Omega,\mathcal{F}, \mathbb{P}$) and let $\mathcal{A}$ be the set of all $\mathbb{F}$-adapted $\mathcal{R^d}$-values stochastic processes with continuous sample paths. Let $\{X_T\}_{0 \leq t \leq T}$ be a d-dimensional stochastic process which satisfies
-# 
-# $$ X_t = \varepsilon + \int_0^t \mu(s,X_s)ds + \int_0^t \sigma(s,X_s)dW_s $$
-# 
-# Using Itô's lemma, we obtain that 
-# 
-# $$ y(t, X_t) - u(0,X_0) = - \int_0^t f(s,X_s,u(s,X_s), [\sigma(s,X_s)]^T(\Delta_x u)(s,X_s)) ds + \int_0^t[\Delta u(s,X_s)]^T\sigma(s,X_s)dW_s$$ 
-# 
-# A backward stochstic differential equation can be written as 
-# ```{math}
-# :label: stoch_con
-# \begin{cases} X_t = \varepsilon + \int_0^t \mu(s,X_s) ds + \int_0^t\sigma(s,X_S)dW_S \\ 
-# Y_t = g(X_T) + \int_t^T f(s, X_s, Y_s, Z_s)ds - \int_t^T(Z_s)^T dW_s
-# \end{cases} 
-# ```
-# 
-# In the literature it was found that the solution of PDE and its spatial derivative are now the solution of the stochastic control problem {eq}`stoch_con`{}`weinan2020algorithms`. The relationship between the PDE {eq}`gen_form` and the BSDe {eq}`stoch_con` is based on the nonlinear Feynman-Kac formula {cite}`bloch2018machine` and {cite}`guler2019towards`. Under suitable additional regularity assumption on the nonlinearity $f$ in the sense that for all $t \in[0,T]$ it holds $\mathbb{P}$-a.s. that 
-# 
-# ```{math}
-# :label: identity
-# Y_t = u(t, \epsilon + W_t) \in \mathbb{R}  \hspace{0.2cm}\text{and}\hspace{0.2cm} Z_t = (\Delta_x u) (t, \epsilon + W_t) \in \mathbb{R}^d
-# ```
-# 
-# The first identity in {eq}`identity` is referred to as nonlinear Feynman-Kac formula {cite}`weinan2017deep`. $(Y_t, Z_t), t \in [0,T]$ is a solution for the BSDE and with {eq}`identity` in mind the PDE problem can be formulated as the following variational problem: 
-# 
-# $$ inf_{Y_0,\{Z_T\}_{0\leq t\leq T}} \mathbb{E}[|g(X_T) - Y_T|^2] $$
-# $$ s.t. \hspace{0.2cm}X_T = \varepsilon + \int_0^t \mu(s,X_s)ds + \int_0^t\sum(s,X_s)dW_s $$ 
-# $$  \hspace{1.2cm}Y_t = Y_0 - \int_0^th(s,X_s,Y_s,Z_s)ds + \int_0^t(Z_s)^TdW_s$$ 
-# 
-# The minimizer of this variational problem is the solution to the PDE {cite}`raissi2018forward`. The main idea behind Deep BSDE method is to approximate the unknown function $X_0 \rightarrow u(, X_0)$ and $X_t \rightarrow [\sigma(t,X_t)]^T((\Delta_x u)(t,X_t)$ by two feedforward neural networks $\psi$ and $\phi$ {cite}`han2018solving`. To achieve this we discretize time using Euler scheme on a grid $ 0 = t_0<t_1<...<T_N =T $
-# 
-# $$ inf_{\psi_0,\{\phi_n\}^{N-1}_{n=0}} \mathbb{E}[|g(X_T) - Y_T|^2] $$
-# $$ s.t. \hspace{0.2cm} X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\varepsilon)$$
-# $$ \hspace{3.2cm} X_{t_{n+1}} = X_{t_i} \mu(t_n,X_{t_n}) \Delta t + \sigma(t_n,X_{t_n}) \Delta W_n$$ 
-# $$ Z_{t_n} = \psi_(X_{t_n}) \hspace{0.4cm}$$
-# $$  \hspace{1.2cm}Y_{t_{n+1}} = Y_{t_n} - f(t_n,X_{t_n},Y_{t_n},Z_{t_n})\Delta t  + (Z_{t_n})^T \Delta W_n$$ 
-# 
-# At each time slide $t_n$, a subnetwork is associated. These subnetworks are then stacked together to form a deep composite neural network {cite}`han2017overcoming`. The network takes the paths  $\{X_{t_n}\}_{0\leq n \leq N}$ and $\{W_{t_n}\}_{0\leq n \leq N}$ as the input data and gives as final output, denoted by $\hat{u}(\{ X_{t_n}\}_{0 \leq n \leq N}, \{W_{t_n}\}_{0 \leq n \leq N}$,  as an approximation to $u(t_N, X_{t_N})$ (see {numref}`Figure {number} <BSDN-fig>`) {cite}`han2018solving`. Thereby it is only solved a time step $t=0$. The difference in the matching of a given terminal condition can be used to define the expected loss function {cite}`weinan2020algorithms` {cite}`han2017overcoming`
-# 
-# $$ m(\theta) = \mathbb{E}[|g(X_{t_N}) - \hat{u}(\{ X_{t_n}\}_{0 \leq n \leq N}, \{W_{t_n}\}_{0 \leq n \leq N} |^2]$$ 
+# The BSDE method can thus be applied. 
 # 
 # 
 # 
 
-# ```{figure} C:/Users/ignac/Documents/GitHub/thesis/notebook/images/BSDE_NN.png
-# ---
-# height: 300px
-# width: 500px
-# name: BSDN-fig
-# ---
-# neural network for Deep BSDE method
-# ```
+# 
 
-# An other way to look at it is that the stochastic control problem is a model-based reinforcement learning problem {cite}`han2018solving`. In this setting $Z$ is viewed as the policy we try to approximate using a feedforward neural network. The process $u(t, \varepsilon + W_t), t \in [0, T]$, corresponds to the value function associated with the stochastic control problem and can be approximately employed by the policy Z {cite}`weinan2017deep`. A benefit of using deep BSDE method is does not require us to generate training data beforehand. The paths play the role of the data and they are generated on the spot {cite}`weinan2020algorithms`. 
 # 
-# The deep BSDE method solves the PDE for $Y_0= u(0, X_0) = u(0, \varepsilon)$. This means that in order to obtain an approximate of $Y_t = u(t,X_t)$ at a later time $t>0$, we will have to retain our algorithm. {cite}`raissi2018forward` solves this isue by directly placing a neural network on the object of interest, the unknown solution $u(t,x)$
+# 
+
 # 
 
 # 

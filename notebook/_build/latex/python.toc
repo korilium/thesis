@@ -3,16 +3,16 @@
 \contentsline {chapter}{\numberline {2}Reinforcement Learning}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Finite Markov Decision Processes}{6}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Generelized Policy Iteration, Model\sphinxhyphen {}based RL and Model\sphinxhyphen {}free RL}{8}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Dynamic Programming, Monte Carlo Methods and Temporal\sphinxhyphen {}Difference Learning}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.1}Dynamic Programming, Monte Carlo Methods and Temporal\sphinxhyphen {}Difference Learning}{10}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Dimensions of a model\sphinxhyphen {}based reinforcement algorithm}{13}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}Curse of Dimensionality and Model\sphinxhyphen {}based Deep Reinforcment Learning}{15}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Reinforcement Learning and Financial Planning}{15}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Financial Application of Reinforcement Learning}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Optimal consumption, investment and life insurance in an intertemporal model}{17}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}The model specifications}{18}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}dynamic programming principle}{19}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Numerical method: The Deep Backward Stochastic Differential Equation method}{21}{section.3.2}%
-\contentsline {chapter}{\numberline {4}discussion}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Appendix}{25}{chapter.5}%
-\contentsline {section}{\numberline {5.1}pseudocode algorithms}{25}{section.5.1}%
-\contentsline {chapter}{Bibliography}{27}{chapter*.3}%
+\contentsline {section}{\numberline {2.3}Curse of Dimensionality and Model\sphinxhyphen {}based Deep Reinforcment Learning}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.4}G\sphinxhyphen {}learning, a stochastic adaptation on Q\sphinxhyphen {}learning}{16}{section.2.4}%
+\contentsline {section}{\numberline {2.5}The Deep Backward Stochastic Differential Equation Method}{18}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Financial Application of Reinforcement Learning}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Optimal consumption, investment and life insurance in an intertemporal model}{21}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}The model specifications}{22}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}dynamic programming principle}{23}{subsection.3.1.2}%
+\contentsline {chapter}{\numberline {4}discussion}{27}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Appendix}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}pseudocode algorithms}{29}{section.5.1}%
+\contentsline {chapter}{Bibliography}{31}{chapter*.3}%
