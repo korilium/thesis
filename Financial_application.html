@@ -224,8 +224,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#numerical-method-the-deep-backward-stochastic-differential-equation-method">
-   3.2. Numerical method: The Deep Backward Stochastic Differential Equation method
+  <a class="reference internal nav-link" href="#g-learner-for-retirment-plan-optimization">
+   3.2. G-learner for retirment plan optimization
   </a>
  </li>
 </ul>
@@ -332,58 +332,18 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 <p>The second order conditions are</p>
 <div class="math notranslate nohighlight">
 \[ \Psi_{cc}, \Psi_{pp}, \Psi_{\theta \theta} &lt; 0 \]</div>
-<p>This optimal control problem has been solved analytically by Ye <span id="id18">[<a class="reference internal" href="Discussion.html#id8">Ye06</a>]</span> for the Constant Relative Risk Aversion utility function. In the next subsection the numerical method to solve the problem in higher dimensions is introduced. To solve <a class="reference internal" href="#equation-bell">(3.1)</a> a new technique called the Deep Backward Stochastic Differential Equation (BSDE) method can be used. The Deep BSDE method was the first deep learning-based numerical algorithm to solve general nonlinear parabolic PDEs in high dimensions. in the next subsection we will describe the general approach of the Deep BSDE and link it to the RL theory. Although this method is orginaly designed to only solve the equation at timestep <span class="math notranslate nohighlight">\(t=0\)</span>, future research might be able to solve the PDE at each time point <span class="math notranslate nohighlight">\(t\)</span>.</p>
-</div>
-</div>
-<div class="section" id="numerical-method-the-deep-backward-stochastic-differential-equation-method">
-<h2><span class="section-number">3.2. </span>Numerical method: The Deep Backward Stochastic Differential Equation method<a class="headerlink" href="#numerical-method-the-deep-backward-stochastic-differential-equation-method" title="Permalink to this headline">¶</a></h2>
-<p>The general PDEs that this method can solve can be written as:</p>
+<p>This optimal control problem has been solved analytically by Ye <span id="id18">[<a class="reference internal" href="Discussion.html#id8">Ye06</a>]</span> for the Constant Relative Risk Aversion utility function. To solve <a class="reference internal" href="Reinforcement_learning.html#equation-bell">(2.3)</a> the  BSDE method can be used. The Deep BSDE method was the first deep learning-based numerical algorithm to solve general nonlinear parabolic PDEs in high dimensions.</p>
+<p>remember the general form of PDEs which the Deep BSDE method solves:</p>
 <div class="math notranslate nohighlight" id="equation-gen-form">
 <span class="eqno">(3.5)<a class="headerlink" href="#equation-gen-form" title="Permalink to this equation">¶</a></span>\[\frac{\partial u}{\partial t} + \frac{1}{2} Tr(\sigma \sigma^T (Hess_xu) + \Delta u(t,x)  \mu(t,x) + f(t,x,u, \sigma^T(\Delta_x u)) = 0 \]</div>
-<p>with some temrinal condition <span class="math notranslate nohighlight">\(u(T,x) = g(x)\)</span>. <a class="reference internal" href="#equation-bell">(3.1)</a> can thus be reformulated in the general form:</p>
+<p>with some terminal condition <span class="math notranslate nohighlight">\(u(T,x) = g(x)\)</span>. <a class="reference internal" href="Reinforcement_learning.html#equation-bell">(2.3)</a> can thus be reformulated in the general form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\underbrace{V_t(t,x)}_{\frac{\partial u}{\partial t}} + \underbrace{\frac{1}{2}\sigma(t)^2\theta^2V_{xx}(t,x)}_{\frac{1}{2}Tr(\sigma \sigma^T(Hess_xu(t,x)))} + \underbrace{(r(t) x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x)}_{\Delta u(t,x)\mu (t,x)} \\ + \underbrace{\lambda(t)B(x+\frac{p}{\eta(t)},t) + U(t,x) - \lambda(t)V(t,x)}_{f(t,x,u(t,x), \sigma^T(t,x)\Delta u(t,x))}\end{split}\]</div>
-<p>With <span class="math notranslate nohighlight">\(u(T,x) = L(x)\)</span>. The key idea is to  reformulate the PDE as an appropriate stochastic problem <span id="id19">[<a class="reference internal" href="Discussion.html#id28">WHJ20</a>]</span> and <span id="id20">[<a class="reference internal" href="Discussion.html#id29">WHJ17</a>]</span>. Here the probability space (<span class="math notranslate nohighlight">\(\Omega,\mathcal{F}, \mathbb{P}\)</span>) is adapted to the high dimensional problem. So <span class="math notranslate nohighlight">\(W: [0, T] \times \Omega \rightarrow \mathbb{R}^d\)</span> becomes a d-dimensional standard Brownian motion on (<span class="math notranslate nohighlight">\(\Omega,\mathcal{F}, \mathbb{P}\)</span>) and let <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> be the set of all <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>-adapted <span class="math notranslate nohighlight">\(\mathcal{R^d}\)</span>-values stochastic processes with continuous sample paths. Let <span class="math notranslate nohighlight">\(\{X_T\}_{0 \leq t \leq T}\)</span> be a d-dimensional stochastic process which satisfies</p>
-<div class="math notranslate nohighlight">
-\[ X_t = \varepsilon + \int_0^t \mu(s,X_s)ds + \int_0^t \sigma(s,X_s)dW_s \]</div>
-<p>Using Itô’s lemma, we obtain that</p>
-<div class="math notranslate nohighlight">
-\[ y(t, X_t) - u(0,X_0) = - \int_0^t f(s,X_s,u(s,X_s), [\sigma(s,X_s)]^T(\Delta_x u)(s,X_s)) ds + \int_0^t[\Delta u(s,X_s)]^T\sigma(s,X_s)dW_s\]</div>
-<p>A backward stochstic differential equation can be written as</p>
-<div class="math notranslate nohighlight" id="equation-stoch-con">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-stoch-con" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{cases} X_t = \varepsilon + \int_0^t \mu(s,X_s) ds + \int_0^t\sigma(s,X_S)dW_S \\ 
-Y_t = g(X_T) + \int_t^T f(s, X_s, Y_s, Z_s)ds - \int_t^T(Z_s)^T dW_s
-\end{cases} \end{split}\]</div>
-<p>In the literature it was found that the solution of PDE and its spatial derivative are now the solution of the stochastic control problem <a class="reference internal" href="#equation-stoch-con">(3.6)</a>{}<code class="docutils literal notranslate"><span class="pre">weinan2020algorithms</span></code>. The relationship between the PDE <a class="reference internal" href="#equation-gen-form">(3.5)</a> and the BSDe <a class="reference internal" href="#equation-stoch-con">(3.6)</a> is based on the nonlinear Feynman-Kac formula <span id="id21">[<a class="reference internal" href="Discussion.html#id25">Blo18</a>]</span> and <span id="id22">[<a class="reference internal" href="Discussion.html#id40">GulerLP19</a>]</span>. Under suitable additional regularity assumption on the nonlinearity <span class="math notranslate nohighlight">\(f\)</span> in the sense that for all <span class="math notranslate nohighlight">\(t \in[0,T]\)</span> it holds <span class="math notranslate nohighlight">\(\mathbb{P}\)</span>-a.s. that</p>
-<div class="math notranslate nohighlight" id="equation-identity">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-identity" title="Permalink to this equation">¶</a></span>\[Y_t = u(t, \epsilon + W_t) \in \mathbb{R}  \hspace{0.2cm}\text{and}\hspace{0.2cm} Z_t = (\Delta_x u) (t, \epsilon + W_t) \in \mathbb{R}^d\]</div>
-<p>The first identity in <a class="reference internal" href="#equation-identity">(3.7)</a> is referred to as nonlinear Feynman-Kac formula <span id="id23">[<a class="reference internal" href="Discussion.html#id29">WHJ17</a>]</span>. <span class="math notranslate nohighlight">\((Y_t, Z_t), t \in [0,T]\)</span> is a solution for the BSDE and with <a class="reference internal" href="#equation-identity">(3.7)</a> in mind the PDE problem can be formulated as the following variational problem:</p>
-<div class="math notranslate nohighlight">
-\[ inf_{Y_0,\{Z_T\}_{0\leq t\leq T}} \mathbb{E}[|g(X_T) - Y_T|^2] \]</div>
-<div class="math notranslate nohighlight">
-\[ s.t. \hspace{0.2cm}X_T = \varepsilon + \int_0^t \mu(s,X_s)ds + \int_0^t\sum(s,X_s)dW_s \]</div>
-<div class="math notranslate nohighlight">
-\[  \hspace{1.2cm}Y_t = Y_0 - \int_0^th(s,X_s,Y_s,Z_s)ds + \int_0^t(Z_s)^TdW_s\]</div>
-<p>The minimizer of this variational problem is the solution to the PDE <span id="id24">[<a class="reference internal" href="Discussion.html#id26">Rai18</a>]</span>. The main idea behind Deep BSDE method is to approximate the unknown function <span class="math notranslate nohighlight">\(X_0 \rightarrow u(, X_0)\)</span> and <span class="math notranslate nohighlight">\(X_t \rightarrow [\sigma(t,X_t)]^T((\Delta_x u)(t,X_t)\)</span> by two feedforward neural networks <span class="math notranslate nohighlight">\(\psi\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> <span id="id25">[<a class="reference internal" href="Discussion.html#id30">HJW18</a>]</span>. To achieve this we discretize time using Euler scheme on a grid <span class="math notranslate nohighlight">\( 0 = t_0&lt;t_1&lt;...&lt;T_N =T \)</span></p>
-<div class="math notranslate nohighlight">
-\[ inf_{\psi_0,\{\phi_n\}^{N-1}_{n=0}} \mathbb{E}[|g(X_T) - Y_T|^2] \]</div>
-<div class="math notranslate nohighlight">
-\[ s.t. \hspace{0.2cm} X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\varepsilon)\]</div>
-<div class="math notranslate nohighlight">
-\[ \hspace{3.2cm} X_{t_{n+1}} = X_{t_i} \mu(t_n,X_{t_n}) \Delta t + \sigma(t_n,X_{t_n}) \Delta W_n\]</div>
-<div class="math notranslate nohighlight">
-\[ Z_{t_n} = \psi_(X_{t_n}) \hspace{0.4cm}\]</div>
-<div class="math notranslate nohighlight">
-\[  \hspace{1.2cm}Y_{t_{n+1}} = Y_{t_n} - f(t_n,X_{t_n},Y_{t_n},Z_{t_n})\Delta t  + (Z_{t_n})^T \Delta W_n\]</div>
-<p>At each time slide <span class="math notranslate nohighlight">\(t_n\)</span>, a subnetwork is associated. These subnetworks are then stacked together to form a deep composite neural network <span id="id26">[<a class="reference internal" href="Discussion.html#id27">HJW17</a>]</span>. The network takes the paths  <span class="math notranslate nohighlight">\(\{X_{t_n}\}_{0\leq n \leq N}\)</span> and <span class="math notranslate nohighlight">\(\{W_{t_n}\}_{0\leq n \leq N}\)</span> as the input data and gives as final output, denoted by <span class="math notranslate nohighlight">\(\hat{u}(\{ X_{t_n}\}_{0 \leq n \leq N}, \{W_{t_n}\}_{0 \leq n \leq N}\)</span>,  as an approximation to <span class="math notranslate nohighlight">\(u(t_N, X_{t_N})\)</span> <span id="id27">[<a class="reference internal" href="Discussion.html#id30">HJW18</a>]</span>. Thereby it is only solved a time step <span class="math notranslate nohighlight">\(t=0\)</span>. The difference in the matching of a given terminal condition can be used to define the expected loss function <span id="id28">[<a class="reference internal" href="Discussion.html#id28">WHJ20</a>]</span> <span id="id29">[<a class="reference internal" href="Discussion.html#id27">HJW17</a>]</span></p>
-<div class="math notranslate nohighlight">
-\[ m(\theta) = \mathbb{E}[|g(X_{t_N}) - \hat{u}(\{ X_{t_n}\}_{0 \leq n \leq N}, \{W_{t_n}\}_{0 \leq n \leq N} |^2]\]</div>
-<div class="figure align-default" id="bsdn-fig">
-<a class="reference internal image-reference" href="_images/BSDE_NN.png"><img alt="_images/BSDE_NN.png" src="_images/BSDE_NN.png" style="width: 500px; height: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">neural network for Deep BSDE method</span><a class="headerlink" href="#bsdn-fig" title="Permalink to this image">¶</a></p>
+<p>The BSDE method can thus be applied.</p>
 </div>
-<p>An other way to look at it is that the stochastic control problem is a model-based reinforcement learning problem <span id="id30">[<a class="reference internal" href="Discussion.html#id30">HJW18</a>]</span>. In this setting <span class="math notranslate nohighlight">\(Z\)</span> is viewed as the policy we try to approximate using a feedforward neural network. The process <span class="math notranslate nohighlight">\(u(t, \varepsilon + W_t), t \in [0, T]\)</span>, corresponds to the value function associated with the stochastic control problem and can be approximately employed by the policy Z <span id="id31">[<a class="reference internal" href="Discussion.html#id29">WHJ17</a>]</span>. A benefit of using deep BSDE method is does not require us to generate training data beforehand. The paths play the role of the data and they are generated on the spot <span id="id32">[<a class="reference internal" href="Discussion.html#id28">WHJ20</a>]</span>.</p>
-<p>The deep BSDE method solves the PDE for <span class="math notranslate nohighlight">\(Y_0= u(0, X_0) = u(0, \varepsilon)\)</span>. This means that in order to obtain an approximate of <span class="math notranslate nohighlight">\(Y_t = u(t,X_t)\)</span> at a later time <span class="math notranslate nohighlight">\(t&gt;0\)</span>, we will have to retain our algorithm. <span id="id33">[<a class="reference internal" href="Discussion.html#id26">Rai18</a>]</span> solves this isue by directly placing a neural network on the object of interest, the unknown solution <span class="math notranslate nohighlight">\(u(t,x)\)</span></p>
+</div>
+<div class="section" id="g-learner-for-retirment-plan-optimization">
+<h2><span class="section-number">3.2. </span>G-learner for retirment plan optimization<a class="headerlink" href="#g-learner-for-retirment-plan-optimization" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
