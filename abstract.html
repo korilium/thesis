@@ -23,12 +23,11 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/layout.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -52,7 +51,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Introduction" href="Introduction.html" />
+    <link rel="next" title="Reinforcement Learning" href="Reinforcement_learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,8 +69,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
-      
-      <img src="_static/pipe.jpg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Future Financial Planning Tools for Consumers</h1>
@@ -91,28 +88,23 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Introduction.html">
-   1. Introduction
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="Reinforcement_learning.html">
-   2. Reinforcement Learning
+   Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Financial_application.html">
-   3. Financial Application of Reinforcement Learning
+   Financial Applications of Reinforcement Learning
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Discussion.html">
-   4. discussion
+   discussion
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Appendix.html">
-   5. Appendix
+   Appendix
   </a>
  </li>
 </ul>
@@ -198,6 +190,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Abstract
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -208,7 +218,12 @@
                 
   <div class="section" id="abstract">
 <h1>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h1>
-<p>Financial planning tools can be a double edge sword for consumers as most tools of today lack sufficient theoretical background or are used for commercial purposes. To tackle the shortcomings of today’s financial planning tools, we delve into a Machine Learning subfield called Reinforcement Learning. Reinforcement Learning has seen great advancement in the past decade and is becoming a comprehensive field in which financial tools can be better tailored for the consumer. More specifically, the recent coöperation between reinforcement learning and planning domains like optimal control enable algorithms to not just learn the environment, but also to be able to plan ahead. Given the fact that these algorithms can be widely generic and can thus be employed in a tailored financial environment for the consumer, makes the Reinforcement literature an interesting field for future financial planning tools. Inspired by this idea, the general theory of Reinforcement learning is introduced together with the most fundamental algorithms. Furthermore, a closer look will be given at the dimensions of a model-based Reinforcement Learning algorithm. Thereafter, The current challenges in Reinforcement Learning are discussed together with Deep Reinforcement Learning, which tackles the biggest hurdle in Reinforcement Learning called the Curse of Dimensionality. Next, the possible implications of Reinforcement Learning for financial planning are considered. Finally, two financial applications are introduced.</p>
+<p>Financial planning tools can be a double edge sword for consumers as most tools of today lack sufficient theoretical background or are used for commercial purposes. To tackle the shortcomings of today’s financial planning tools, we delve into a Machine Learning subfield called Reinforcement Learning. Reinforcement Learning has seen great advancement in the past decade and is becoming a comprehensive field in which financial tools can be better tailored for the consumer. More specifically, the recent coöperation between reinforcement learning and planning domains like optimal control enable algorithms to not just learn the environment, but also to be able to plan ahead. Given the fact that these algorithms can be widely generic and can thus be employed in a tailored financial environment for the consumer, makes the Reinforcement Learning literature an interesting field for future financial planning tools. Inspired by this idea, the general theory of Reinforcement learning is introduced together with the most fundamental algorithms. Furthermore, a closer look will be given at the dimensions of a Reinforcement Learning algorithm. Thereafter, the current challenges in Reinforcement Learning are discussed together with function approximation, which tackles the biggest hurdle in Reinforcement Learning called the Curse of Dimensionality. Next, the G-learning algorithm and the Deep Backward Stochastic Differential Method are introduced which have implications for financial planning tools. Finally, these two algorithms are applied in a financial setting.</p>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The financial decisions that consumers need to make in their present lifetime, become increasingly more complex. A good example of this phenomenon is the shift from defined benefits to defined contributions in which consumers take on greater individual responsibility and risks. The evolution in the abstruseness of financial products has become challenging for consumers who possess low financial knowledge and limiting numeracy skills <span id="id1">[<a class="reference internal" href="Appendix.html#id16">BFH17</a>]</span>. Combined with uncertainty about the future, the consumer is necessitated to be more aware of his financial well-being than ever before. Looking back into the past, Porteba et al, <span id="id2">[<a class="reference internal" href="Appendix.html#id21">PVW11</a>]</span> conducted an examination of preparedness in retirement for Children of Depression, War Baby, and the Early Baby Boomer in the Health and Retirement Study and Asset and Health Dynamics Among the Oldest Old cohorts. They found that 46.1 percent die with less than 10 000 dollars. With this amount of assets, they would not have the capacity to pay for unexpected events and one might wonder if it is adequate asset levels for retirement. Furthermore, saving behavior has not kept pace with the increasing life expectation and the expected prolonged lifespan of the coming generations is unprecedented <span id="id3">[<a class="reference internal" href="Appendix.html#id22">Her11</a>]</span>. All these elements give a painstakingly clear picture that having a vital understanding of one’s financial situation has become one of the greatest challenges in life.</p>
+<p>To combat these difficulties, consumers require additional undertakings in planning for their future prosperity. One of the approaches to tackle this issue, is by using financial planning tools. These tools give the consumer the capability to estimate complex intertemporal calculations <span id="id4">[<a class="reference internal" href="Appendix.html#id15">BDTS20</a>]</span>. They also enhance financial behavior, increase household wealth accumulation and they are a complement to other planning aid like a financial advisor <span id="id5">[<a class="reference internal" href="Appendix.html#id16">BFH17</a>]</span>. Although financial planning tools can greatly benefit consumers, they can also be a double-edged sword. More specifically, when consumers are misinformed about the capabilities of the tool, or when the design of the tool is inadequate, the consumer can be given sub-optimal advice or even misleading advice <span id="id6">[<a class="reference internal" href="Appendix.html#id20">DMBE18</a>]</span>. Insufficiencies in design can arise when not all essential input variables are included, not all risks are considered, and when accuracy is sacrificed for the ease of use <span id="id7">[<a class="reference internal" href="Appendix.html#id15">BDTS20</a>]</span>. On top of that, there are wide variations in results because of the various methodology and assumptions used in the models <span id="id8">[<a class="reference internal" href="Appendix.html#id20">DMBE18</a>]</span>. For example, assumptions based on inflation and the use of different financial products have a large impact on the results. On the side of the consumer, the possibility of misunderstanding the implications of the results due to a lack of financial knowledge, is a matter of great concern in the eyes of financial educators <span id="id9">[<a class="reference internal" href="Appendix.html#id15">BDTS20</a>]</span>. Clarifying the results is therefore an essential part of making models operational. To improve upon these deficiencies, Dorman et al., <span id="id10">[<a class="reference internal" href="Appendix.html#id20">DMBE18</a>]</span> found that when the models handle additional theoretical variables, the accuracy will improve. Besides, they found that the consumer requires unique solutions that better capture their financial situation. Meaning planning tools need to be more flexible. They should be able to operate in different financial settings and have the ability to look at the impact of changes in input variables. To address the variability in results and the adaptability of models to different settings, this paper will look at reinforcement learning techniques in an intertemporal setting. Reinforcement Learning enables an increase in the flexibility of the model while keeping fundamental theoretical aspects like Optimal Control Theory at its core. For the remainder of the paper, the general theory of Reinforcement Learning (RL) will first be introduced. Then, some challenges are discussed together with Deep Reinforcement Learning. Next, the possible implications of RL for financial planning are considered. Finally, two financial applications are reviewed.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -238,7 +253,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="Introduction.html" title="next page"><span class="section-number">1. </span>Introduction</a>
+    <a class='right-next' id="next-link" href="Reinforcement_learning.html" title="next page">Reinforcement Learning</a>
 
         </div>
         
