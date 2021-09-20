@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Financial Applications of Reinforcement Learning" href="Financial_application.html" />
@@ -74,13 +74,14 @@
     <a class="navbar-brand text-wrap" href="index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">Future Financial Planning Tools for Consumers</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -162,6 +163,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/korilium/thesis"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/korilium/thesis/issues/new?title=Issue%20on%20page%20%2FReinforcement_learning.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/korilium/thesis/edit/master/Reinforcement_learning.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -176,7 +195,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Reinforcement_learning.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/korilium/thesis/master?urlpath=tree/Reinforcement_learning.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -196,7 +215,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#finite-markov-decision-processes">
@@ -258,7 +277,7 @@
 <p>Supervised and unsupervised learning are the two most widely studied and researched branches of Machine Learning (ML). Besides these two, there is also a third subcategory in ML called Reinforcement Learning (RL). The three branches have fundamental differences. Supervised learning for example is designed to learn from a training set of labeled data, where each element of the training set describes a certain situation and is linked to a label/action the supervisor has provided <span id="id1">[<a class="reference internal" href="Appendix.html#id68">Ham18</a>]</span>. On the other hand, RL is a method in which the machine tries to map situations to actions by maximizing a reward signal <span id="id2">[<a class="reference internal" href="Appendix.html#id71">ADBB17</a>]</span>. The two methods are fundamentally different from each other in the fact that in RL there is no supervisor which provides the label/action the machine needs to take, rather there is a reward system set up from which the machine can learn the correct action/label <span id="id3">[<a class="reference internal" href="Appendix.html#id68">Ham18</a>]</span>. Contrarily to supervised learning, unsupervised learning tries to find hidden structures within an unlabeled dataset. This might seem similar to RL as both methods work with unlabeled datasets, but RL tries to maximize a reward signal instead of finding only hidden structures in the data <span id="id4">[<a class="reference internal" href="Appendix.html#id71">ADBB17</a>]</span>. Unsupervised learning on the other hand learns about how the data is distributed <span id="id5">[<a class="reference internal" href="Appendix.html#id61">SBLL19</a>]</span>.</p>
 <p>RL finds its roots in multiple research fields. Each of these fields contributes to the RL in its own unique way <span id="id6">[<a class="reference internal" href="Appendix.html#id68">Ham18</a>]</span>. For example, RL is similar to natural learning processes where the learning method is by experiencing many failures and successes. Therefore psychologists have used RL to mimic psychological processes when an organism makes choices based on experienced rewards/punishments <span id="id7">[<a class="reference internal" href="Appendix.html#id76">EWC21</a>]</span>. While psychologists are mimicking psychological processes, neuroscientists are using RL to focus on a well-defined network of regions of the brain that implement value learning <span id="id8">[<a class="reference internal" href="Appendix.html#id76">EWC21</a>]</span>. In Robotics it is used to help learn drones fly in mid-air <span id="id9">[<a class="reference internal" href="Appendix.html#id30">AKAM+21</a>]</span>. RL finds also applications in health care, Natural Language Processing, Management of Limited Resources, etc… <span id="id10">[<a class="reference internal" href="Appendix.html#id29">NRC20</a>]</span>. The main subfields of RL are presented in <a class="reference internal" href="#tree-fig"><span class="std std-numref">Figure 1</span></a>. The reason why RL can be applied to a range of research fields is that it uses a natural learning process based on a trial and error method as we will see in the next subsection.</p>
 <div class="figure align-default" id="tree-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/tree.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/tree.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/tree.png" style="width: 600px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="_images/tree.png"><img alt="_images/tree.png" src="_images/tree.png" style="width: 600px; height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">research fields involved in reinforcement learning</span><a class="headerlink" href="#tree-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="finite-markov-decision-processes">
@@ -272,8 +291,8 @@
 <div class="math notranslate nohighlight">
 \[ \pi^* = argmax_{\pi} E[\sum_{k=0}^T \gamma^k R_{t+k+1}|\pi]\]</div>
 <p>Where T indicates the terminal state and <span class="math notranslate nohighlight">\(\gamma\)</span> is the discount rate. The terminal state <span class="math notranslate nohighlight">\(S_T\)</span> is often followed by a reset to a starting state or sample from a starting distribution of states <span id="id16">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>. An episode ends once the reset has occurred. The discount rate represents the present value of future rewards. If the dicount rate is zero <span class="math notranslate nohighlight">\(\gamma = 0\)</span>, the agent is myopic and is only concerned with maximizing the immediate rewards. The agent can consequently be considered greedy <span id="id17">[<a class="reference internal" href="Appendix.html#id61">SBLL19</a>]</span>. If the returns are rewritten in a dynamic programming approach, the return of the myopic agent becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e0b301a-ebde-4dc2-a616-be3996858300">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7e0b301a-ebde-4dc2-a616-be3996858300" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e5766d4-5de2-41e9-b6a7-49ed3610a186">
+<span class="eqno">(2)<a class="headerlink" href="#equation-8e5766d4-5de2-41e9-b6a7-49ed3610a186" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 G_t &amp; =  R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T) 
 \\
@@ -283,7 +302,7 @@ G_t &amp; =  R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T
 \end{split}
 \end{equation}\]</div>
 <div class="figure align-default" id="standard-model-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/standard_model.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/standard_model.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/standard_model.png" style="width: 600px; height: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/standard_model.png"><img alt="_images/standard_model.png" src="_images/standard_model.png" style="width: 600px; height: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">standard model reinforcement learning</span><a class="headerlink" href="#standard-model-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>A key concept of MPDs is the Markov property: Only the current state affects the next state <span id="id18">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>. The random variables <span class="math notranslate nohighlight">\(R_t\)</span> and <span class="math notranslate nohighlight">\(S_t\)</span> have with the Markov property well defined discrete transition probability distributions dependent only on the previous state and action:</p>
@@ -307,12 +326,12 @@ G_t &amp; =  R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T
 <span class="eqno">(5)<a class="headerlink" href="#equation-state-action" title="Permalink to this equation">¶</a></span>\[ q_{\pi}(s,a) = E_{\pi}[G_t | S_t = s, A_t = a] = E_{\pi}[\sum_{k=0}^T \gamma^kR_{t+k+1} | S_t=s, A_t = a] \]</div>
 <p>This can be seen in the backup diagram as starting from the black dot and computing the subsequent value thereafter. <span class="math notranslate nohighlight">\(q_{\pi}(s,a)\)</span> is also called the action-value function as it describes each value of an action for each state.</p>
 <div class="figure align-default" id="backup-diagram-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backup_diagram.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backup_diagram.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backup_diagram.png" style="width: 300px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="_images/backup_diagram.png"><img alt="_images/backup_diagram.png" src="_images/backup_diagram.png" style="width: 300px; height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">General backup diagram</span><a class="headerlink" href="#backup-diagram-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>For the agent, it is important to find the optimal policy which maximizes the expected cumulative rewards. The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is the policy for which <span class="math notranslate nohighlight">\(v_{\pi_*}(s) &gt; v_{\pi}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span>. An optimal policy also has the same action-value function <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span> and <span class="math notranslate nohighlight">\(a \in A\)</span>. The optimal policy does not depend solely on one policy and can encompass multiple policies. It is thus not policy dependent:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f94f0e4a-cd93-4853-8f4a-38bfe4dc7cf1">
-<span class="eqno">(6)<a class="headerlink" href="#equation-f94f0e4a-cd93-4853-8f4a-38bfe4dc7cf1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-66d3562f-3f75-4199-b28e-82f8332c2f71">
+<span class="eqno">(6)<a class="headerlink" href="#equation-66d3562f-3f75-4199-b28e-82f8332c2f71" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a) 
 \\
@@ -330,12 +349,12 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <h2>Generalized Policy Iteration, Model-based RL and Model-free RL<a class="headerlink" href="#generalized-policy-iteration-model-based-rl-and-model-free-rl" title="Permalink to this headline">¶</a></h2>
 <p>A general theory in finding the optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is called Generalized Policy Iteration (GLI). This method is applied to almost all RL algorithms. The main idea behind GLI is that there is a process that evaluates the value function of the current policy <span class="math notranslate nohighlight">\(\pi\)</span> called policy evaluation and a process that improves the current value function called policy improvement <span id="id23">[<a class="reference internal" href="Appendix.html#id77">SB18</a>]</span>, <span id="id24">[<a class="reference internal" href="Appendix.html#id50">VOW12</a>]</span>. To find the optimal policy these two processes work in tandem with each other as seen in <a class="reference internal" href="#gpi-fig"><span class="std std-numref">Figure 4</span></a> <span id="id25">[<a class="reference internal" href="Appendix.html#id50">VOW12</a>]</span>. Counterintuitively, these processes also work in a conflicting manner as policy improvement makes the policy incorrect and it is thus no longer the same policy <span id="id26">[<a class="reference internal" href="Appendix.html#id77">SB18</a>]</span>,  <span id="id27">[<a class="reference internal" href="Appendix.html#id48">BHB+20</a>]</span>. While policy evaluations create a consistent policy and thus the policy no longer improves upon itself. This idea runs in parallel with the balance between exploration and exploitation in RL.  If the focus lies more on exploration, the agent frequently tries to find states which improve the value function. However, putting more emphasis on exploration is a costly setting as the agent will more frequently choose suboptimal policies to explore the state space. If exploitation is prioritized, the agent will take a long time to find the optimal policy as the agent is likely not to explore new states to improve the policy <span id="id28">[<a class="reference internal" href="Appendix.html#id50">VOW12</a>]</span>.  An <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy algorithm is a good example of an algorithm where the balance between exploration and exploitation is important (see next subsection).</p>
 <div class="figure align-default" id="gpi-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/GPI.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/GPI.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/GPI.png" style="width: 500px; height: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/GPI.png"><img alt="_images/GPI.png" src="_images/GPI.png" style="width: 500px; height: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Generalized policy iteration</span><a class="headerlink" href="#gpi-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Reinforcement Learning can be subdivided between model-based RL and model-free RL. In model-free RL the dynamics of the environment are not known. <span class="math notranslate nohighlight">\(\pi_*\)</span> is found by purely interacting with the environment. Meaning that these algorithms do not use transition probability distribution and reward function related to MDP <span id="id29">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>. Moreover, model-free RL has irreversible access to the environment. Meaning the algorithm has to move forward after an action is taken <span id="id30">[<a class="reference internal" href="Appendix.html#id78">MBJ20b</a>]</span>. Model-based RL on the other hand has reversible access to the environment because they can revert the model and make another trail from the same state <span id="id31">[<a class="reference internal" href="Appendix.html#id8">MBJ20a</a>]</span>. Good examples of model-free RL techniques are the Q-learning and Sarsa. They tend to be used on a variety of tasks, like playing video games and learning complicated locomotion skills <span id="id32">[<a class="reference internal" href="Appendix.html#id77">SB18</a>]</span>. Model-free RL lay at the foundation of RL and the first algorithms to be applied in RL were model-free RL techniques. On the other hand, model-based RL is developed independently and in parallel with planning methods like optimal control and the search community as they both solve the same problem but differ in the approach <span id="id33">[<a class="reference internal" href="Appendix.html#id46">WZZ19</a>]</span>. Most algorithms in model-based RL have a model which describes the dynamics of the environment. They improve the learned value or policy function by sampling from the model <span id="id34">[<a class="reference internal" href="Appendix.html#id8">MBJ20a</a>]</span> (see <a class="reference internal" href="#model-based-rl"><span class="std std-numref">Figure 5</span></a>). This enables the agent to think in advance and as it were plan for possible actions. Model-based reinforcement learning finds thus large similarities with the Planning literature and as a result, a lot of cross-breeding between the two is happening. For example, an extension of the POMP algorithm called Partially Observable Multi-Heuristic Dynamic Programming (POMHDP) is based on recent progress from the search community <span id="id35">[<a class="reference internal" href="Appendix.html#id11">KSL19</a>]</span>. A hybrid version of the two approaches in which the model is learned through interaction with the environment, has also been widely applied. The imagination-augmented agents (12A) for example combine model-based and model-free aspects by employing the predictions as an additional context in a deep policy network <span id="id36">[<a class="reference internal" href="Appendix.html#id78">MBJ20b</a>]</span>.  In the next subsection, three fundamental algorithms in RL are discussed which will enable us to better capture the dimensions and challenges of RL algorithms.</p>
 <div class="figure align-default" id="model-based-rl">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/model_based_RL.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/model_based_RL.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/model_based_RL.png" style="width: 400px; height: 275px;" /></a>
+<a class="reference internal image-reference" href="_images/model_based_RL.png"><img alt="_images/model_based_RL.png" src="_images/model_based_RL.png" style="width: 400px; height: 275px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Model-based Reinforcement Learning</span><a class="headerlink" href="#model-based-rl" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="dynamic-programming-monte-carlo-methods-and-temporal-difference-learning">
@@ -372,7 +391,7 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <p>The main benefit of Expected Sarsa over Sarsa is that it eliminates the variance caused by the random selection of <span class="math notranslate nohighlight">\(a_{t+1}\)</span>. Another benefit of Expected Sarsa is that it can be used as an off-policy method when the target policy <span class="math notranslate nohighlight">\(\pi\)</span> is replaced with another policy <span id="id53">[<a class="reference internal" href="Appendix.html#id58">San21</a>]</span>.</p>
 <p>These three methods lay at the foundation of RL and numerous adaptations have been made to fit the problem at hand. For example, Adaptive Dynamic Programming is implemented to approximate the original dynamic programming equations <span id="id54">[<a class="reference internal" href="Appendix.html#id3">WZL09</a>]</span>. In <a class="reference internal" href="#diff-meth-fig"><span class="std std-numref">Figure 6</span></a> the backup diagrams of the three different methods are represented. From the backup diagrams, it becomes clear that each algorithm approaches GPI from a different perspective. In the following subsection the different elements in a RL algorithm are explored.</p>
 <div class="figure align-default" id="diff-meth-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/different_methods.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/different_methods.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/different_methods.png" style="width: 500px; height: 350px;" /></a>
+<a class="reference internal image-reference" href="_images/different_methods.png"><img alt="_images/different_methods.png" src="_images/different_methods.png" style="width: 500px; height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The backup diagrams of Monte Carlo, Temporal-difference Learning and Dynammic Programming</span><a class="headerlink" href="#diff-meth-fig" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -381,13 +400,13 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <h2>Dimensions of a Reinforcement Learning Algorithm<a class="headerlink" href="#dimensions-of-a-reinforcement-learning-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Moerland et al. <span id="id55">[<a class="reference internal" href="Appendix.html#id8">MBJ20a</a>]</span> addresses the six most critical dimensions of an RL algorithm: computational effort, action value selection, cumulative return estimation, policy evaluation, function representation ,and update method. These dimensions give a clear overview of the ability of RL algorithms to adapt to different situations. The first dimension has to do with the computational effort that is required to run the algorithm. The computational effort is primarily determined by the state set that is chosen (see <a class="reference internal" href="#state-space-fig"><span class="std std-numref">Figure 7</span></a>). The first option is to consider all states <span class="math notranslate nohighlight">\(S\)</span> of the dynamic environment. In practice, this often becomes impractical to consider due to the curse of dimensionality. The second and third possibilities are all reachable states and all relevant states. All reachable states are the states which are reachable from any start under any policy, while for the relevant states only those states under the optimal policy are considered. The last option is to use start states. These are all the states with a non-zero probability under <span class="math notranslate nohighlight">\(p(s_0)\)</span>. The curse of dimensionality is further discussed in the next subsection as it is one of the primary challenges in RL.</p>
 <div class="figure align-default" id="state-space-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/state_space.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/state_space.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/state_space.png" style="width: 500px; height: 350px;" /></a>
+<a class="reference internal image-reference" href="_images/state_space.png"><img alt="_images/state_space.png" src="_images/state_space.png" style="width: 500px; height: 350px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">state_space dimensions</span><a class="headerlink" href="#state-space-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The second dimension is the action selection and has primarily to do with exploration process of the algorithm. The first consideration in action selection is the candidate set that is considered for the next action. Then the optimal action needs to be considered while still keeping exploration in mind. For selecting the candidate set two main approaches are considered: step-wise and frontier. Frontier methods only start exploration once they are on the frontier of the iteration, while step-wise methods have a new candidate set at each step of the trajectory. the MC method, DP ,and TD learning described above use step-wise exploration, while frontier methods are primarily used in robotics <span id="id56">[<a class="reference internal" href="Appendix.html#id56">NZKN19</a>]</span>. For the second consideration, selecting the action value,  different methods have been adopted. The first one is random explorations like <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy exploration as explained in the section of Monte Carlo methods. These explorations techniques enable us to escape from a local minimum but can cause a jittering effect in which we undo an exploration step at random. The second approach is a value-based exploration that uses the value-based information to better direct the perturbation <span id="id57">[<a class="reference internal" href="Appendix.html#id39">YLL+19</a>]</span>. A good example of this are mean action values. They improve the random exploration by incorporating the mean estimates of all the available actions. Meaning, they explore actions with higher values more frequently than actions with lower values. The last option is state-based exploration. State-based exploration uses state-dependent properties to inject noise. Dynamic programming is a good example of this approach. DP is an ordered state-based exploration. Ordered state-based exploration sweeps through the state space in an orded like tree structure. Other state-based explorations are possible like novelty and priors.</p>
 <p>The dimensions of the calculation of the cumulative return estimation (see <a class="reference internal" href="#equation-return">(1)</a>) can be expressed in an other formula to address the practical issues and limitations in RL:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-103bed5f-1dc1-4daf-bdd5-49919715994d">
-<span class="eqno">(8)<a class="headerlink" href="#equation-103bed5f-1dc1-4daf-bdd5-49919715994d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8da7a99c-dd8e-4be1-ac2f-d82b10500f8b">
+<span class="eqno">(8)<a class="headerlink" href="#equation-8da7a99c-dd8e-4be1-ac2f-d82b10500f8b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         &amp; G_t = \sum_{k=0}^T\gamma^kR_{t+k+1}
 \\
@@ -398,7 +417,7 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
  \end{equation}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(T \in {1,2,3, ..., \infty}\)</span> denotes the sample depth and <span class="math notranslate nohighlight">\(B(.)\)</span> is a bootstrap function. For the sample depth three possible option are possible: <span class="math notranslate nohighlight">\(K = \infty\)</span>, <span class="math notranslate nohighlight">\(K = 1\)</span>,  <span class="math notranslate nohighlight">\(K = n\)</span> or reweighted. Monte Carlo methods for example use a sample depth to infinity as they do not bootstrap at all. Instead, DP uses bootstrapping at each iteration, so <span class="math notranslate nohighlight">\(K = 1\)</span>. An intermediate method between DP and Monte Carlo methods can also be devised in which <span class="math notranslate nohighlight">\( K = n\)</span>. The reweighted option is a special case of <span class="math notranslate nohighlight">\( K = n\)</span> in which targets of different depths are combined with a weighting scheme. The bootstrap function can be devised using a learned value function like the state value function or the state-action value function or following a heuristic approach. A good heuristic can be obtained by first solving a simplified version of the problem. An example of this is first solving the deterministic problem and then using the solution as a heuristic on its stochastic counterpart <span id="id58">[<a class="reference internal" href="Appendix.html#id8">MBJ20a</a>]</span>. The second dimension in cumulative return estimation is whether full knowledge of the dynamic system is in place (full backups) or a sample is taken from the environment (sample backups) <span id="id59">[<a class="reference internal" href="Appendix.html#id71">ADBB17</a>]</span>. In <a class="reference internal" href="#backups-bootstrap-fig"><span class="std std-numref">Figure 8</span></a> these two dimensions are represented.</p>
 <div class="figure align-default" id="backups-bootstrap-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backups.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backups.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/backups.png" style="width: 300px; height: 290px;" /></a>
+<a class="reference internal image-reference" href="_images/backups.png"><img alt="_images/backups.png" src="_images/backups.png" style="width: 300px; height: 290px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">consideration in calculating the cumulative return estimation</span><a class="headerlink" href="#backups-bootstrap-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The fourth dimension to consider is policy evaluation. Policy evaluation has to do with which policy to use: on-policy or off-policy method. We have already seen this dimension in the section of MC methods and it will not be further discussed. Another dimension is function representation. The first choice that needs to be made here is which function to represent. In theory, we have two essential functions: the value function and the policy function. The value function can be the state-action value function or just the state value function, but primarily represents the value of the current or optimal policy at all considered state-action pairs. The policy function on the other hand maps every state to a probability distribution over actions and is best used in continuous action spaces as we can directly act in the environment by sampling from the policy distribution <span id="id60">[<a class="reference internal" href="Appendix.html#id8">MBJ20a</a>]</span>. The second choice is how to represent this function. There are two possibilities here. The first option is using a tabular approach in which each state is a unique element for which we store an individual estimate.  This can be done on a global level or local level. At the global level, the entire state space is encapsulated by the table. Unfortunately, this method does not scale well and is only relevant in small exploratory problems. On the contrary, a local table does scale well as it is built temporarily until the next real step. The other method for function representation is function approximation. Function approximation builds on the concept of generalization. Generalization assumes that similar states to function will in general also have approximately similar output predictions (Generalization is further discussed in the next section).  Function approximation uses this to share information between near similar states and therefore store a global solution for a larger state space <span id="id61">[<a class="reference internal" href="Appendix.html#id50">VOW12</a>]</span>. There are two kinds of function approximations: parametric and non-parametric. A good example of a parametric function approximation is a neural network and for non-parametric a k-nearest neighbors can be thought of. The big challenge in function approximation is finding the balance between overfitting and underfitting the actual data.</p>
@@ -423,7 +442,7 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <p>Where <span class="math notranslate nohighlight">\(\frac{\partial q(s,a)}{\partial \theta}\)</span> can be for example the derivatives in a neural network.</p>
 <p>Gradient-free updating rules use a parametrized policy function and then repeatedly perturb the parameters in policy space, evaluate the new solution by sampling traces and decide whether the perturbed solution should be retained. they only require an evaluation function and treat the problem as a black-box optimization setting. Gradient-free updating methods are thus not fit for model-based RL. An overview of the different dimensions can be viewed in <a class="reference internal" href="#dim-fig"><span class="std std-numref">Figure 9</span></a>.</p>
 <div class="figure align-default" id="dim-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/dimensions.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/dimensions.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/dimensions.png" style="width: 600px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="_images/dimensions.png"><img alt="_images/dimensions.png" src="_images/dimensions.png" style="width: 600px; height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">The dimensions of a reinforcment learning algorithm</span><a class="headerlink" href="#dim-fig" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -436,8 +455,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 </ul>
 <p>In the first case, the agent needs to behave optimally in a similar environment as the trained one. Here, the notion of sample efficiency is important. In the latter case, there are patterns between the trained and test environments and the agent needs to transfer its learning from one environment to the other. This is also called transfer learning and meta-learning <span id="id64">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>.</p>
 <p>To better grasp the concept of generalization, consider an i.i.d. sampled dataset <span class="math notranslate nohighlight">\(D\)</span> as a set of four-tuples <span class="math notranslate nohighlight">\(\{s,a,r,s'\} \in S \times A \times R \times S \)</span> available to the agent. Where <span class="math notranslate nohighlight">\(D_{\infty}\)</span> is the data set where the number of tuples tends to infinity. Then a learning algorithm is a mapping of a dataset <span class="math notranslate nohighlight">\(D\)</span> into a policy <span class="math notranslate nohighlight">\(\pi_D\)</span>, where the suboptimality of the policy’s expected return can be decomposed as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6ba6d627-aa4d-4938-96ec-01cae117e555">
-<span class="eqno">(9)<a class="headerlink" href="#equation-6ba6d627-aa4d-4938-96ec-01cae117e555" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-531cc3b7-a099-4f1b-9911-74d821a47900">
+<span class="eqno">(9)<a class="headerlink" href="#equation-531cc3b7-a099-4f1b-9911-74d821a47900" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         \mathbb{E}[V^{\pi^*}(s) - V^{\pi_d}(s)] &amp; = \mathbb{E}[V^{\pi^*}(s) - V^{\pi_{D_{\infty}}}(s) + V^{\pi_{D_{\infty}}}(s) -V^{\pi_{D}}(s) ]
 \\
@@ -457,12 +476,12 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <div class="math notranslate nohighlight">
 \[ \overline{VE}(w) = \sum_{s \in S}  \mu (s)[v_{\pi}(s) - \hat{v}(s,w)]^2 \]</div>
 <div class="figure align-default" id="function-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/function_approximation.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/function_approximation.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/function_approximation.png" style="width: 500px; height: 250px;" /></a>
+<a class="reference internal image-reference" href="_images/function_approximation.png"><img alt="_images/function_approximation.png" src="_images/function_approximation.png" style="width: 500px; height: 250px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">general approach of function approximation methods</span><a class="headerlink" href="#function-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now we have discussed the general working of function approximation, a closer look is given to linear gradient-descent methods and artificial neural networks (ANN). Linear gradient descent methods and ANN are two popular function approximations used in RL. Although there are many other techniques like Coarse Coding and memory-based function approximation, it is impossible to cover all function approximations. We will therefore only look at linear-gradient descent methods. One of the linear gradient descent methods is the stochastic-gradient descent (SGD). In SGD the weight vector is a column vector with fixed number of real-valued components <span class="math notranslate nohighlight">\(w = (w_1, w_2,..., w_d)^{\top}\)</span> and the approximate value function <span class="math notranslate nohighlight">\(\hat{v}(s,w)\)</span> is a differentiable function of w for all <span class="math notranslate nohighlight">\( s \in S\)</span>. The weight vector is updated at each time step <span class="math notranslate nohighlight">\(t=0,1,2,3,...\)</span>, giving us <span class="math notranslate nohighlight">\(w_t\)</span>. By interacting with the environment we get a new example <span class="math notranslate nohighlight">\(S_t \rightarrow v_{\pi}(S_t)\)</span> giving us a state <span class="math notranslate nohighlight">\(S_t\)</span> and the value under the policy. The goal of the function approximation is to approximate the value of the state with limited resources. Meaning from the example, we generalize to all other states while upholding an accurate representation of the seen state. SGD methods do exactly that they minimize the error observed on the examples by adjusting the weight vector after each example by a small amount in the direction that would reduce the error in that example the most:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ff31680-3e02-4d92-94ca-7af4a2b6582f">
-<span class="eqno">(10)<a class="headerlink" href="#equation-8ff31680-3e02-4d92-94ca-7af4a2b6582f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a32d285-44cc-4150-ae4c-81f4b8ff09d2">
+<span class="eqno">(10)<a class="headerlink" href="#equation-6a32d285-44cc-4150-ae4c-81f4b8ff09d2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         W_{t+1} &amp; = w_t - \frac{1}{2}\alpha \Delta [v_{\pi}(S_t) - \hat{v}(S_t,w_t)]^2 
 \\
@@ -524,8 +543,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <div class="math notranslate nohighlight" id="equation-soft-minf">
 <span class="eqno">(16)<a class="headerlink" href="#equation-soft-minf" title="Permalink to this equation">¶</a></span>\[ F^{\pi}(s) = \frac{-1}{\beta} log\sum_a \pi_0(a,s) e^{-\beta H^{\pi}(s,a)} \]</div>
 <p>This expression can get pluged in <a class="reference internal" href="#equation-free-q">(13)</a> and as a result the optimal <span class="math notranslate nohighlight">\(H^*\)</span> is achieved.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-375c91c2-9caf-448f-be7b-2aa3a66cbf85">
-<span class="eqno">(17)<a class="headerlink" href="#equation-375c91c2-9caf-448f-be7b-2aa3a66cbf85" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2474c638-9b5d-45e4-b8ec-320b37ecdb8d">
+<span class="eqno">(17)<a class="headerlink" href="#equation-2474c638-9b5d-45e4-b8ec-320b37ecdb8d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         H^*(s,a) &amp; = \mathbb{E}[R|s,a] + \gamma\mathbb{E}[F^{\pi}(s)] 
 \\
@@ -564,8 +583,8 @@ Y_t = g(X_T) + \int_t^T f(s, X_s, Y_s, Z_s)ds - \int_t^T(Z_s)^T dW_s
 <p>The minimizer of this variational problem is the solution to the PDE <span id="id81">[<a class="reference internal" href="Appendix.html#id33">Rai18</a>]</span>. The main idea behind Deep BSDE method is to approximate the unknown function <span class="math notranslate nohighlight">\(X_0 \rightarrow u(, X_0)\)</span> and <span class="math notranslate nohighlight">\(X_t \rightarrow [\sigma(t,X_t)]^T((\Delta_x u)(t,X_t)\)</span> by two feedforward neural networks <span class="math notranslate nohighlight">\(\psi\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> <span id="id82">[<a class="reference internal" href="Appendix.html#id36">HJW18</a>]</span>. To achieve this we discretize time using Euler scheme on a grid <span class="math notranslate nohighlight">\( 0 = t_0&lt;t_1&lt;...&lt;T_N =T \)</span></p>
 <div class="math notranslate nohighlight">
 \[ inf_{\psi_0,\{\phi_n\}^{N-1}_{n=0}} \mathbb{E}[|g(X_T) - Y_T|^2] \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ebdb3cd8-c71b-4029-afbd-b970233e2ad8">
-<span class="eqno">(21)<a class="headerlink" href="#equation-ebdb3cd8-c71b-4029-afbd-b970233e2ad8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02d3af90-9fdb-4986-af7c-f51fbabaa2fb">
+<span class="eqno">(21)<a class="headerlink" href="#equation-02d3af90-9fdb-4986-af7c-f51fbabaa2fb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 s.t. \hspace{0.2cm} &amp; X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\varepsilon)
 \\
@@ -580,7 +599,7 @@ s.t. \hspace{0.2cm} &amp; X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\vareps
 <div class="math notranslate nohighlight">
 \[ m(\theta) = \mathbb{E}[|g(X_{t_N}) - \hat{u}(\{ X_{t_n}\}_{0 \leq n \leq N}, \{W_{t_n}\}_{0 \leq n \leq N} |^2]\]</div>
 <div class="figure align-default" id="bsdn-fig">
-<a class="reference internal image-reference" href="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/BSDE_NN.png"><img alt="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/BSDE_NN.png" src="C:/Users/ignac/Documents/GitHub/thesis/notebook/images/BSDE_NN.png" style="width: 700px; height: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/BSDE_NN.png"><img alt="_images/BSDE_NN.png" src="_images/BSDE_NN.png" style="width: 700px; height: 300px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">neural network for Deep BSDE method</span><a class="headerlink" href="#bsdn-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Another way to look at it is that the stochastic control problem is a model-based reinforcement learning problem <span id="id87">[<a class="reference internal" href="Appendix.html#id36">HJW18</a>]</span>. In this setting the gradient <span class="math notranslate nohighlight">\(Z\)</span> is viewed as the policy we try to approximate using a feedforward neural network. The process <span class="math notranslate nohighlight">\(u(t, \varepsilon + W_t), t \in [0, T]\)</span>, corresponds to the value function associated with the stochastic control problem and can be approximately employed by the policy Z <span id="id88">[<a class="reference internal" href="Appendix.html#id35">WHJ17</a>]</span>. A benefit of using the Deep BSDE method is it does not require us to generate training data beforehand. The paths play the role of the data and they are generated on the spot <span id="id89">[<a class="reference internal" href="Appendix.html#id19">HJ+20</a>]</span>.</p>
@@ -611,16 +630,36 @@ s.t. \hspace{0.2cm} &amp; X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\vareps
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="abstract.html" title="previous page">Abstract</a>
-    <a class='right-next' id="next-link" href="Financial_application.html" title="next page">Financial Applications of Reinforcement Learning</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="abstract.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Abstract</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Financial_application.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Financial Applications of Reinforcement Learning</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

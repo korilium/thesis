@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="discussion" href="Discussion.html" />
@@ -74,13 +74,14 @@
     <a class="navbar-brand text-wrap" href="index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">Future Financial Planning Tools for Consumers</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -162,6 +163,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/korilium/thesis"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/korilium/thesis/issues/new?title=Issue%20on%20page%20%2FFinancial_application.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/korilium/thesis/edit/master/Financial_application.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -176,7 +195,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Financial_application.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/korilium/thesis/master?urlpath=tree/Financial_application.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -196,7 +215,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#g-learner-for-goal-based-retirment-plan-optimization">
@@ -295,8 +314,8 @@
 \\
     &amp; = s^{\top}_t R_t^{(ss)}s_t + u_t^{\top}R_t^{(us)}s_t + u_t^{\top}R_t^{(uu)}u_y + s_t^{\top} R_t^{(s)} + u_t^{\top}R_t^{(u)} + R_t^{(0)} \end{split}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98194bf1-900f-409e-ac2e-61b01edeed5b">
-<span class="eqno">(28)<a class="headerlink" href="#equation-98194bf1-900f-409e-ac2e-61b01edeed5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a1d6bba5-2e8d-42c7-9a35-67cc3ede940c">
+<span class="eqno">(28)<a class="headerlink" href="#equation-a1d6bba5-2e8d-42c7-9a35-67cc3ede940c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
          &amp; \hat{\Sigma}_t = \begin{bmatrix} 
                     0 &amp; 0\\
@@ -355,8 +374,8 @@
 <div class="math notranslate nohighlight" id="equation-action-valueg">
 <span class="eqno">(33)<a class="headerlink" href="#equation-action-valueg" title="Permalink to this equation">¶</a></span>\[H_t^{\pi}(s_t, u_t) = s_t^{\top} Q^{(ss)}_t s_t + u_t^{\top} Q_t^{(us)}s_t + u^{\top}_t Q_t^{(uu)}u_t + s_t^{\top}Q_t^{(s)} + u^{\top}_t Q^{(u)}_t + Q_t^{(0)} \]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abf69f62-02ac-4bfc-a65c-c23afb6fa905">
-<span class="eqno">(34)<a class="headerlink" href="#equation-abf69f62-02ac-4bfc-a65c-c23afb6fa905" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4e25f650-6e97-4abb-b85d-09c1ced67e1d">
+<span class="eqno">(34)<a class="headerlink" href="#equation-4e25f650-6e97-4abb-b85d-09c1ced67e1d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         &amp; Q^{(ss)}_t = R_t^{(ss)} + \gamma(A_t^{\top}\overline{F}_{t+1}^{(ss)} A_t + \tilde{\Sigma}_r \circ \overline{F}_{t+1}^{ss})
 \\ 
@@ -495,8 +514,8 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 \[\begin{split} \Psi(t,x; c,p,\theta) \triangleq r(t)x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x) + \\ \frac{1}{2}\sigma^2(t)\theta^2V_{xx}(t,x) + \lambda(t)B(x+ p/\eta(t),t) + U(c,t) \end{split}\]</div>
 <p>Proofs for deriving the HJB equation, dynamic programming principle ,and converting from a random closing time point to a fixed closing time point can be found in Ye <span id="id21">[<a class="reference internal" href="Appendix.html#id9">Ye06</a>]</span></p>
 <p>A strategy is optimal if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cafae64-4487-45f7-b23d-761ae4e0680c">
-<span class="eqno">(38)<a class="headerlink" href="#equation-2cafae64-4487-45f7-b23d-761ae4e0680c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2fa0e77-6bc8-4303-8136-15183d8a53df">
+<span class="eqno">(38)<a class="headerlink" href="#equation-e2fa0e77-6bc8-4303-8136-15183d8a53df" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         0 &amp; =V_t(t,x) -\lambda(t)V(t,x) + \sup_{c,p,\theta}(t,x;c,p,\theta)  
 \\
@@ -556,16 +575,36 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Reinforcement_learning.html" title="previous page">Reinforcement Learning</a>
-    <a class='right-next' id="next-link" href="Discussion.html" title="next page">discussion</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Reinforcement_learning.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Reinforcement Learning</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Discussion.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">discussion</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
