@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>discussion &#8212; Future Financial Planning Tools for Consumers</title>
+    <title>Discussion &#8212; Future Financial Planning Tools for Consumers</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,9 +49,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Appendix" href="Appendix.html" />
+    <link rel="next" title="Demonstration" href="Demonstration.html" />
     <link rel="prev" title="Financial Applications of Reinforcement Learning" href="Financial_application.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -106,7 +107,12 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   discussion
+   Discussion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Demonstration.html">
+   Demonstration
   </a>
  </li>
  <li class="toctree-l1">
@@ -224,7 +230,7 @@
               <div>
                 
   <div class="section" id="discussion">
-<h1>discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h1>
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h1>
 <p>Reinforcement learning methods are well suited for financial planning tools. The two financial planning applications are the perfect examples as they reflect the possibilities of future financial planning tools in an RL setting and challenging problems for which the current applications are not well adapted. For instance, the G-learner for a goal-based retirement plan optimization is not defined in terms of expected returns and covariances of assets in the portfolio like the traditional Mean-variance Markowitz optimization. Rather, a financial goal is put in action, which is a more natural formulation for the retail investors as they typically seek specific financial goals for their portfolios <span id="id1">[<a class="reference internal" href="Appendix.html#id18">DHB20</a>]</span>. Another example is the capability of the Deep BSDE method and the G-learner to work in higher dimensions. These capabilities enable us to form richer financial environments and by consequence improve the reflection of financial settings for the consumer.</p>
 <p>The cause of the symbioses between financial planning tools and RL finds its roots in distinct features of the reinforcement learning literature. One of these features is the different research fields involved in the advancements of RL. The coöperation between the fields enables a cross-breeding of ideas which leads to further advancement. A good example of this is the adaptation of the Q-learner. The Q-learner is primarily used in the robotics research field and the algorithm does not lend itself well to stochastic environments. The algorithm is adapted by Fox <span id="id2">[<a class="reference internal" href="Appendix.html#id51">FPT15</a>]</span> to stochastic environments, making it possible to use the technique in financial planning scenarios. Another feature is the fundamental workings of the process. The main idea of an agent interacting with an environment is exactly what planning tools try to approximate. Also, the Markov Decision Process in which states represent the financial circumstances of the consumer and action the possible financial decisions, are the building blocks needed for a financial planning tool. A policy is by example an ideal manner of representing a financial strategy, while a value function can easily represent the future cash flow of the policy being followed. Combining all these elements delivers a fundamental bedrock on which financial planning tools can be constructed. A third feature is the scale of possible techniques and methodologies that are applied in the RL literature. A model can be built that fully describes the agent’s environment (model-based) or only a signal of the environment is applied from which the agent learns a policy/behavior (model-free). All the possible financial decisions can be considered (dynamic programming) or only those with which the agent is interacting (Monte-Carlo). One policy is explored (on-policy) or multiple policies are used (off-policy). The choices that are possible to build an RL algorithm enable it to operate in an exceedingly generic fashion. This multifaced structure gives RL algorithms an edge over the traditional financial planning tools, which are hampered by their architectural constructs. The last feature which makes the RL methods so compatible with financial planning tools is the computational adaptability of the algorithms. The potential of RL methods to adapt the computational intensity by implementing function approximations is an extremely strong argument for their use in financial planning tools as they are able to take advantage of the computer power of the present day.</p>
 <p>Although the compatibility between the two fields is extensive, further research is needed to fine-tune RL methods to a financial planning setting. A further investigation of the different fields which are involved in RL is required to better anticipate which techniques are out there and are best suited for a financial application. Different setups of RL algorithms need to be explored to examine which combination of techniques is best applied to a financial setting. Lastly, a better understanding of the function approximation methods is vital to scale the financial applications to realistic scenarios. These are just a few of the many possible research topics which are required to improve the integration of RL methods in financial planning applications.</p>
@@ -269,10 +275,10 @@
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="Appendix.html" title="next page">
+        <a class="right-next" href="Demonstration.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Appendix</p>
+                <p class="prevnext-title">Demonstration</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

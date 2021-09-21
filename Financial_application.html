@@ -51,9 +51,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="discussion" href="Discussion.html" />
+    <link rel="next" title="Discussion" href="Discussion.html" />
     <link rel="prev" title="Reinforcement Learning" href="Reinforcement_learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -108,7 +109,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Discussion.html">
-   discussion
+   Discussion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Demonstration.html">
+   Demonstration
   </a>
  </li>
  <li class="toctree-l1">
@@ -319,8 +325,8 @@
 \\
     &amp; = s^{\top}_t R_t^{(ss)}s_t + u_t^{\top}R_t^{(us)}s_t + u_t^{\top}R_t^{(uu)}u_y + s_t^{\top} R_t^{(s)} + u_t^{\top}R_t^{(u)} + R_t^{(0)} \end{split}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff917624-db6e-4b1d-8f7f-474d0aa895b5">
-<span class="eqno">(28)<a class="headerlink" href="#equation-ff917624-db6e-4b1d-8f7f-474d0aa895b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eabbd510-e94a-45db-ab5b-e1fd4a6581aa">
+<span class="eqno">(28)<a class="headerlink" href="#equation-eabbd510-e94a-45db-ab5b-e1fd4a6581aa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
          &amp; \hat{\Sigma}_t = \begin{bmatrix} 
                     0 &amp; 0\\
@@ -379,8 +385,8 @@
 <div class="math notranslate nohighlight" id="equation-action-valueg">
 <span class="eqno">(33)<a class="headerlink" href="#equation-action-valueg" title="Permalink to this equation">¶</a></span>\[H_t^{\pi}(s_t, u_t) = s_t^{\top} Q^{(ss)}_t s_t + u_t^{\top} Q_t^{(us)}s_t + u^{\top}_t Q_t^{(uu)}u_t + s_t^{\top}Q_t^{(s)} + u^{\top}_t Q^{(u)}_t + Q_t^{(0)} \]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf914857-729c-4d72-82c0-9c368ec062e0">
-<span class="eqno">(34)<a class="headerlink" href="#equation-bf914857-729c-4d72-82c0-9c368ec062e0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5335186b-a90f-405a-8e1e-a640dab09e77">
+<span class="eqno">(34)<a class="headerlink" href="#equation-5335186b-a90f-405a-8e1e-a640dab09e77" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         &amp; Q^{(ss)}_t = R_t^{(ss)} + \gamma(A_t^{\top}\overline{F}_{t+1}^{(ss)} A_t + \tilde{\Sigma}_r \circ \overline{F}_{t+1}^{ss})
 \\ 
@@ -519,8 +525,8 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
 \[\begin{split} \Psi(t,x; c,p,\theta) \triangleq r(t)x + \theta(\mu(t) -r(t)) + i(t) -c -p)V_x(t,x) + \\ \frac{1}{2}\sigma^2(t)\theta^2V_{xx}(t,x) + \lambda(t)B(x+ p/\eta(t),t) + U(c,t) \end{split}\]</div>
 <p>Proofs for deriving the HJB equation, dynamic programming principle ,and converting from a random closing time point to a fixed closing time point can be found in Ye <span id="id21">[<a class="reference internal" href="Appendix.html#id9">Ye06</a>]</span></p>
 <p>A strategy is optimal if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8f6cc64-dad1-4f29-b288-9dcee6cccdda">
-<span class="eqno">(39)<a class="headerlink" href="#equation-a8f6cc64-dad1-4f29-b288-9dcee6cccdda" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-76f5481d-9c6e-4ae9-a444-ae1727104f5c">
+<span class="eqno">(39)<a class="headerlink" href="#equation-76f5481d-9c6e-4ae9-a444-ae1727104f5c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         0 &amp; =V_t(t,x) -\lambda(t)V(t,x) + \sup_{c,p,\theta}(t,x;c,p,\theta)  
 \\
@@ -599,7 +605,7 @@ V_t(t,x) -\lambda V(t,x) + \sup_{(c,p,\theta)} \Psi(t,x;c,p,\theta)  = 0 \\ V(T,
         <a class="right-next" href="Discussion.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">discussion</p>
+                <p class="prevnext-title">Discussion</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

@@ -51,6 +51,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Financial Applications of Reinforcement Learning" href="Financial_application.html" />
@@ -108,7 +109,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Discussion.html">
-   discussion
+   Discussion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Demonstration.html">
+   Demonstration
   </a>
  </li>
  <li class="toctree-l1">
@@ -296,8 +302,8 @@
 <div class="math notranslate nohighlight">
 \[ \pi^* = argmax_{\pi} E[\sum_{k=0}^T \gamma^k R_{t+k+1}|\pi]\]</div>
 <p>Where T indicates the terminal state and <span class="math notranslate nohighlight">\(\gamma\)</span> is the discount rate. The terminal state <span class="math notranslate nohighlight">\(S_T\)</span> is often followed by a reset to a starting state or sample from a starting distribution of states <span id="id16">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>. An episode ends once the reset has occurred. The discount rate represents the present value of future rewards. If the dicount rate is zero <span class="math notranslate nohighlight">\(\gamma = 0\)</span>, the agent is myopic and is only concerned with maximizing the immediate rewards. The agent can consequently be considered greedy <span id="id17">[<a class="reference internal" href="Appendix.html#id61">SBLL19</a>]</span>. If the returns are rewritten in a dynamic programming approach, the return of the myopic agent becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-908d8533-c119-40c8-b9a9-1591cedba667">
-<span class="eqno">(2)<a class="headerlink" href="#equation-908d8533-c119-40c8-b9a9-1591cedba667" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a0341e3-1be0-4ba2-ab6b-540f7875aff4">
+<span class="eqno">(2)<a class="headerlink" href="#equation-6a0341e3-1be0-4ba2-ab6b-540f7875aff4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 G_t &amp; =  R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T) 
 \\
@@ -335,8 +341,8 @@ G_t &amp; =  R_{t+1} + \gamma(R_{t+2} + \gamma R_{t+3} + ... + \gamma^{T-t-2}R_T
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">General backup diagram</span><a class="headerlink" href="#backup-diagram-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>For the agent, it is important to find the optimal policy which maximizes the expected cumulative rewards. The optimal policy <span class="math notranslate nohighlight">\(\pi_*\)</span> is the policy for which <span class="math notranslate nohighlight">\(v_{\pi_*}(s) &gt; v_{\pi}(s)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span>. An optimal policy also has the same action-value function <span class="math notranslate nohighlight">\(q_*(s,a)\)</span> for all <span class="math notranslate nohighlight">\(s \in S\)</span> and <span class="math notranslate nohighlight">\(a \in A\)</span>. The optimal policy does not depend solely on one policy and can encompass multiple policies. It is thus not policy dependent:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-534d54a0-6ca4-4218-ab7e-3bdca9c5a1e6">
-<span class="eqno">(6)<a class="headerlink" href="#equation-534d54a0-6ca4-4218-ab7e-3bdca9c5a1e6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b787d72-45ab-4b2c-beaf-4d8f92a3402f">
+<span class="eqno">(6)<a class="headerlink" href="#equation-3b787d72-45ab-4b2c-beaf-4d8f92a3402f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a) 
 \\
@@ -410,8 +416,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 </div>
 <p>The second dimension is the action selection and has primarily to do with exploration process of the algorithm. The first consideration in action selection is the candidate set that is considered for the next action. Then the optimal action needs to be considered while still keeping exploration in mind. For selecting the candidate set two main approaches are considered: step-wise and frontier. Frontier methods only start exploration once they are on the frontier of the iteration, while step-wise methods have a new candidate set at each step of the trajectory. The MC method, DP ,and TD learning described above use step-wise exploration, while frontier methods are primarily used in robotics <span id="id56">[<a class="reference internal" href="Appendix.html#id56">NZKN19</a>]</span>. For the second consideration, selecting the action value,  different methods have been adopted. The first one is random explorations like <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy exploration as explained in the section of Monte Carlo methods. These explorations techniques enable us to escape from a local minimum but can cause a jittering effect in which we undo an exploration step at random. The second approach is a value-based exploration that uses the value-based information to better direct the perturbation <span id="id57">[<a class="reference internal" href="Appendix.html#id39">YLL+19</a>]</span>. A good example of this are mean action values. They improve the random exploration by incorporating the mean estimates of all the available actions. Meaning, they explore actions with higher values more frequently than actions with lower values. The last option is state-based exploration. State-based exploration uses state-dependent properties to inject noise. Dynamic programming is a good example of this approach. DP is an ordered state-based exploration. Ordered state-based exploration sweeps through the state space in an orded like tree structure. Other state-based explorations are possible like novelty and priors.</p>
 <p>The dimensions of the calculation of the cumulative return estimation (see <a class="reference internal" href="#equation-return">(1)</a>) can be expressed in an other formula to address the practical issues and limitations in RL:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5270431-bc06-483f-a8d6-1456b496a1ab">
-<span class="eqno">(8)<a class="headerlink" href="#equation-e5270431-bc06-483f-a8d6-1456b496a1ab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-08558200-fea3-408a-b3ca-b37ae7d54b5f">
+<span class="eqno">(8)<a class="headerlink" href="#equation-08558200-fea3-408a-b3ca-b37ae7d54b5f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         &amp; G_t = \sum_{k=0}^T\gamma^kR_{t+k+1}
 \\
@@ -460,8 +466,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 </ul>
 <p>In the first case, the agent needs to behave optimally in a similar environment as the trained one. Here, the notion of sample efficiency is important. In the latter case, there are patterns between the trained and test environments and the agent needs to transfer its learning from one environment to the other. This is also called transfer learning and meta-learning <span id="id64">[<a class="reference internal" href="Appendix.html#id79">FranccoisLHI+18</a>]</span>.</p>
 <p>To better grasp the concept of generalization, consider an i.i.d. sampled dataset <span class="math notranslate nohighlight">\(D\)</span> as a set of four-tuples <span class="math notranslate nohighlight">\(\{s,a,r,s'\} \in S \times A \times R \times S \)</span> available to the agent. Where <span class="math notranslate nohighlight">\(D_{\infty}\)</span> is the data set where the number of tuples tends to infinity. Then a learning algorithm is a mapping of a dataset <span class="math notranslate nohighlight">\(D\)</span> into a policy <span class="math notranslate nohighlight">\(\pi_D\)</span>, where the suboptimality of the policy’s expected return can be decomposed as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92dd30bb-8582-497a-8ff4-1d605112d586">
-<span class="eqno">(9)<a class="headerlink" href="#equation-92dd30bb-8582-497a-8ff4-1d605112d586" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f72fb2e2-5a33-4379-b1d8-42b6e13e758b">
+<span class="eqno">(9)<a class="headerlink" href="#equation-f72fb2e2-5a33-4379-b1d8-42b6e13e758b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         \mathbb{E}[V^{\pi^*}(s) - V^{\pi_d}(s)] &amp; = \mathbb{E}[V^{\pi^*}(s) - V^{\pi_{D_{\infty}}}(s) + V^{\pi_{D_{\infty}}}(s) -V^{\pi_{D}}(s) ]
 \\
@@ -485,8 +491,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">general approach of function approximation methods</span><a class="headerlink" href="#function-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now we have discussed the general working of function approximation, a closer look is given to linear gradient-descent methods and artificial neural networks (ANN). Linear gradient descent methods and ANN are two popular function approximations used in RL. Although there are many other techniques like Coarse Coding and memory-based function approximation, it is impossible to cover all function approximations. We will therefore only look at linear-gradient descent methods. One of the linear gradient descent methods is the stochastic-gradient descent (SGD). In SGD the weight vector is a column vector with fixed number of real-valued components <span class="math notranslate nohighlight">\(w = (w_1, w_2,..., w_d)^{\top}\)</span> and the approximate value function <span class="math notranslate nohighlight">\(\hat{v}(s,w)\)</span> is a differentiable function of w for all <span class="math notranslate nohighlight">\( s \in S\)</span>. The weight vector is updated at each time step <span class="math notranslate nohighlight">\(t=0,1,2,3,...\)</span>, giving us <span class="math notranslate nohighlight">\(w_t\)</span>. By interacting with the environment, we get a new example <span class="math notranslate nohighlight">\(S_t \rightarrow v_{\pi}(S_t)\)</span> giving us a state <span class="math notranslate nohighlight">\(S_t\)</span> and the value under the policy. The goal of the function approximation is to approximate the value of the state with limited resources. Meaning from the example, we generalize to all other states while upholding an accurate representation of the seen state. SGD methods do exactly that they minimize the error observed on the examples by adjusting the weight vector after each example by a small amount in the direction that would reduce the error in that example the most:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6ca19da-09a6-468a-8878-708c3a7a1e86">
-<span class="eqno">(10)<a class="headerlink" href="#equation-b6ca19da-09a6-468a-8878-708c3a7a1e86" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a3a7a932-ab5c-4845-8de2-5b3da9e66fe7">
+<span class="eqno">(10)<a class="headerlink" href="#equation-a3a7a932-ab5c-4845-8de2-5b3da9e66fe7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         W_{t+1} &amp; = w_t - \frac{1}{2}\alpha \Delta [v_{\pi}(S_t) - \hat{v}(S_t,w_t)]^2 
 \\
@@ -548,8 +554,8 @@ v_*(s) &amp; = max_{a \in A(s)} q_{\pi_*}(s,a)
 <div class="math notranslate nohighlight" id="equation-soft-minf">
 <span class="eqno">(16)<a class="headerlink" href="#equation-soft-minf" title="Permalink to this equation">¶</a></span>\[ F^{\pi}(s) = \frac{-1}{\beta} log\sum_a \pi_0(a,s) e^{-\beta H^{\pi}(s,a)} \]</div>
 <p>This expression can get plugged in <a class="reference internal" href="#equation-free-q">(13)</a> and as a result the optimal <span class="math notranslate nohighlight">\(H^*\)</span> is achieved.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5c5110f-f97c-4a60-af4c-13fdccfb6d34">
-<span class="eqno">(17)<a class="headerlink" href="#equation-e5c5110f-f97c-4a60-af4c-13fdccfb6d34" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-19b3dff3-cd15-4318-b9c4-d543c347409f">
+<span class="eqno">(17)<a class="headerlink" href="#equation-19b3dff3-cd15-4318-b9c4-d543c347409f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \begin{split}
         H^*(s,a) &amp; = \mathbb{E}[R|s,a] + \gamma\mathbb{E}[F^{\pi}(s)] 
 \\
@@ -588,8 +594,8 @@ Y_t = g(X_T) + \int_t^T f(s, X_s, Y_s, Z_s)ds - \int_t^T(Z_s)^T dW_s
 <p>The minimizer of this variational problem is the solution to the PDE <span id="id81">[<a class="reference internal" href="Appendix.html#id33">Rai18</a>]</span>. The main idea behind Deep BSDE method is to approximate the unknown function <span class="math notranslate nohighlight">\(X_0 \rightarrow u(, X_0)\)</span> and <span class="math notranslate nohighlight">\(X_t \rightarrow [\sigma(t,X_t)]^T((\Delta_x u)(t,X_t)\)</span> by two feedforward neural networks <span class="math notranslate nohighlight">\(\psi\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> <span id="id82">[<a class="reference internal" href="Appendix.html#id36">HJW18</a>]</span>. To achieve this, we discretize time using Euler scheme on a grid <span class="math notranslate nohighlight">\( 0 = t_0&lt;t_1&lt;...&lt;T_N =T \)</span></p>
 <div class="math notranslate nohighlight">
 \[ inf_{\psi_0,\{\phi_n\}^{N-1}_{n=0}} \mathbb{E}[|g(X_T) - Y_T|^2] \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-04bd0966-23a0-4015-87ad-5cd393ed621c">
-<span class="eqno">(21)<a class="headerlink" href="#equation-04bd0966-23a0-4015-87ad-5cd393ed621c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d405aab9-6a25-4a0e-bd4a-ed8954563a3a">
+<span class="eqno">(21)<a class="headerlink" href="#equation-d405aab9-6a25-4a0e-bd4a-ed8954563a3a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 s.t. \hspace{0.2cm} &amp; X_0 = \varepsilon, \hspace{0.2cm} Y_0 = \psi_0(\varepsilon)
 \\
